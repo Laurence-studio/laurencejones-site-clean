@@ -1,115 +1,222 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import { useArtworks } from '../hooks/useApi';
-import { useState } from 'react';
-import { Dialog, DialogContent, DialogTitle } from '../components/ui/dialog';
-import { X } from 'lucide-react';
+import { Grid3X3, Square, ChevronDown, ArrowLeft } from 'lucide-react';
 import { Skeleton } from '../components/ui/skeleton';
 import BlackFooter from '../components/BlackFooter';
 
+// Mock exhibitions data for the dropdown
+const exhibitionOptions = [
+  { value: 'all', label: 'All Works' },
+  { value: 'whitney-2014', label: 'Whitney Museum Retrospective, 2014' },
+  { value: 'pompidou-2015', label: 'Centre Pompidou, Paris, 2015' },
+  { value: 'guggenheim-2015', label: 'Guggenheim Bilbao, 2015' },
+  { value: 'palazzo-2021', label: 'Palazzo Strozzi, Florence, 2021' },
+  { value: 'qatar-2021', label: 'Qatar Museums, Doha, 2021-2022' },
+  { value: 'gagosian-2024', label: 'Gagosian, New York, 2024' }
+];
+
 const FeaturedWorksPage = () => {
   const { artworks, loading } = useArtworks();
+  const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'full'
   const [selectedArtwork, setSelectedArtwork] = useState(null);
+  const [exhibitionFilter, setExhibitionFilter] = useState('all');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // Group artworks by series
-  const seriesGroups = artworks.reduce((acc, artwork) => {
-    if (!acc[artwork.series]) {
-      acc[artwork.series] = [];
-    }
-    acc[artwork.series].push(artwork);
-    return acc;
-  }, {});
+  // Filter artworks based on exhibition (mock - in real app would filter by exhibition)
+  const filteredArtworks = artworks;
 
+  const handleArtworkClick = (artwork) => {
+    setSelectedArtwork(artwork);
+  };
+
+  const handleBack = () => {
+    setSelectedArtwork(null);
+  };
+
+  // Single Artwork Detail View
+  if (selectedArtwork) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Header />
+        <main className="pt-32 pb-20 px-6 md:px-12">
+          {/* Back button and view toggles */}
+          <div className="flex items-center justify-between mb-8">
+            <button 
+              onClick={handleBack}
+              className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors"
+            >
+              <ArrowLeft size={20} />
+              <span className="text-sm">Back to Featured Works</span>
+            </button>
+            
+            {/* View Toggle Icons */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => { setViewMode('full'); handleBack(); }}
+                className={`p-2 transition-colors ${viewMode === 'full' ? 'text-black' : 'text-gray-400 hover:text-gray-600'}`}
+                title="Full view"
+              >
+                <Square size={20} />
+              </button>
+              <button
+                onClick={() => { setViewMode('grid'); handleBack(); }}
+                className={`p-2 transition-colors ${viewMode === 'grid' ? 'text-black' : 'text-gray-400 hover:text-gray-600'}`}
+                title="Grid view"
+              >
+                <Grid3X3 size={20} />
+              </button>
+            </div>
+          </div>
+
+          {/* Artwork Detail Layout */}
+          <div className="max-w-4xl mx-auto">
+            {/* Large Image */}
+            <div className="mb-8">
+              <img
+                src={selectedArtwork.image}
+                alt={selectedArtwork.title}
+                className="w-full h-auto"
+              />
+            </div>
+
+            {/* Artwork Info */}
+            <div className="space-y-6">
+              <div>
+                <h1 className="text-2xl font-medium text-black mb-2">{selectedArtwork.title}</h1>
+                <p className="text-gray-600">{selectedArtwork.year}</p>
+              </div>
+
+              <div className="border-t border-gray-200 pt-6">
+                <p className="text-gray-600 mb-2">{selectedArtwork.medium}</p>
+                <p className="text-gray-500 text-sm">Series: {selectedArtwork.series}</p>
+              </div>
+
+              {/* Exhibited Box */}
+              <div className="border border-gray-200 p-6">
+                <h3 className="text-sm font-medium tracking-wide mb-4">EXHIBITED</h3>
+                <ul className="space-y-2 text-gray-600 text-sm">
+                  <li>Whitney Museum of American Art, New York, 2014</li>
+                  <li>Centre Pompidou, Paris, 2015</li>
+                  <li>Guggenheim Bilbao, Spain, 2015</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </main>
+        <BlackFooter />
+      </div>
+    );
+  }
+
+  // Gallery View
   return (
     <div className="min-h-screen bg-white">
       <Header />
       <main className="pt-40 pb-20 px-6 md:px-12">
-        <h1 
-          className="font-black text-black leading-none tracking-tighter mb-16"
-          style={{ 
-            fontSize: 'clamp(48px, 10vw, 120px)',
-            fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-            letterSpacing: '-0.03em'
-          }}
-        >
-          FEATURED WORKS
-        </h1>
+        {/* Header Row with Title, Dropdown and View Toggle */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-12">
+          <h1 
+            className="font-black text-black leading-none tracking-tighter mb-6 md:mb-0"
+            style={{ 
+              fontSize: 'clamp(48px, 10vw, 120px)',
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              letterSpacing: '-0.03em'
+            }}
+          >
+            FEATURED WORKS
+          </h1>
 
-        {loading ? (
-          <div className="space-y-16">
-            {[1, 2].map((i) => (
-              <div key={i}>
-                <Skeleton className="h-8 w-48 mb-8" />
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {[1, 2, 3].map((j) => (
-                    <div key={j}>
-                      <Skeleton className="aspect-square mb-4" />
-                      <Skeleton className="h-4 w-3/4 mb-2" />
-                      <Skeleton className="h-3 w-1/4" />
-                    </div>
+          <div className="flex items-center gap-6">
+            {/* Exhibited Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex items-center gap-2 text-sm border border-gray-300 px-4 py-2 hover:border-black transition-colors min-w-[200px] justify-between"
+              >
+                <span>{exhibitionOptions.find(e => e.value === exhibitionFilter)?.label || 'Exhibited'}</span>
+                <ChevronDown size={16} className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {isDropdownOpen && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 shadow-lg z-50">
+                  {exhibitionOptions.map((option) => (
+                    <button
+                      key={option.value}
+                      onClick={() => {
+                        setExhibitionFilter(option.value);
+                        setIsDropdownOpen(false);
+                      }}
+                      className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors ${
+                        exhibitionFilter === option.value ? 'bg-gray-100' : ''
+                      }`}
+                    >
+                      {option.label}
+                    </button>
                   ))}
                 </div>
+              )}
+            </div>
+
+            {/* View Toggle Icons */}
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => setViewMode('full')}
+                className={`p-2 transition-colors ${viewMode === 'full' ? 'text-black' : 'text-gray-400 hover:text-gray-600'}`}
+                title="Full view"
+              >
+                <Square size={20} />
+              </button>
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-2 transition-colors ${viewMode === 'grid' ? 'text-black' : 'text-gray-400 hover:text-gray-600'}`}
+                title="Grid view"
+              >
+                <Grid3X3 size={20} />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Gallery Grid */}
+        {loading ? (
+          <div className={`grid gap-8 ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 max-w-2xl'}`}>
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i}>
+                <Skeleton className="aspect-square mb-4" />
+                <Skeleton className="h-4 w-3/4 mb-2" />
+                <Skeleton className="h-3 w-1/2 mb-1" />
+                <Skeleton className="h-3 w-2/3" />
               </div>
             ))}
           </div>
         ) : (
-          Object.entries(seriesGroups).map(([series, works]) => (
-            <div key={series} className="mb-16">
-              <h2 className="text-2xl font-light text-gray-800 mb-8 border-b border-gray-200 pb-4">
-                {series}
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {works.map((artwork) => (
-                  <div 
-                    key={artwork.id}
-                    className="group cursor-pointer"
-                    onClick={() => setSelectedArtwork(artwork)}
-                  >
-                    <div className="aspect-square overflow-hidden mb-4">
-                      <img
-                        src={artwork.image}
-                        alt={artwork.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                    <h3 className="font-medium text-black mb-1">{artwork.title}</h3>
-                    <p className="text-gray-500 text-sm">{artwork.year}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))
-        )}
-
-        {/* Artwork Modal */}
-        <Dialog open={!!selectedArtwork} onOpenChange={() => setSelectedArtwork(null)}>
-          <DialogContent className="max-w-4xl bg-white p-0 overflow-hidden">
-            <DialogTitle className="sr-only">
-              {selectedArtwork?.title || 'Artwork Details'}
-            </DialogTitle>
-            {selectedArtwork && (
-              <div className="relative">
-                <button 
-                  onClick={() => setSelectedArtwork(null)}
-                  className="absolute top-4 right-4 z-10 p-2 bg-white/80 hover:bg-white rounded-full transition-colors"
-                >
-                  <X size={20} />
-                </button>
-                <img
-                  src={selectedArtwork.image}
-                  alt={selectedArtwork.title}
-                  className="w-full h-auto"
-                />
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">{selectedArtwork.title}</h3>
-                  <p className="text-gray-600 mb-1">{selectedArtwork.year}</p>
-                  <p className="text-gray-600 mb-1">Series: {selectedArtwork.series}</p>
-                  <p className="text-gray-500 text-sm">{selectedArtwork.medium}</p>
+          <div className={`grid gap-8 ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 max-w-2xl mx-auto'}`}>
+            {filteredArtworks.map((artwork) => (
+              <div 
+                key={artwork.id}
+                className="group cursor-pointer"
+                onClick={() => handleArtworkClick(artwork)}
+              >
+                <div className={`overflow-hidden mb-4 bg-gray-50 ${viewMode === 'full' ? 'aspect-auto' : 'aspect-square'}`}>
+                  <img
+                    src={artwork.image}
+                    alt={artwork.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="text-center">
+                  <h3 className="font-medium text-black mb-1">{artwork.title}</h3>
+                  <p className="text-gray-500 text-sm mb-1">{artwork.year}</p>
+                  <p className="text-gray-400 text-xs">{artwork.medium}</p>
+                  {viewMode === 'full' && (
+                    <p className="text-gray-400 text-xs mt-1">Series: {artwork.series}</p>
+                  )}
                 </div>
               </div>
-            )}
-          </DialogContent>
-        </Dialog>
+            ))}
+          </div>
+        )}
       </main>
       <BlackFooter />
     </div>
