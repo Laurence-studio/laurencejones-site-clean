@@ -170,36 +170,6 @@ const HeroGallery = () => {
         </div>
 
       </div>
-
-      {/* Artwork Modal */}
-      <Dialog open={!!selectedArtwork} onOpenChange={() => setSelectedArtwork(null)}>
-        <DialogContent className="max-w-4xl bg-white p-0 overflow-hidden">
-          <DialogTitle className="sr-only">
-            {selectedArtwork?.title || 'Artwork Details'}
-          </DialogTitle>
-          {selectedArtwork && (
-            <div className="relative">
-              <button 
-                onClick={() => setSelectedArtwork(null)}
-                className="absolute top-4 right-4 z-10 p-2 bg-white/80 hover:bg-white rounded-full transition-colors"
-              >
-                <X size={20} />
-              </button>
-              <img
-                src={selectedArtwork.image}
-                alt={selectedArtwork.title}
-                className="w-full h-auto"
-              />
-              <div className="p-6">
-                <h3 className="text-2xl font-bold mb-2">{selectedArtwork.title}</h3>
-                <p className="text-gray-600 mb-1">{selectedArtwork.year}</p>
-                <p className="text-gray-600 mb-1">Series: {selectedArtwork.series}</p>
-                <p className="text-gray-500 text-sm">{selectedArtwork.medium}</p>
-              </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
     </section>
   );
 };
