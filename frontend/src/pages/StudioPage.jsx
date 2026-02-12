@@ -62,22 +62,40 @@ const StudioPage = () => {
     }
   ];
 
+  // Placeholder portrait - will be replaced with actual image
+  const studioPortrait = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop&crop=face';
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <main className="pt-32 pb-20">
-        {/* Two-column scrolling layout */}
-        <div className="flex flex-col lg:flex-row">
-          {/* Left Column - Biography (scrolls normally) */}
-          <div className="w-full lg:w-1/2 px-6 md:px-12 lg:pr-16">
-            <h1 
-              className="text-4xl md:text-5xl font-light text-black mb-12"
-              style={{ fontFamily: 'Georgia, serif' }}
-            >
-              Laurence Jones
-            </h1>
+      <main className="pt-40 pb-20 px-6 md:px-12">
+        {/* Bold Header - consistent with other pages */}
+        <h1 
+          className="font-black text-black leading-none tracking-tighter mb-16"
+          style={{ 
+            fontSize: 'clamp(48px, 10vw, 120px)',
+            fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+            letterSpacing: '-0.03em'
+          }}
+        >
+          STUDIO
+        </h1>
 
-            <div className="space-y-6 text-gray-700 leading-relaxed max-w-xl">
+        {/* Two-column scrolling layout */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+          {/* Left Column - Portrait and Biography (scrolls normally) */}
+          <div className="w-full lg:w-1/2">
+            {/* Studio Portrait */}
+            <div className="mb-10">
+              <img
+                src={studioPortrait}
+                alt="Laurence Jones"
+                className="w-full max-w-md h-auto object-cover"
+              />
+            </div>
+
+            {/* Biography Text */}
+            <div className="space-y-6 text-gray-600 leading-relaxed max-w-xl">
               <p>
                 Laurence Jones is a contemporary painter based in Los Angeles, creating hyper-realist works that explore the intersection of architecture and atmosphere. His paintings capture the quiet drama of California modernism—pools illuminated after dark, glass and concrete structures suspended in twilight, the precise geometry of built space dissolving into ambiguous light.
               </p>
@@ -91,26 +109,8 @@ const StudioPage = () => {
               </p>
             </div>
 
-            {/* Divider */}
-            <div className="border-t border-gray-200 my-12 max-w-xl"></div>
-
-            {/* Artist Statement */}
-            <div className="space-y-6 text-gray-700 leading-relaxed max-w-xl">
-              <h2 className="text-2xl font-light text-black mb-6" style={{ fontFamily: 'Georgia, serif' }}>
-                Artist Statement
-              </h2>
-              
-              <p>
-                My paintings investigate architectural space as a site of psychological and emotional resonance. I am interested in the liminal quality of dusk and night—moments when structures become less defined, when light sources shift from natural to artificial, and when the built environment takes on an ambiguous, almost cinematic character.
-              </p>
-              
-              <p>
-                California modernism provides both subject and conceptual framework. These buildings embody a specific promise—clarity, openness, rational order—yet they also function as backdrops for solitude and introspection. Swimming pools, in particular, serve as recurring motifs: they are symbols of leisure and aspiration, but also spaces of isolation and reflection.
-              </p>
-            </div>
-
             {/* Contact Info */}
-            <div className="mt-12 space-y-2 text-gray-600 max-w-xl">
+            <div className="mt-10 space-y-2 text-gray-500">
               <p>Based in Los Angeles, California</p>
               <p>
                 <a href="mailto:studio@laurencejones.com" className="hover:text-black transition-colors">
@@ -120,7 +120,7 @@ const StudioPage = () => {
             </div>
 
             {/* Spacer for scroll effect */}
-            <div className="h-32 lg:h-64"></div>
+            <div className="h-32 lg:h-48"></div>
           </div>
 
           {/* Right Column - Timeline (sticky on desktop) */}
