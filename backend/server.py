@@ -1,15 +1,14 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict
-from typing import List
+from pydantic import BaseModel, Field
+from typing import List, Optional
 import uuid
-from datetime import datetime, timezone
-
+from datetime import datetime
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -17,54 +16,265 @@ load_dotenv(ROOT_DIR / '.env')
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+db = client[os.environ.get('DB_NAME', 'jeff_koons_db')]
 
 # Create the main app without a prefix
-app = FastAPI()
+app = FastAPI(title="Jeff Koons Website API")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
+# ==================== MODELS ====================
 
-# Define Models
-class StatusCheck(BaseModel):
-    model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
-    
+class Artwork(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    client_name: str
-    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    title: str
+    image: str
+    year: str
+    series: str
+    medium: str
+    created_at: datetime = Field(default_factory=datetime.utcnow)
 
-class StatusCheckCreate(BaseModel):
-    client_name: str
+class ArtworkCreate(BaseModel):
+    title: str
+    image: str
+    year: str
+    series: str
+    medium: str
 
-# Add your routes to the router instead of directly to app
+class Exhibition(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    venue: str
+    date: str
+    status: str  # "Current" or "Past"
+
+class Biography(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    portrait: str
+    short_bio: str
+    birth_info: str
+    exhibitions: str
+    recent_exhibitions: str
+    famous_works: str
+    awards: str
+
+class BibliographyItem(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    year: str
+    title: str
+    publisher: str
+    authors: str
+
+class ShopItem(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    price: float
+    image: str
+    category: str
+
+# ==================== ROUTES ====================
+
 @api_router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Jeff Koons Website API"}
 
-@api_router.post("/status", response_model=StatusCheck)
-async def create_status_check(input: StatusCheckCreate):
-    status_dict = input.model_dump()
-    status_obj = StatusCheck(**status_dict)
-    
-    # Convert to dict and serialize datetime to ISO string for MongoDB
-    doc = status_obj.model_dump()
-    doc['timestamp'] = doc['timestamp'].isoformat()
-    
-    _ = await db.status_checks.insert_one(doc)
-    return status_obj
+# Artworks Routes
+@api_router.get("/artworks", response_model=List[Artwork])
+async def get_artworks():
+    artworks = await db.artworks.find().to_list(100)
+    return [Artwork(**artwork) for artwork in artworks]
 
-@api_router.get("/status", response_model=List[StatusCheck])
-async def get_status_checks():
-    # Exclude MongoDB's _id field from the query results
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
+@api_router.get("/artworks/{artwork_id}", response_model=Artwork)
+async def get_artwork(artwork_id: str):
+    artwork = await db.artworks.find_one({"id": artwork_id})
+    if not artwork:
+        raise HTTPException(status_code=404, detail="Artwork not found")
+    return Artwork(**artwork)
+
+@api_router.post("/artworks", response_model=Artwork)
+async def create_artwork(artwork: ArtworkCreate):
+    artwork_obj = Artwork(**artwork.dict())
+    await db.artworks.insert_one(artwork_obj.dict())
+    return artwork_obj
+
+# Exhibitions Routes
+@api_router.get("/exhibitions", response_model=List[Exhibition])
+async def get_exhibitions(status: Optional[str] = None):
+    query = {}
+    if status:
+        query["status"] = status
+    exhibitions = await db.exhibitions.find(query).to_list(100)
+    return [Exhibition(**exhibition) for exhibition in exhibitions]
+
+# Biography Route
+@api_router.get("/biography", response_model=Biography)
+async def get_biography():
+    biography = await db.biography.find_one()
+    if not biography:
+        raise HTTPException(status_code=404, detail="Biography not found")
+    return Biography(**biography)
+
+# Bibliography Routes
+@api_router.get("/bibliography", response_model=List[BibliographyItem])
+async def get_bibliography():
+    items = await db.bibliography.find().to_list(100)
+    return [BibliographyItem(**item) for item in items]
+
+# Shop Routes
+@api_router.get("/shop", response_model=List[ShopItem])
+async def get_shop_items():
+    items = await db.shop.find().to_list(100)
+    return [ShopItem(**item) for item in items]
+
+# Seed Database Route (for initial data)
+@api_router.post("/seed")
+async def seed_database():
+    # Check if data already exists
+    existing_artworks = await db.artworks.count_documents({})
+    if existing_artworks > 0:
+        return {"message": "Database already seeded", "artworks_count": existing_artworks}
     
-    # Convert ISO string timestamps back to datetime objects
-    for check in status_checks:
-        if isinstance(check['timestamp'], str):
-            check['timestamp'] = datetime.fromisoformat(check['timestamp'])
-    
-    return status_checks
+    # Seed Artworks
+    artworks_data = [
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Balloon Dog (Blue)",
+            "image": "https://images.squarespace-cdn.com/content/v1/66993101c21acf31dcadf692/c66d2988-b577-41af-9028-c96d13d91f7e/balloondog_blue+%281%29.jpg",
+            "year": "1994-2000",
+            "series": "Celebration",
+            "medium": "Mirror-polished stainless steel with transparent color coating",
+            "created_at": datetime.utcnow()
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "One Ball Total Equilibrium Tank",
+            "image": "https://images.squarespace-cdn.com/content/v1/66993101c21acf31dcadf692/f1b5a2c0-10e7-4adc-b2ec-70d4dd22d9f6/aqua_basketball.jpg",
+            "year": "1985",
+            "series": "Equilibrium",
+            "medium": "Glass, steel, sodium chloride reagent, distilled water, basketball",
+            "created_at": datetime.utcnow()
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Inflatable Flower and Bunny",
+            "image": "https://images.squarespace-cdn.com/content/v1/66993101c21acf31dcadf692/e1fa8503-ad2a-4ce7-8b02-39d040881766/inflatableflowerandbunny.jpg",
+            "year": "1979",
+            "series": "Inflatables",
+            "medium": "Vinyl, mirrors",
+            "created_at": datetime.utcnow()
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Tulips",
+            "image": "https://images.squarespace-cdn.com/content/v1/66993101c21acf31dcadf692/534dfca8-6373-4514-8349-c25f05205f8a/tulips.jpg",
+            "year": "1995-2004",
+            "series": "Celebration",
+            "medium": "Mirror-polished stainless steel with transparent color coating",
+            "created_at": datetime.utcnow()
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Lips",
+            "image": "https://images.squarespace-cdn.com/content/v1/66993101c21acf31dcadf692/082f21fd-d2d7-4814-8f8a-29be07d88d06/lips.jpg",
+            "year": "2000",
+            "series": "Easyfun-Ethereal",
+            "medium": "Oil on canvas",
+            "created_at": datetime.utcnow()
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Balloon Flower (Yellow)",
+            "image": "https://images.squarespace-cdn.com/content/v1/66993101c21acf31dcadf692/361cb81b-6835-4ec2-ae53-b3dbd85464de/balloonflower_yelllow.jpg",
+            "year": "1995-2000",
+            "series": "Celebration",
+            "medium": "Mirror-polished stainless steel with transparent color coating",
+            "created_at": datetime.utcnow()
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Rabbit",
+            "image": "https://images.squarespace-cdn.com/content/v1/66993101c21acf31dcadf692/435ecc2f-2331-4826-94cb-1caecf54afa0/JK_Rabbit.jpg",
+            "year": "1986",
+            "series": "Statuary",
+            "medium": "Stainless steel",
+            "created_at": datetime.utcnow()
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Metallic Venus",
+            "image": "https://images.squarespace-cdn.com/content/v1/66993101c21acf31dcadf692/2c33616e-5981-4fdb-a7be-92255b3cbacc/MetallicVenus_MG_0517.jpg",
+            "year": "2010-2012",
+            "series": "Antiquity",
+            "medium": "Mirror-polished stainless steel with transparent color coating",
+            "created_at": datetime.utcnow()
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Balloon Swan (Magenta)",
+            "image": "https://images.squarespace-cdn.com/content/v1/66993101c21acf31dcadf692/2dc62853-ebe1-486f-b257-a99b56817abc/balloonswan_mag.jpg",
+            "year": "2004-2011",
+            "series": "Celebration",
+            "medium": "Mirror-polished stainless steel with transparent color coating",
+            "created_at": datetime.utcnow()
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Gazing Ball (Ariadne)",
+            "image": "https://images.squarespace-cdn.com/content/v1/66993101c21acf31dcadf692/6aff7be8-70fc-4b0c-9dee-80592a6acb9a/GazingBall_Ariadne.jpg",
+            "year": "2013",
+            "series": "Gazing Ball",
+            "medium": "Plaster and glass",
+            "created_at": datetime.utcnow()
+        }
+    ]
+    await db.artworks.insert_many(artworks_data)
+
+    # Seed Exhibitions
+    exhibitions_data = [
+        {"id": str(uuid.uuid4()), "title": "Jeff Koons: Porcelain Series", "venue": "Gagosian, New York", "date": "2024 - Present", "status": "Current"},
+        {"id": str(uuid.uuid4()), "title": "Jeff Koons: Lost in America", "venue": "Qatar Museums, Doha", "date": "2021 - 2022", "status": "Past"},
+        {"id": str(uuid.uuid4()), "title": "Shine", "venue": "Palazzo Strozzi, Florence", "date": "2021", "status": "Past"},
+        {"id": str(uuid.uuid4()), "title": "Jeff Koons: A Retrospective", "venue": "Whitney Museum of American Art, New York", "date": "2014", "status": "Past"}
+    ]
+    await db.exhibitions.insert_many(exhibitions_data)
+
+    # Seed Biography
+    biography_data = {
+        "id": str(uuid.uuid4()),
+        "name": "Jeff Koons",
+        "portrait": "https://images.squarespace-cdn.com/content/v1/66993101c21acf31dcadf692/1727279571917-EZ739QD1LLMSYPTG39BO/01_JK_PORTRAIT_0170.jpg",
+        "short_bio": "Jeff Koons is one of the most prominent artists working today. He is known for challenging the limitations of fabrication while transforming everyday images and objects into works of art that engage the viewer in a dialogue with the time in which we live and our historical past. For four decades, Koons has created works that explore themes of self-acceptance and transcendence.",
+        "birth_info": "Jeff Koons was born in York, Pennsylvania in 1955. He studied at the Maryland Institute College of Art in Baltimore, Maryland, and the School of the Art Institute of Chicago in Chicago, Illinois. He received a BFA from the Maryland Institute College of Art in 1976. Koons lives and works in New York City.",
+        "exhibitions": "Since his first solo exhibition in 1980, Koons's work has been shown in galleries, museums, and cultural institutions throughout the world. Koons's work is in numerous collections, including The Broad Art Foundation, Los Angeles, California; Hirshhorn Museum and Sculpture Garden, Washington, D.C.; Los Angeles County Museum of Art; Museum of Contemporary Art, Tokyo; The Museum of Modern Art, New York; National Gallery of Art, Washington, D.C.; Solomon R. Guggenheim Museum, New York; Stedelijk Museum, Amsterdam; Tate Gallery, London; and the Whitney Museum of American Art, New York.",
+        "recent_exhibitions": "His work was the subject of a major exhibition organized by the Whitney Museum of American Art, Jeff Koons: A Retrospective (June 27 - October 19, 2014), which then traveled to the Centre Pompidou Paris and the Guggenheim Bilbao. Recent solo exhibitions include Shine at Palazzo Strozzi in Florence and Jeff Koons: Lost in America at Qatar Museums in Doha. Porcelain Series is currently on view at Gagosian, 541 West 24th Street, in New York City.",
+        "famous_works": "Koons is widely known for his bold paintings and sculptures, including Rabbit, Michael Jackson and Bubbles, Puppy, and Balloon Dog. The smooth, mirror-finished surfaces of his iconic stainless steel sculptures reflect and affirm viewers and their environments. A dialogue with the readymade is evident in his complex paintings that often employ bright, saturated color, communicating the artist's interest in art history, the biological, and acceptance. Koons earned renown for his public works, such as the monumental floral sculptures Puppy and Split-Rocker.",
+        "awards": "Jeff Koons has received numerous awards and honors in recognition of his cultural achievements. Notably, President Jacques Chirac promoted Koons from Chevalier to Officier de l'Ordre National de la Légion d'Honneur for his ongoing strengthening of relations between France and the United States; and in 2013 Koons was honored with the U.S. Department of State's Medal of the Arts for his outstanding commitment to the Art in Embassies Program and international cultural exchange."
+    }
+    await db.biography.insert_one(biography_data)
+
+    # Seed Bibliography
+    bibliography_data = [
+        {"id": str(uuid.uuid4()), "year": "2014", "title": "Jeff Koons: A Retrospective", "publisher": "Whitney Museum of American Art", "authors": "Scott Rothkopf"},
+        {"id": str(uuid.uuid4()), "year": "2012", "title": "Jeff Koons: The Painter & The Sculptor", "publisher": "Hatje Cantz", "authors": "Matthias Ulrich, Vinzenz Brinkmann"},
+        {"id": str(uuid.uuid4()), "year": "2009", "title": "Jeff Koons: Versailles", "publisher": "Xavier Barral", "authors": "Jeff Koons, Edouard de Broglie"},
+        {"id": str(uuid.uuid4()), "year": "2008", "title": "Jeff Koons", "publisher": "Taschen", "authors": "Katy Siegel, Ingrid Sischy"},
+        {"id": str(uuid.uuid4()), "year": "2006", "title": "Jeff Koons: Celebration", "publisher": "Gagosian Gallery", "authors": "Jeff Koons"},
+        {"id": str(uuid.uuid4()), "year": "1992", "title": "The Jeff Koons Handbook", "publisher": "Rizzoli", "authors": "Anthony d'Offay Gallery"}
+    ]
+    await db.bibliography.insert_many(bibliography_data)
+
+    # Seed Shop Items
+    shop_data = [
+        {"id": str(uuid.uuid4()), "name": "Balloon Dog Print - Blue", "price": 250, "image": "https://images.squarespace-cdn.com/content/v1/66993101c21acf31dcadf692/c66d2988-b577-41af-9028-c96d13d91f7e/balloondog_blue+%281%29.jpg", "category": "Prints"},
+        {"id": str(uuid.uuid4()), "name": "Rabbit Print - Silver", "price": 300, "image": "https://images.squarespace-cdn.com/content/v1/66993101c21acf31dcadf692/435ecc2f-2331-4826-94cb-1caecf54afa0/JK_Rabbit.jpg", "category": "Prints"},
+        {"id": str(uuid.uuid4()), "name": "Tulips Print", "price": 275, "image": "https://images.squarespace-cdn.com/content/v1/66993101c21acf31dcadf692/534dfca8-6373-4514-8349-c25f05205f8a/tulips.jpg", "category": "Prints"},
+        {"id": str(uuid.uuid4()), "name": "Jeff Koons: A Retrospective (Book)", "price": 75, "image": "https://images.squarespace-cdn.com/content/v1/66993101c21acf31dcadf692/361cb81b-6835-4ec2-ae53-b3dbd85464de/balloonflower_yelllow.jpg", "category": "Books"}
+    ]
+    await db.shop.insert_many(shop_data)
+
+    return {"message": "Database seeded successfully", "artworks": len(artworks_data), "exhibitions": len(exhibitions_data), "bibliography": len(bibliography_data), "shop": len(shop_data)}
 
 # Include the router in the main app
 app.include_router(api_router)
@@ -72,7 +282,7 @@ app.include_router(api_router)
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
