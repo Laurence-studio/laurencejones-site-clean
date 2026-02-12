@@ -16,8 +16,7 @@ const BlackFooter = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Column 1 - Studio Info */}
           <div>
-            <h3 className="text-sm font-medium tracking-wide mb-6">STUDIO</h3>
-            <p className="text-gray-400 text-sm mb-2">Contemporary Art</p>
+            <h3 className="text-sm font-medium tracking-wide mb-6">LAURENCE JONES STUDIO</h3>
             <p className="text-gray-400 text-sm">London, UK</p>
           </div>
 
@@ -61,10 +60,10 @@ const BlackFooter = () => {
           <div>
             <h3 className="text-sm font-medium tracking-wide mb-6">CONTACT</h3>
             <a 
-              href="mailto:studio@example.com" 
+              href="mailto:studio@laurencejones.com" 
               className="block text-gray-400 text-sm hover:text-white transition-colors mb-8"
             >
-              studio@example.com
+              studio@laurencejones.com
             </a>
             
             <h4 className="text-sm font-medium tracking-wide mb-4">REPRESENTED BY</h4>
@@ -91,7 +90,7 @@ const BlackFooter = () => {
                 rel="noopener noreferrer"
                 className="block text-gray-400 text-sm hover:text-white transition-colors"
               >
-                J Willott
+                J.Willott Gallery
               </a>
             </div>
           </div>
@@ -100,7 +99,7 @@ const BlackFooter = () => {
         {/* Social Links Row */}
         <div className="flex flex-wrap gap-6 mb-12 pt-8 border-t border-gray-800">
           <a 
-            href="https://instagram.com" 
+            href="https://www.instagram.com/laurencejonesartist" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-sm tracking-wide hover:text-gray-400 transition-colors"
@@ -108,13 +107,13 @@ const BlackFooter = () => {
             INSTAGRAM
           </a>
           <a 
-            href="mailto:studio@example.com"
+            href="mailto:studio@laurencejones.com"
             className="text-sm tracking-wide hover:text-gray-400 transition-colors"
           >
             EMAIL
           </a>
           <a 
-            href="https://artsy.net" 
+            href="https://www.artsy.net/artist/laurence-jones" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-sm tracking-wide hover:text-gray-400 transition-colors"
@@ -122,7 +121,7 @@ const BlackFooter = () => {
             ARTSY
           </a>
           <a 
-            href="https://artnet.com" 
+            href="https://www.artnet.com/artists/laurence-jones/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-sm tracking-wide hover:text-gray-400 transition-colors"
