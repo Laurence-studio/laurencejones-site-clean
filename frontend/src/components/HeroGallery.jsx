@@ -34,15 +34,12 @@ const HeroGallery = () => {
   }, []);
 
   const ImageCard = ({ artwork, className = "" }) => (
-    <div 
-      className={`cursor-pointer group ${className}`}
-      onClick={() => setSelectedArtwork(artwork)}
-    >
+    <div className={`${className}`}>
       <div className="relative overflow-hidden bg-white">
         <img
           src={artwork.image}
           alt={artwork.title}
-          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          className="w-full h-auto object-cover"
         />
       </div>
     </div>
