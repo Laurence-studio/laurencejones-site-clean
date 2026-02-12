@@ -76,16 +76,17 @@ const HeroGallery = () => {
     <section className="relative bg-white pt-28">
       {/* Fixed "JEFF KOONS" Text - At Bottom, In Front of Images */}
       <div 
-        className="fixed bottom-0 left-0 right-0 pointer-events-none z-20"
+        className="fixed bottom-0 left-0 right-0 pointer-events-none z-20 overflow-hidden"
         style={{ opacity: textOpacity, transition: 'opacity 0.3s ease-out' }}
       >
         <h1 
-          className="font-black text-black leading-none tracking-tighter whitespace-nowrap"
+          className="font-black text-black leading-none tracking-tighter"
           style={{ 
-            fontSize: 'clamp(80px, 18vw, 300px)',
+            fontSize: 'clamp(60px, 13vw, 250px)',
             fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
             letterSpacing: '-0.02em',
-            marginBottom: '-0.1em'
+            marginBottom: '-0.1em',
+            width: '100%'
           }}
         >
           JEFF KOONS
