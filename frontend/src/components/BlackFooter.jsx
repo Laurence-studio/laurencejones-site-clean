@@ -69,9 +69,30 @@ const BlackFooter = () => {
             
             <h4 className="text-sm font-medium tracking-wide mb-4">REPRESENTED BY</h4>
             <div className="space-y-2">
-              <p className="text-gray-400 text-sm">Gallery One</p>
-              <p className="text-gray-400 text-sm">Gallery Two</p>
-              <p className="text-gray-400 text-sm">Gallery Three</p>
+              <a 
+                href="https://www.rebeccahossack.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block text-gray-400 text-sm hover:text-white transition-colors"
+              >
+                Rebecca Hossack Art Gallery
+              </a>
+              <a 
+                href="https://artangels.net" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block text-gray-400 text-sm hover:text-white transition-colors"
+              >
+                Art Angels
+              </a>
+              <a 
+                href="https://jwillott.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block text-gray-400 text-sm hover:text-white transition-colors"
+              >
+                J Willott
+              </a>
             </div>
           </div>
         </div>
