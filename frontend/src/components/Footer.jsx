@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Copyright */}
           <div className="md:col-span-1">
-            <p className="text-sm font-medium">© 2024</p>
+            <p className="text-sm font-medium">&nbsp;</p>
           </div>
 
           {/* Navigation Column 1 */}
