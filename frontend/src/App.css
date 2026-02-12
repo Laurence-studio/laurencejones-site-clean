@@ -82,3 +82,19 @@ a:focus-visible {
   outline: 2px solid #000;
   outline-offset: 2px;
 }
+
+/* Hide Emergent watermark */
+[class*="emergent"],
+[id*="emergent"],
+a[href*="emergent"],
+div[style*="emergent"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Target the Made with Emergent badge */
+div[style*="position: fixed"][style*="bottom"] > a,
+div[style*="position:fixed"][style*="bottom"] > a {
+  display: none !important;
+}
