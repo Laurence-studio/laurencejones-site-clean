@@ -118,6 +118,7 @@ const ContactPage = () => {
           </form>
         </div>
       </main>
+      <BlackFooter />
     </div>
   );
 };
