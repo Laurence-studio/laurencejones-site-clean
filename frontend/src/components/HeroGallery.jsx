@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useArtworks } from '../hooks/useApi';
-import { Dialog, DialogContent, DialogTitle } from './ui/dialog';
-import { X } from 'lucide-react';
 import { Skeleton } from './ui/skeleton';
 
 const HeroGallery = () => {
   const { artworks, loading } = useArtworks();
-  const [selectedArtwork, setSelectedArtwork] = useState(null);
   const [textOpacity, setTextOpacity] = useState(1);
   const galleryRef = useRef(null);
 
