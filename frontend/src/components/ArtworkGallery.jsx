@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { artworks } from '../data/mockData';
+import { useArtworks } from '../hooks/useApi';
 import { Dialog, DialogContent, DialogTitle } from './ui/dialog';
 import { X } from 'lucide-react';
+import { Skeleton } from './ui/skeleton';
 
 const ArtworkGallery = () => {
+  const { artworks, loading } = useArtworks();
   const [selectedArtwork, setSelectedArtwork] = useState(null);
 
   // Different groupings for the interleaved layout
@@ -52,11 +54,44 @@ const ArtworkGallery = () => {
     </div>
   );
 
+  const LoadingRow = () => (
+    <div className="relative mb-4">
+      <div className="relative pointer-events-none">
+        <h2 
+          className="font-black text-black leading-none tracking-tighter whitespace-nowrap"
+          style={{ 
+            fontSize: 'clamp(60px, 14vw, 220px)',
+            fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+            letterSpacing: '-0.02em',
+            lineHeight: '0.85'
+          }}
+        >
+          JEFF KOONS
+        </h2>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-6 md:px-12 -mt-16 md:-mt-28 lg:-mt-40 relative z-10">
+        {[1, 2, 3].map((i) => (
+          <Skeleton key={i} className="aspect-square" />
+        ))}
+      </div>
+    </div>
+  );
+
+  if (loading) {
+    return (
+      <section className="relative bg-white pt-8 pb-12">
+        <LoadingRow />
+        <LoadingRow />
+        <LoadingRow />
+      </section>
+    );
+  }
+
   return (
     <section className="relative bg-white pt-8 pb-12">
-      <ArtworkRow artworksData={row1} />
-      <ArtworkRow artworksData={row2} />
-      <ArtworkRow artworksData={row3} />
+      {row1.length > 0 && <ArtworkRow artworksData={row1} />}
+      {row2.length > 0 && <ArtworkRow artworksData={row2} />}
+      {row3.length > 0 && <ArtworkRow artworksData={row3} />}
 
       {/* Artwork Modal */}
       <Dialog open={!!selectedArtwork} onOpenChange={() => setSelectedArtwork(null)}>
