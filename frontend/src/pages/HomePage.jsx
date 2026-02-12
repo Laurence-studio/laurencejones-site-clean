@@ -1,18 +1,18 @@
 import React from 'react';
 import Header from '../components/Header';
-import HeroSection from '../components/HeroSection';
-import ArtworkGallery from '../components/ArtworkGallery';
+import HeroGallery from '../components/HeroGallery';
 import BiographySection from '../components/BiographySection';
+import Footer from '../components/Footer';
 
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-white">
       <Header />
       <main>
-        <HeroSection />
-        <ArtworkGallery />
+        <HeroGallery />
         <BiographySection />
       </main>
+      <Footer />
     </div>
   );
 };
