@@ -6,112 +6,57 @@ import { X } from 'lucide-react';
 const ArtworkGallery = () => {
   const [selectedArtwork, setSelectedArtwork] = useState(null);
 
-  // Split artworks into sections for the interleaved layout
-  const topRowArtworks = artworks.slice(1, 4); // Skip hero image, take next 3
-  const middleRowArtworks = artworks.slice(4, 7);
-  const bottomRowArtworks = artworks.slice(7);
+  // Different groupings for the interleaved layout
+  const row1 = artworks.slice(1, 4);
+  const row2 = artworks.slice(4, 7);
+  const row3 = artworks.slice(7, 10);
+
+  const ArtworkRow = ({ artworksData, showTypography = true }) => (
+    <div className="relative mb-4">
+      {/* Large Typography */}
+      {showTypography && (
+        <div className="relative pointer-events-none">
+          <h2 
+            className="font-black text-black leading-none tracking-tighter whitespace-nowrap"
+            style={{ 
+              fontSize: 'clamp(60px, 14vw, 220px)',
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              letterSpacing: '-0.02em',
+              lineHeight: '0.85'
+            }}
+          >
+            JEFF KOONS
+          </h2>
+        </div>
+      )}
+      
+      {/* Artwork Grid - Positioned to overlap with typography */}
+      <div className={`grid grid-cols-1 md:grid-cols-3 gap-4 px-6 md:px-12 ${showTypography ? '-mt-16 md:-mt-28 lg:-mt-40' : ''} relative z-10`}>
+        {artworksData.map((artwork) => (
+          <div 
+            key={artwork.id}
+            className="group cursor-pointer relative overflow-hidden"
+            onClick={() => setSelectedArtwork(artwork)}
+          >
+            <div className="aspect-square overflow-hidden bg-gray-100">
+              <img
+                src={artwork.image}
+                alt={artwork.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
-    <section className="relative bg-white py-12">
-      {/* First row with "JEFF KOONS" typography */}
-      <div className="relative mb-8">
-        <h2 
-          className="font-black text-black leading-none tracking-tighter text-center mb-8"
-          style={{ 
-            fontSize: 'clamp(60px, 14vw, 220px)',
-            fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-            letterSpacing: '-0.03em'
-          }}
-        >
-          JEFF KOONS
-        </h2>
-        
-        {/* Artwork images overlapping with typography */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 md:px-12 -mt-20 md:-mt-32 relative z-10">
-          {topRowArtworks.map((artwork) => (
-            <div 
-              key={artwork.id}
-              className="group cursor-pointer relative overflow-hidden"
-              onClick={() => setSelectedArtwork(artwork)}
-            >
-              <div className="aspect-square overflow-hidden">
-                <img
-                  src={artwork.image}
-                  alt={artwork.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Second row */}
-      <div className="relative mb-8">
-        <h2 
-          className="font-black text-black leading-none tracking-tighter text-center mb-8"
-          style={{ 
-            fontSize: 'clamp(60px, 14vw, 220px)',
-            fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-            letterSpacing: '-0.03em'
-          }}
-        >
-          JEFF KOONS
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 md:px-12 -mt-20 md:-mt-32 relative z-10">
-          {middleRowArtworks.map((artwork) => (
-            <div 
-              key={artwork.id}
-              className="group cursor-pointer relative overflow-hidden"
-              onClick={() => setSelectedArtwork(artwork)}
-            >
-              <div className="aspect-square overflow-hidden">
-                <img
-                  src={artwork.image}
-                  alt={artwork.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Third row */}
-      <div className="relative">
-        <h2 
-          className="font-black text-black leading-none tracking-tighter text-center mb-8"
-          style={{ 
-            fontSize: 'clamp(60px, 14vw, 220px)',
-            fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-            letterSpacing: '-0.03em'
-          }}
-        >
-          JEFF KOONS
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 md:px-12 -mt-20 md:-mt-32 relative z-10">
-          {bottomRowArtworks.map((artwork) => (
-            <div 
-              key={artwork.id}
-              className="group cursor-pointer relative overflow-hidden"
-              onClick={() => setSelectedArtwork(artwork)}
-            >
-              <div className="aspect-square overflow-hidden">
-                <img
-                  src={artwork.image}
-                  alt={artwork.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-            </div>
-          ))}
-        </div>
-      </div>
+    <section className="relative bg-white pt-8 pb-12">
+      <ArtworkRow artworksData={row1} />
+      <ArtworkRow artworksData={row2} />
+      <ArtworkRow artworksData={row3} />
 
       {/* Artwork Modal */}
       <Dialog open={!!selectedArtwork} onOpenChange={() => setSelectedArtwork(null)}>
