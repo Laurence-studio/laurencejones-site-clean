@@ -124,27 +124,27 @@ const StudioPage = () => {
           </div>
 
           {/* Right Column - Timeline (sticky on desktop) */}
-          <div className="w-full lg:w-1/2 px-6 md:px-12 lg:pl-16 border-t lg:border-t-0 lg:border-l border-gray-200 mt-12 lg:mt-0 pt-12 lg:pt-0">
-            <div className="lg:sticky lg:top-32">
+          <div className="w-full lg:w-1/2 border-t lg:border-t-0 lg:border-l border-gray-200 pt-10 lg:pt-0 lg:pl-16">
+            <div className="lg:sticky lg:top-40">
               <h2 
-                className="text-2xl md:text-3xl font-light text-black mb-12"
-                style={{ fontFamily: 'Georgia, serif' }}
+                className="text-lg font-medium tracking-wide text-black mb-10"
+                style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
               >
-                Selected Exhibitions & Milestones
+                SELECTED EXHIBITIONS & MILESTONES
               </h2>
 
-              <div className="space-y-10 max-h-[calc(100vh-200px)] overflow-y-auto pr-4 scrollbar-thin">
+              <div className="space-y-8 max-h-[calc(100vh-220px)] overflow-y-auto pr-4">
                 {timeline.map((item, index) => (
                   <div key={index} className="flex gap-8">
                     {/* Year */}
-                    <div className="w-16 flex-shrink-0">
-                      <span className="text-sm font-medium text-gray-400">{item.year}</span>
+                    <div className="w-14 flex-shrink-0">
+                      <span className="text-sm text-gray-400">{item.year}</span>
                     </div>
                     
                     {/* Events */}
-                    <div className="flex-1 space-y-3">
+                    <div className="flex-1 space-y-2">
                       {item.events.map((event, eventIndex) => (
-                        <p key={eventIndex} className="text-gray-700 text-sm leading-relaxed">
+                        <p key={eventIndex} className="text-gray-600 text-sm leading-relaxed">
                           {event}
                         </p>
                       ))}
@@ -154,10 +154,10 @@ const StudioPage = () => {
               </div>
 
               {/* CV Link */}
-              <div className="mt-12 pt-8 border-t border-gray-200">
+              <div className="mt-10 pt-6 border-t border-gray-200">
                 <a 
                   href="/cv" 
-                  className="text-sm text-gray-600 hover:text-black transition-colors underline underline-offset-4"
+                  className="text-sm text-gray-500 hover:text-black transition-colors"
                 >
                   View CV
                 </a>
