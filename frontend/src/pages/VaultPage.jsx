@@ -127,19 +127,42 @@ const VaultPage = () => {
             </div>
           </div>
 
-          {/* Gallery Install View */}
-          <div className="mb-16">
-            <h2 className="text-sm font-medium tracking-wide mb-6">GALLERY INSTALL</h2>
-            <div className="bg-gray-100 aspect-video flex items-center justify-center">
-              <p className="text-gray-400 text-sm">Gallery installation view coming soon</p>
+          {/* Gallery Install & Interior View - Side by Side */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            {/* Gallery Install View */}
+            <div>
+              <h2 className="text-sm font-medium tracking-wide mb-4">GALLERY INSTALL</h2>
+              <div className="bg-neutral-800 aspect-[4/5] flex items-center justify-center p-8">
+                <div className="w-3/4 aspect-square border-8 border-neutral-700 shadow-2xl flex items-center justify-center overflow-hidden">
+                  <img
+                    src={selectedArtwork.image}
+                    alt={`${selectedArtwork.title} - Gallery Install`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
 
-          {/* Interior View */}
-          <div className="mb-16">
-            <h2 className="text-sm font-medium tracking-wide mb-6">VIEW IN INTERIOR</h2>
-            <div className="bg-gray-100 aspect-video flex items-center justify-center">
-              <p className="text-gray-400 text-sm">Interior view coming soon</p>
+            {/* Interior View */}
+            <div>
+              <h2 className="text-sm font-medium tracking-wide mb-4">VIEW IN INTERIOR</h2>
+              <div className="bg-amber-50 aspect-[4/5] flex items-center justify-center relative overflow-hidden">
+                {/* Interior room background placeholder */}
+                <div className="absolute inset-0 bg-gradient-to-b from-amber-100 to-amber-50"></div>
+                {/* Wall decoration */}
+                <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-amber-200/50 to-transparent"></div>
+                {/* Artwork on wall */}
+                <div className="relative z-10 w-1/2 aspect-[3/4] border-4 border-neutral-800 shadow-xl overflow-hidden">
+                  <img
+                    src={selectedArtwork.image}
+                    alt={`${selectedArtwork.title} - Interior View`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                {/* Floor lamp silhouette */}
+                <div className="absolute right-8 bottom-8 w-1 h-32 bg-neutral-400/30"></div>
+                <div className="absolute right-6 bottom-40 w-6 h-4 bg-neutral-400/20 rounded-t-full"></div>
+              </div>
             </div>
           </div>
         </main>

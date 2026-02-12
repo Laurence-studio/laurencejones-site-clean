@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 import HomePage from "./pages/HomePage";
 import FeaturedWorksPage from "./pages/FeaturedWorksPage";
 import ViewingRoomsPage from "./pages/ViewingRoomsPage";
@@ -13,6 +14,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/featured-works" element={<FeaturedWorksPage />} />
