@@ -40,12 +40,16 @@ Create a pixel-perfect clone of `https://www.jeffkoons.com`, then transform it i
 - Made homepage images non-clickable
 - Updated `Contact` page form styling and information
 
-### Session 2 - Bug Fixes (December 2025)
+### Session 2 - Bug Fixes & Studio Page (December 2025)
 - **Fixed:** Navigation scroll bug - pages now scroll to top after navigation from footer
   - Added `ScrollToTop` component using React Router's `useLocation` hook
 - **Fixed:** Vault page layout - Gallery Install and Interior View sections now display side-by-side
   - Left: Dark gallery setting with framed artwork
   - Right: Light interior room mockup with artwork on wall
+- **New:** Studio page redesigned with two-column scrolling layout
+  - Left: Biography, artist statement, contact info (scrolls normally)
+  - Right: Timeline of exhibitions & milestones (sticky on desktop)
+  - Matches reference site: laurence-showcase.preview.emergentagent.com/studio
 
 ---
 
