@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import { useBiography } from '../hooks/useApi';
 import { Skeleton } from '../components/ui/skeleton';
+import BlackFooter from '../components/BlackFooter';
 
 const StudioPage = () => {
   const { biography, loading } = useBiography();
