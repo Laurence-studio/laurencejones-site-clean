@@ -5,10 +5,10 @@ const HeroSection = () => {
   const heroArtwork = artworks[0]; // Balloon Dog Blue
 
   return (
-    <section className="relative w-full min-h-screen pt-32 pb-20 bg-white overflow-hidden">
-      {/* Main Hero Image */}
-      <div className="relative max-w-5xl mx-auto px-4">
-        <div className="relative">
+    <section className="relative w-full pt-28 bg-white overflow-visible">
+      {/* Main Hero Image - Centered */}
+      <div className="relative flex justify-center px-4">
+        <div className="relative w-full max-w-4xl">
           <img
             src={heroArtwork.image}
             alt={heroArtwork.title}
@@ -17,14 +17,15 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Large Typography Overlay */}
-      <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
+      {/* Large Typography - Positioned to overlap bottom of image and extend below */}
+      <div className="relative -mt-24 md:-mt-40 lg:-mt-56 pointer-events-none overflow-visible">
         <h1 
-          className="font-black text-black leading-none tracking-tighter"
+          className="font-black text-black leading-none tracking-tighter whitespace-nowrap"
           style={{ 
-            fontSize: 'clamp(80px, 18vw, 280px)',
+            fontSize: 'clamp(80px, 16vw, 260px)',
             fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-            letterSpacing: '-0.03em'
+            letterSpacing: '-0.02em',
+            lineHeight: '0.85'
           }}
         >
           JEFF KOONS
