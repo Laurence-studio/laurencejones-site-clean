@@ -29,6 +29,9 @@ const Footer = () => {
             <Link to="/vault" className="block text-sm text-gray-600 hover:text-black transition-colors">
               Vault
             </Link>
+            <Link to="/studio" className="block text-sm text-gray-600 hover:text-black transition-colors">
+              Studio
+            </Link>
             <Link to="/exhibitions" className="block text-sm text-gray-600 hover:text-black transition-colors">
               Exhibitions
             </Link>
@@ -48,18 +51,10 @@ const Footer = () => {
               Instagram
             </a>
             <a 
-              href="mailto:hello@example.com" 
+              href="mailto:studio@laurencejones.com" 
               className="block text-sm text-gray-600 hover:text-black transition-colors"
             >
               Email
-            </a>
-            <a 
-              href="https://artsy.net" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block text-sm text-gray-600 hover:text-black transition-colors"
-            >
-              Artsy
             </a>
           </div>
 
