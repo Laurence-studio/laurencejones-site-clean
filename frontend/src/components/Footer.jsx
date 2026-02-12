@@ -72,6 +72,13 @@ const Footer = () => {
             />
           </div>
         </div>
+
+        {/* Copyright */}
+        <div className="mt-12 pt-8 border-t border-gray-200">
+          <p className="text-gray-500 text-sm">
+            © 2026 Laurence Jones. All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
   );
