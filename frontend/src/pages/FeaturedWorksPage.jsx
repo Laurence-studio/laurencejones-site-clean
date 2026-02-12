@@ -138,23 +138,23 @@ const FeaturedWorksPage = () => {
             <div className="relative">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center gap-2 text-sm border border-gray-300 px-4 py-2 hover:border-black transition-colors min-w-[200px] justify-between"
+                className="flex items-center gap-2 text-sm border border-gray-300 px-4 py-2 hover:border-black transition-colors min-w-[280px] justify-between"
               >
-                <span>{exhibitionOptions.find(e => e.value === exhibitionFilter)?.label || 'Exhibited'}</span>
-                <ChevronDown size={16} className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                <span className="truncate">{dropdownOptions.find(e => e.value === selectedWorkFilter)?.label || 'All Works'}</span>
+                <ChevronDown size={16} className={`transition-transform flex-shrink-0 ${isDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
               
               {isDropdownOpen && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 shadow-lg z-50">
-                  {exhibitionOptions.map((option) => (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 shadow-lg z-50 max-h-80 overflow-y-auto">
+                  {dropdownOptions.map((option) => (
                     <button
                       key={option.value}
                       onClick={() => {
-                        setExhibitionFilter(option.value);
+                        setSelectedWorkFilter(option.value);
                         setIsDropdownOpen(false);
                       }}
                       className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors ${
-                        exhibitionFilter === option.value ? 'bg-gray-100' : ''
+                        selectedWorkFilter === option.value ? 'bg-gray-100' : ''
                       }`}
                     >
                       {option.label}
