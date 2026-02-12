@@ -131,7 +131,6 @@ const VaultPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             {/* Gallery Install View */}
             <div>
-              <h2 className="text-sm font-medium tracking-wide mb-4">GALLERY INSTALL</h2>
               <div className="bg-neutral-800 aspect-[4/5] flex items-center justify-center p-8">
                 <div className="w-3/4 aspect-square border-8 border-neutral-700 shadow-2xl flex items-center justify-center overflow-hidden">
                   <img
@@ -145,7 +144,6 @@ const VaultPage = () => {
 
             {/* Interior View */}
             <div>
-              <h2 className="text-sm font-medium tracking-wide mb-4">VIEW IN INTERIOR</h2>
               <div className="bg-amber-50 aspect-[4/5] flex items-center justify-center relative overflow-hidden">
                 {/* Interior room background placeholder */}
                 <div className="absolute inset-0 bg-gradient-to-b from-amber-100 to-amber-50"></div>
