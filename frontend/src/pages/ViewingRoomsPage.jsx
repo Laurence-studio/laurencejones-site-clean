@@ -111,6 +111,7 @@ const ViewingRoomsPage = () => {
           </DialogContent>
         </Dialog>
       </main>
+      <BlackFooter />
     </div>
   );
 };
