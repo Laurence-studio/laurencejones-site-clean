@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Copyright */}
           <div className="md:col-span-1">
-            <p className="text-sm font-medium">© JEFF KOONS</p>
+            <p className="text-sm font-medium">© 2024</p>
           </div>
 
           {/* Navigation Column 1 */}
@@ -16,45 +16,29 @@ const Footer = () => {
             <Link to="/" className="block text-sm text-gray-600 hover:text-black transition-colors">
               Home
             </Link>
-            <Link to="/artwork" className="block text-sm text-gray-600 hover:text-black transition-colors">
-              Artwork
+            <Link to="/featured-works" className="block text-sm text-gray-600 hover:text-black transition-colors">
+              Featured Works
             </Link>
-            <Link to="/biography" className="block text-sm text-gray-600 hover:text-black transition-colors">
-              Biography
+            <Link to="/viewing-rooms" className="block text-sm text-gray-600 hover:text-black transition-colors">
+              Viewing Rooms
             </Link>
           </div>
 
           {/* Navigation Column 2 */}
           <div className="space-y-3">
-            <Link to="/bibliography" className="block text-sm text-gray-600 hover:text-black transition-colors">
-              Bibliography
+            <Link to="/vault" className="block text-sm text-gray-600 hover:text-black transition-colors">
+              Vault
             </Link>
             <Link to="/exhibitions" className="block text-sm text-gray-600 hover:text-black transition-colors">
               Exhibitions
             </Link>
-            <Link to="/shop" className="block text-sm text-gray-600 hover:text-black transition-colors">
-              Shop
+            <Link to="/contact" className="block text-sm text-gray-600 hover:text-black transition-colors">
+              Contact
             </Link>
           </div>
 
           {/* Social Links */}
           <div className="space-y-3">
-            <a 
-              href="https://facebook.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block text-sm text-gray-600 hover:text-black transition-colors"
-            >
-              Facebook
-            </a>
-            <a 
-              href="https://twitter.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block text-sm text-gray-600 hover:text-black transition-colors"
-            >
-              Twitter
-            </a>
             <a 
               href="https://instagram.com" 
               target="_blank" 
@@ -62,6 +46,20 @@ const Footer = () => {
               className="block text-sm text-gray-600 hover:text-black transition-colors"
             >
               Instagram
+            </a>
+            <a 
+              href="mailto:hello@example.com" 
+              className="block text-sm text-gray-600 hover:text-black transition-colors"
+            >
+              Email
+            </a>
+            <a 
+              href="https://artsy.net" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block text-sm text-gray-600 hover:text-black transition-colors"
+            >
+              Artsy
             </a>
           </div>
 
