@@ -5,13 +5,13 @@ const Footer = () => {
   return (
     <footer className="bg-white border-t border-gray-200 py-16 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-          {/* Copyright */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Copyright spacer */}
           <div className="md:col-span-1">
             <p className="text-sm font-medium">&nbsp;</p>
           </div>
 
-          {/* Navigation Column 1 */}
+          {/* Navigation - 3 columns of 3 items */}
           <div className="space-y-3">
             <Link to="/" className="block text-sm text-gray-600 hover:text-black transition-colors">
               Home
@@ -24,7 +24,6 @@ const Footer = () => {
             </Link>
           </div>
 
-          {/* Navigation Column 2 */}
           <div className="space-y-3">
             <Link to="/vault" className="block text-sm text-gray-600 hover:text-black transition-colors">
               Vault
@@ -35,13 +34,12 @@ const Footer = () => {
             <Link to="/exhibitions" className="block text-sm text-gray-600 hover:text-black transition-colors">
               Exhibitions
             </Link>
+          </div>
+
+          <div className="space-y-3">
             <Link to="/contact" className="block text-sm text-gray-600 hover:text-black transition-colors">
               Contact
             </Link>
-          </div>
-
-          {/* Social Links */}
-          <div className="space-y-3">
             <a 
               href="https://instagram.com" 
               target="_blank" 
@@ -56,15 +54,6 @@ const Footer = () => {
             >
               Email
             </a>
-          </div>
-
-          {/* Search */}
-          <div>
-            <input
-              type="text"
-              placeholder="Search"
-              className="w-full border-b border-gray-300 pb-2 text-sm focus:outline-none focus:border-black transition-colors bg-transparent"
-            />
           </div>
         </div>
 
