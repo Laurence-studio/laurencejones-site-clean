@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Dialog, DialogContent, DialogTitle } from '../components/ui/dialog';
 import { X } from 'lucide-react';
 import { Skeleton } from '../components/ui/skeleton';
+import BlackFooter from '../components/BlackFooter';
 
 const VaultPage = () => {
   const { artworks, loading } = useArtworks();
