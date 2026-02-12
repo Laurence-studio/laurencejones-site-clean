@@ -73,6 +73,7 @@ const StudioPage = () => {
           </div>
         ) : null}
       </main>
+      <BlackFooter />
     </div>
   );
 };
