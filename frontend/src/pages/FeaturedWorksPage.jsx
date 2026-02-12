@@ -111,6 +111,7 @@ const FeaturedWorksPage = () => {
           </DialogContent>
         </Dialog>
       </main>
+      <BlackFooter />
     </div>
   );
 };
