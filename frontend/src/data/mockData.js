@@ -126,9 +126,10 @@ export const exhibitions = [
 ];
 
 export const navigation = [
-  { name: "Artwork", path: "/artwork" },
+  { name: "Featured Works", path: "/featured-works" },
+  { name: "Viewing Rooms", path: "/viewing-rooms" },
+  { name: "Vault", path: "/vault" },
+  { name: "Studio", path: "/studio" },
   { name: "Exhibitions", path: "/exhibitions" },
-  { name: "Biography", path: "/biography" },
-  { name: "Bibliography", path: "/bibliography" },
-  { name: "Shop", path: "/shop" }
+  { name: "Contact", path: "/contact" }
 ];
