@@ -1,11 +1,13 @@
 import React from 'react';
 import Header from '../components/Header';
-import { artworks } from '../data/mockData';
+import { useArtworks } from '../hooks/useApi';
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogTitle } from '../components/ui/dialog';
 import { X } from 'lucide-react';
+import { Skeleton } from '../components/ui/skeleton';
 
 const ArtworkPage = () => {
+  const { artworks, loading } = useArtworks();
   const [selectedArtwork, setSelectedArtwork] = useState(null);
 
   // Group artworks by series
@@ -32,32 +34,51 @@ const ArtworkPage = () => {
           ARTWORK
         </h1>
 
-        {Object.entries(seriesGroups).map(([series, works]) => (
-          <div key={series} className="mb-16">
-            <h2 className="text-2xl font-light text-gray-800 mb-8 border-b border-gray-200 pb-4">
-              {series}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {works.map((artwork) => (
-                <div 
-                  key={artwork.id}
-                  className="group cursor-pointer"
-                  onClick={() => setSelectedArtwork(artwork)}
-                >
-                  <div className="aspect-square overflow-hidden mb-4">
-                    <img
-                      src={artwork.image}
-                      alt={artwork.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <h3 className="font-medium text-black mb-1">{artwork.title}</h3>
-                  <p className="text-gray-500 text-sm">{artwork.year}</p>
+        {loading ? (
+          <div className="space-y-16">
+            {[1, 2].map((i) => (
+              <div key={i}>
+                <Skeleton className="h-8 w-48 mb-8" />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {[1, 2, 3].map((j) => (
+                    <div key={j}>
+                      <Skeleton className="aspect-square mb-4" />
+                      <Skeleton className="h-4 w-3/4 mb-2" />
+                      <Skeleton className="h-3 w-1/4" />
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        ))}
+        ) : (
+          Object.entries(seriesGroups).map(([series, works]) => (
+            <div key={series} className="mb-16">
+              <h2 className="text-2xl font-light text-gray-800 mb-8 border-b border-gray-200 pb-4">
+                {series}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {works.map((artwork) => (
+                  <div 
+                    key={artwork.id}
+                    className="group cursor-pointer"
+                    onClick={() => setSelectedArtwork(artwork)}
+                  >
+                    <div className="aspect-square overflow-hidden mb-4">
+                      <img
+                        src={artwork.image}
+                        alt={artwork.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                    <h3 className="font-medium text-black mb-1">{artwork.title}</h3>
+                    <p className="text-gray-500 text-sm">{artwork.year}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
+        )}
 
         {/* Artwork Modal */}
         <Dialog open={!!selectedArtwork} onOpenChange={() => setSelectedArtwork(null)}>
