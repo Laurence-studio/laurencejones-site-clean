@@ -1,14 +1,53 @@
 import React from 'react';
 import Header from '../components/Header';
-import { useExhibitions } from '../hooks/useApi';
-import { Skeleton } from '../components/ui/skeleton';
 import BlackFooter from '../components/BlackFooter';
 
 const ExhibitionsPage = () => {
-  const { exhibitions, loading } = useExhibitions();
-  
-  const currentExhibitions = exhibitions.filter(e => e.status === 'Current');
-  const pastExhibitions = exhibitions.filter(e => e.status === 'Past');
+  // Static exhibitions data
+  const exhibitions = [
+    {
+      id: 1,
+      year: '2024',
+      title: 'Silver Palms',
+      venue: 'Rebecca Hossack Miami Project, Miami',
+      hasMonograph: false
+    },
+    {
+      id: 2,
+      year: '2021',
+      title: 'Imago',
+      venue: 'Rebecca Hossack Gallery X Citi Virtual Salon',
+      hasMonograph: false
+    },
+    {
+      id: 3,
+      year: '2021',
+      title: 'Spotlight On: Laurence Jones',
+      venue: 'Rebecca Hossack Gallery, London',
+      hasMonograph: false
+    },
+    {
+      id: 4,
+      year: '2019',
+      title: 'How To Live In Los Angeles',
+      venue: 'Rebecca Hossack Gallery, London',
+      hasMonograph: true
+    },
+    {
+      id: 5,
+      year: '2017',
+      title: 'Night Works',
+      venue: 'Rebecca Hossack Gallery, London',
+      hasMonograph: true
+    }
+  ];
+
+  // Placeholder image component
+  const PlaceholderImage = () => (
+    <div className="w-20 h-20 bg-gray-200 flex items-center justify-center">
+      <span className="text-gray-400 text-xs"></span>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-white">
@@ -25,64 +64,32 @@ const ExhibitionsPage = () => {
           EXHIBITIONS
         </h1>
 
-        {loading ? (
-          <div className="space-y-16">
-            <div>
-              <Skeleton className="h-8 w-32 mb-8" />
-              <div className="space-y-8">
-                {[1, 2].map((i) => (
-                  <div key={i}>
-                    <Skeleton className="h-6 w-64 mb-2" />
-                    <Skeleton className="h-4 w-48 mb-1" />
-                    <Skeleton className="h-3 w-32" />
+        <div className="space-y-12">
+          {exhibitions.map((exhibition) => (
+            <div key={exhibition.id} className="flex flex-col md:flex-row md:items-start gap-6 md:gap-12">
+              {/* Exhibition Info */}
+              <div className="flex-1">
+                <p className="text-gray-500 text-sm mb-1">{exhibition.year}</p>
+                <h3 className="text-xl font-bold text-black mb-1">
+                  {exhibition.title}
+                </h3>
+                <p className="text-gray-600">{exhibition.venue}</p>
+              </div>
+
+              {/* Image Placeholders */}
+              <div className="flex gap-3">
+                <PlaceholderImage />
+                <PlaceholderImage />
+                <PlaceholderImage />
+                {exhibition.hasMonograph && (
+                  <div className="ml-4">
+                    <PlaceholderImage />
                   </div>
-                ))}
+                )}
               </div>
             </div>
-          </div>
-        ) : (
-          <>
-            {/* Current Exhibitions */}
-            {currentExhibitions.length > 0 && (
-              <div className="mb-16">
-                <h2 className="text-2xl font-light text-gray-800 mb-8 border-b border-gray-200 pb-4">
-                  Current
-                </h2>
-                <div className="space-y-8">
-                  {currentExhibitions.map((exhibition) => (
-                    <div key={exhibition.id} className="group cursor-pointer">
-                      <h3 className="text-xl font-medium text-black mb-2 group-hover:underline">
-                        {exhibition.title}
-                      </h3>
-                      <p className="text-gray-600">{exhibition.venue}</p>
-                      <p className="text-gray-500 text-sm mt-1">{exhibition.date}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Past Exhibitions */}
-            {pastExhibitions.length > 0 && (
-              <div>
-                <h2 className="text-2xl font-light text-gray-800 mb-8 border-b border-gray-200 pb-4">
-                  Past
-                </h2>
-                <div className="space-y-8">
-                  {pastExhibitions.map((exhibition) => (
-                    <div key={exhibition.id} className="group cursor-pointer">
-                      <h3 className="text-xl font-medium text-black mb-2 group-hover:underline">
-                        {exhibition.title}
-                      </h3>
-                      <p className="text-gray-600">{exhibition.venue}</p>
-                      <p className="text-gray-500 text-sm mt-1">{exhibition.date}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </>
-        )}
+          ))}
+        </div>
       </main>
       <BlackFooter />
     </div>
