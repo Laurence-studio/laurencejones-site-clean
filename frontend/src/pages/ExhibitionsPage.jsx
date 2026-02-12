@@ -84,6 +84,7 @@ const ExhibitionsPage = () => {
           </>
         )}
       </main>
+      <BlackFooter />
     </div>
   );
 };
