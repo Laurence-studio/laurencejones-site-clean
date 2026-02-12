@@ -61,7 +61,7 @@ const HeroGallery = () => {
               width: '100%'
             }}
           >
-            JEFF KOONS
+            LAURENCE JONES
           </h1>
         </div>
         <div className="relative z-10 px-8 md:px-16 pt-20 pb-40">
@@ -90,7 +90,7 @@ const HeroGallery = () => {
             width: '100%'
           }}
         >
-          JEFF KOONS
+          LAURENCE JONES
         </h1>
       </div>
       
