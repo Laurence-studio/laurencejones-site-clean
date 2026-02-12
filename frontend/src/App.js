@@ -2,11 +2,12 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import ArtworkPage from "./pages/ArtworkPage";
+import FeaturedWorksPage from "./pages/FeaturedWorksPage";
+import ViewingRoomsPage from "./pages/ViewingRoomsPage";
+import VaultPage from "./pages/VaultPage";
+import StudioPage from "./pages/StudioPage";
 import ExhibitionsPage from "./pages/ExhibitionsPage";
-import BiographyPage from "./pages/BiographyPage";
-import BibliographyPage from "./pages/BibliographyPage";
-import ShopPage from "./pages/ShopPage";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (
@@ -14,11 +15,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/artwork" element={<ArtworkPage />} />
+          <Route path="/featured-works" element={<FeaturedWorksPage />} />
+          <Route path="/viewing-rooms" element={<ViewingRoomsPage />} />
+          <Route path="/vault" element={<VaultPage />} />
+          <Route path="/studio" element={<StudioPage />} />
           <Route path="/exhibitions" element={<ExhibitionsPage />} />
-          <Route path="/biography" element={<BiographyPage />} />
-          <Route path="/bibliography" element={<BibliographyPage />} />
-          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </BrowserRouter>
     </div>
