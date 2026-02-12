@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
-import { Textarea } from '../components/ui/textarea';
-import { Label } from '../components/ui/label';
 import BlackFooter from '../components/BlackFooter';
 
 const ContactPage = () => {
@@ -52,66 +49,68 @@ const ContactPage = () => {
               For inquiries about available works, exhibitions, or collaborations, please get in touch.
             </p>
             <div className="space-y-2 text-gray-600">
-              <p>Email: <a href="mailto:hello@example.com" className="hover:text-black transition-colors">hello@example.com</a></p>
-              <p>Instagram: <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">@studio</a></p>
+              <p>Email: <a href="mailto:studio@laurencejones.com" className="hover:text-black transition-colors">studio@laurencejones.com</a></p>
+              <p>Instagram: <a href="https://www.instagram.com/laurencejonesartist" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">@laurencejonesartist</a></p>
             </div>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="name">Name</Label>
-                <Input
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+                <input
                   id="name"
                   name="name"
+                  type="text"
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="border-gray-300 focus:border-black"
+                  className="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-black transition-colors rounded-none"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                <input
                   id="email"
                   name="email"
                   type="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="border-gray-300 focus:border-black"
+                  className="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-black transition-colors rounded-none"
                 />
               </div>
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="subject">Subject</Label>
-              <Input
+              <label htmlFor="subject" className="block text-sm font-medium text-gray-700">Subject</label>
+              <input
                 id="subject"
                 name="subject"
+                type="text"
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                className="border-gray-300 focus:border-black"
+                className="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-black transition-colors rounded-none"
               />
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="message">Message</Label>
-              <Textarea
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
+              <textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 required
                 rows={6}
-                className="border-gray-300 focus:border-black resize-none"
+                className="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-black transition-colors resize-none rounded-none"
               />
             </div>
 
             <Button 
               type="submit" 
-              className="bg-black text-white hover:bg-gray-800 px-8 py-3"
+              className="bg-black text-white hover:bg-gray-800 px-8 py-3 rounded-none"
             >
               {submitted ? 'Message Sent!' : 'Send Message'}
             </Button>
