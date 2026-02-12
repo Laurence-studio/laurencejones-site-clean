@@ -40,24 +40,19 @@ const Header = () => {
 
       {/* Main Navigation */}
       <nav className="flex items-center justify-between px-6 py-4 bg-white">
-        {/* Logo - Balloon Flower */}
+        {/* Logo - Text */}
         <Link to="/" className="flex items-center">
-          <svg 
-            width="44" 
-            height="44" 
-            viewBox="0 0 100 100" 
-            className="hover:opacity-70 transition-opacity"
+          <span 
+            className="text-black tracking-tight"
+            style={{ 
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontWeight: 600,
+              fontSize: '16px',
+              letterSpacing: '-0.01em'
+            }}
           >
-            {/* Stylized balloon flower logo matching Koons style */}
-            <circle cx="50" cy="28" r="16" fill="none" stroke="black" strokeWidth="2.5" />
-            <circle cx="32" cy="44" r="16" fill="none" stroke="black" strokeWidth="2.5" />
-            <circle cx="68" cy="44" r="16" fill="none" stroke="black" strokeWidth="2.5" />
-            <circle cx="38" cy="66" r="16" fill="none" stroke="black" strokeWidth="2.5" />
-            <circle cx="62" cy="66" r="16" fill="none" stroke="black" strokeWidth="2.5" />
-            {/* Stem */}
-            <path d="M50 78 Q50 88 48 94" fill="none" stroke="black" strokeWidth="2.5" />
-            <path d="M48 94 Q46 98 50 96 Q54 98 52 94" fill="none" stroke="black" strokeWidth="2" />
-          </svg>
+            Laurence Jones
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
