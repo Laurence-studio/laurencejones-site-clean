@@ -44,8 +44,8 @@ const ExhibitionsPage = () => {
 
   // Placeholder image component
   const PlaceholderImage = () => (
-    <div className="w-20 h-20 bg-gray-200 flex items-center justify-center">
-      <span className="text-gray-400 text-xs"></span>
+    <div className="w-24 h-24 bg-gray-100 flex items-center justify-center">
+      <span className="text-gray-300 text-xs"></span>
     </div>
   );
 
@@ -54,7 +54,7 @@ const ExhibitionsPage = () => {
       <Header />
       <main className="pt-40 pb-20 px-6 md:px-12">
         <h1 
-          className="font-black text-black leading-none tracking-tighter mb-16"
+          className="font-black text-black leading-none tracking-tighter mb-20"
           style={{ 
             fontSize: 'clamp(48px, 10vw, 120px)',
             fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
@@ -64,28 +64,36 @@ const ExhibitionsPage = () => {
           EXHIBITIONS
         </h1>
 
-        <div className="space-y-12">
+        <div className="space-y-16">
           {exhibitions.map((exhibition) => (
-            <div key={exhibition.id} className="flex flex-col md:flex-row md:items-start gap-6 md:gap-12">
-              {/* Exhibition Info */}
-              <div className="flex-1">
-                <p className="text-gray-500 text-sm mb-1">{exhibition.year}</p>
-                <h3 className="text-xl font-bold text-black mb-1">
-                  {exhibition.title}
-                </h3>
-                <p className="text-gray-600">{exhibition.venue}</p>
-              </div>
+            <div key={exhibition.id} className="border-t border-gray-200 pt-8">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                {/* Year - left column */}
+                <div className="md:col-span-2">
+                  <p className="text-gray-400 text-sm">{exhibition.year}</p>
+                </div>
 
-              {/* Image Placeholders */}
-              <div className="flex gap-3">
-                <PlaceholderImage />
-                <PlaceholderImage />
-                <PlaceholderImage />
-                {exhibition.hasMonograph && (
-                  <div className="ml-4">
+                {/* Exhibition Info - middle column */}
+                <div className="md:col-span-4">
+                  <h3 className="text-lg font-bold text-black mb-1">
+                    {exhibition.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm">{exhibition.venue}</p>
+                </div>
+
+                {/* Image Placeholders - right column */}
+                <div className="md:col-span-6">
+                  <div className="flex gap-2">
                     <PlaceholderImage />
+                    <PlaceholderImage />
+                    <PlaceholderImage />
+                    {exhibition.hasMonograph && (
+                      <div className="ml-6">
+                        <PlaceholderImage />
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
             </div>
           ))}
