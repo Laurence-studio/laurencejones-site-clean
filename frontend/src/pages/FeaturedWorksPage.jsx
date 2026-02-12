@@ -1,30 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Header from '../components/Header';
 import { useArtworks } from '../hooks/useApi';
 import { Grid3X3, Square, ChevronDown, ArrowLeft } from 'lucide-react';
 import { Skeleton } from '../components/ui/skeleton';
 import BlackFooter from '../components/BlackFooter';
 
-// Mock exhibitions data for the dropdown
-const exhibitionOptions = [
-  { value: 'all', label: 'All Works' },
-  { value: 'whitney-2014', label: 'Whitney Museum Retrospective, 2014' },
-  { value: 'pompidou-2015', label: 'Centre Pompidou, Paris, 2015' },
-  { value: 'guggenheim-2015', label: 'Guggenheim Bilbao, 2015' },
-  { value: 'palazzo-2021', label: 'Palazzo Strozzi, Florence, 2021' },
-  { value: 'qatar-2021', label: 'Qatar Museums, Doha, 2021-2022' },
-  { value: 'gagosian-2024', label: 'Gagosian, New York, 2024' }
-];
-
 const FeaturedWorksPage = () => {
   const { artworks, loading } = useArtworks();
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'full'
   const [selectedArtwork, setSelectedArtwork] = useState(null);
-  const [exhibitionFilter, setExhibitionFilter] = useState('all');
+  const [selectedWorkFilter, setSelectedWorkFilter] = useState('all');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // Filter artworks based on exhibition (mock - in real app would filter by exhibition)
-  const filteredArtworks = artworks;
+  // Build dropdown options from artworks
+  const dropdownOptions = useMemo(() => {
+    const options = [{ value: 'all', label: 'All Works' }];
+    artworks.forEach(artwork => {
+      options.push({
+        value: artwork.id,
+        label: `${artwork.title}, ${artwork.year}`
+      });
+    });
+    return options;
+  }, [artworks]);
+
+  // Filter artworks based on selection
+  const filteredArtworks = useMemo(() => {
+    if (selectedWorkFilter === 'all') {
+      return artworks;
+    }
+    return artworks.filter(a => a.id === selectedWorkFilter);
+  }, [artworks, selectedWorkFilter]);
 
   const handleArtworkClick = (artwork) => {
     setSelectedArtwork(artwork);
