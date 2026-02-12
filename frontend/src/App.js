@@ -9,6 +9,7 @@ import VaultPage from "./pages/VaultPage";
 import StudioPage from "./pages/StudioPage";
 import ExhibitionsPage from "./pages/ExhibitionsPage";
 import ContactPage from "./pages/ContactPage";
+import CVPage from "./pages/CVPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/studio" element={<StudioPage />} />
           <Route path="/exhibitions" element={<ExhibitionsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/cv" element={<CVPage />} />
         </Routes>
       </BrowserRouter>
     </div>

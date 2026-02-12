@@ -153,10 +153,12 @@ const StudioPage = () => {
                 ))}
               </div>
 
-              {/* CV Link */}
+              {/* CV Link - opens in new window */}
               <div className="mt-10 pt-6 border-t border-gray-200">
                 <a 
                   href="/cv" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm text-gray-500 hover:text-black transition-colors"
                 >
                   View CV
