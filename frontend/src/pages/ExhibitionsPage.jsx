@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import { useExhibitions } from '../hooks/useApi';
 import { Skeleton } from '../components/ui/skeleton';
+import BlackFooter from '../components/BlackFooter';
 
 const ExhibitionsPage = () => {
   const { exhibitions, loading } = useExhibitions();
