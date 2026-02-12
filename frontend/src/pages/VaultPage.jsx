@@ -176,16 +176,19 @@ const VaultPage = () => {
       <main className="pt-40 pb-20 px-6 md:px-12">
         {/* Header Row with Title, Dropdown and View Toggle */}
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-12">
-          <h1 
-            className="font-black text-black leading-none tracking-tighter mb-6 md:mb-0"
-            style={{ 
-              fontSize: 'clamp(48px, 10vw, 120px)',
-              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-              letterSpacing: '-0.03em'
-            }}
-          >
-            VAULT
-          </h1>
+          <div>
+            <h1 
+              className="font-black text-black leading-none tracking-tighter"
+              style={{ 
+                fontSize: 'clamp(48px, 10vw, 120px)',
+                fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+                letterSpacing: '-0.03em'
+              }}
+            >
+              VAULT
+            </h1>
+            <p className="text-gray-500 text-lg mt-2 mb-6 md:mb-0">Silver Palms</p>
+          </div>
 
           <div className="flex items-center gap-6">
             {/* Works Dropdown */}

@@ -48,6 +48,7 @@ const CVPage = () => {
           <section className="mb-16">
             <h2 className="text-sm font-medium tracking-wide text-black mb-6">GROUP EXHIBITIONS</h2>
             <div className="space-y-2 text-gray-600">
+              <p>2026 Off The Page In Visual Dialogue, The Poppy, Georgetown, DC</p>
               <p>2019 RA Summer Exhibition, Royal Academy, London</p>
               <p>2019 Some Sunny Day, Rebecca Hossack Gallery, London</p>
               <p>2017 Water, Rebecca Hossack Gallery, London</p>
