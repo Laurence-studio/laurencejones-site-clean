@@ -111,6 +111,7 @@ const VaultPage = () => {
           </DialogContent>
         </Dialog>
       </main>
+      <BlackFooter />
     </div>
   );
 };
