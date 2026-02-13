@@ -282,7 +282,7 @@ const VaultPage = () => {
           </div>
         )}
       </main>
-      <WhiteFooter />
+      <BlackFooter />
     </div>
   );
 };
