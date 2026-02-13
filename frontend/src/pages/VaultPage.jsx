@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import { useArtworks } from '../hooks/useApi';
 import { Grid3X3, Square, ChevronDown, ArrowLeft } from 'lucide-react';
 import { Skeleton } from '../components/ui/skeleton';
-import BlackFooter from '../components/BlackFooter';
+import WhiteFooter from '../components/WhiteFooter';
 
 const VaultPage = () => {
   const { artworks, loading } = useArtworks();
@@ -171,14 +171,14 @@ const VaultPage = () => {
 
   // Gallery View
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <div className="min-h-screen bg-black">
+      <Header inverted />
       <main className="pt-40 pb-20 px-6 md:px-12">
         {/* Header Row with Title, Dropdown and View Toggle */}
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-12">
           <div>
             <h1 
-              className="font-black text-black leading-none tracking-tighter"
+              className="font-black text-white leading-none tracking-tighter"
               style={{ 
                 fontSize: 'clamp(48px, 10vw, 120px)',
                 fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
@@ -187,7 +187,7 @@ const VaultPage = () => {
             >
               VAULT
             </h1>
-            <p className="text-gray-500 text-lg mt-2 mb-6 md:mb-0">Silver Palms</p>
+            <p className="text-gray-400 text-lg mt-2 mb-6 md:mb-0">Silver Palms</p>
           </div>
 
           <div className="flex items-center gap-6">
@@ -195,14 +195,14 @@ const VaultPage = () => {
             <div className="relative">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center gap-2 text-sm border border-gray-300 px-4 py-2 hover:border-black transition-colors min-w-[280px] justify-between"
+                className="flex items-center gap-2 text-sm border border-gray-600 text-white px-4 py-2 hover:border-white transition-colors min-w-[280px] justify-between bg-black"
               >
                 <span className="truncate">{dropdownOptions.find(e => e.value === selectedWorkFilter)?.label || 'All Works'}</span>
                 <ChevronDown size={16} className={`transition-transform flex-shrink-0 ${isDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
               
               {isDropdownOpen && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 shadow-lg z-50 max-h-80 overflow-y-auto">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-black border border-gray-600 shadow-lg z-50 max-h-80 overflow-y-auto">
                   {dropdownOptions.map((option) => (
                     <button
                       key={option.value}
@@ -210,8 +210,8 @@ const VaultPage = () => {
                         setSelectedWorkFilter(option.value);
                         setIsDropdownOpen(false);
                       }}
-                      className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors ${
-                        selectedWorkFilter === option.value ? 'bg-gray-100' : ''
+                      className={`w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-900 transition-colors ${
+                        selectedWorkFilter === option.value ? 'bg-gray-800' : ''
                       }`}
                     >
                       {option.label}
@@ -225,14 +225,14 @@ const VaultPage = () => {
             <div className="flex items-center gap-1">
               <button
                 onClick={() => setViewMode('full')}
-                className={`p-2 transition-colors ${viewMode === 'full' ? 'text-black' : 'text-gray-400 hover:text-gray-600'}`}
+                className={`p-2 transition-colors ${viewMode === 'full' ? 'text-white' : 'text-gray-500 hover:text-gray-300'}`}
                 title="Full view"
               >
                 <Square size={20} />
               </button>
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 transition-colors ${viewMode === 'grid' ? 'text-black' : 'text-gray-400 hover:text-gray-600'}`}
+                className={`p-2 transition-colors ${viewMode === 'grid' ? 'text-white' : 'text-gray-500 hover:text-gray-300'}`}
                 title="Grid view"
               >
                 <Grid3X3 size={20} />
@@ -246,10 +246,10 @@ const VaultPage = () => {
           <div className={`grid gap-8 ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 max-w-2xl'}`}>
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div key={i}>
-                <Skeleton className="aspect-square mb-4" />
-                <Skeleton className="h-4 w-3/4 mb-2" />
-                <Skeleton className="h-3 w-1/2 mb-1" />
-                <Skeleton className="h-3 w-2/3" />
+                <Skeleton className="aspect-square mb-4 bg-gray-800" />
+                <Skeleton className="h-4 w-3/4 mb-2 bg-gray-800" />
+                <Skeleton className="h-3 w-1/2 mb-1 bg-gray-800" />
+                <Skeleton className="h-3 w-2/3 bg-gray-800" />
               </div>
             ))}
           </div>
@@ -261,7 +261,7 @@ const VaultPage = () => {
                 className="group cursor-pointer"
                 onClick={() => handleArtworkClick(artwork)}
               >
-                <div className={`overflow-hidden mb-4 bg-gray-50 ${viewMode === 'full' ? 'aspect-auto' : 'aspect-square'}`}>
+                <div className={`overflow-hidden mb-4 bg-gray-900 ${viewMode === 'full' ? 'aspect-auto' : 'aspect-square'}`}>
                   <img
                     src={artwork.image}
                     alt={artwork.title}
@@ -269,11 +269,11 @@ const VaultPage = () => {
                   />
                 </div>
                 <div className="text-center">
-                  <h3 className="font-medium text-black mb-1">{artwork.title}</h3>
-                  <p className="text-gray-500 text-sm mb-1">{artwork.year}</p>
-                  <p className="text-gray-400 text-xs">{artwork.medium}</p>
+                  <h3 className="font-medium text-white mb-1">{artwork.title}</h3>
+                  <p className="text-gray-400 text-sm mb-1">{artwork.year}</p>
+                  <p className="text-gray-500 text-xs">{artwork.medium}</p>
                   {viewMode === 'full' && (
-                    <p className="text-gray-400 text-xs mt-1">Series: {artwork.series}</p>
+                    <p className="text-gray-500 text-xs mt-1">Series: {artwork.series}</p>
                   )}
                 </div>
               </div>
@@ -281,7 +281,7 @@ const VaultPage = () => {
           </div>
         )}
       </main>
-      <BlackFooter />
+      <WhiteFooter />
     </div>
   );
 };
