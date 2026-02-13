@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { navigation } from '../data/mockData';
 import { Menu, X } from 'lucide-react';
 
-const Header = () => {
+const Header = ({ inverted = false }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showCookieBanner, setShowCookieBanner] = useState(true);
   const location = useLocation();
@@ -12,6 +12,11 @@ const Header = () => {
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location]);
+
+  const bgColor = inverted ? 'bg-black' : 'bg-white';
+  const textColor = inverted ? 'text-white' : 'text-black';
+  const borderColor = inverted ? 'border-gray-800' : 'border-gray-100';
+  const hoverBg = inverted ? 'hover:bg-gray-900' : 'hover:bg-gray-50';
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
@@ -39,11 +44,11 @@ const Header = () => {
       )}
 
       {/* Main Navigation */}
-      <nav className="flex items-center justify-between px-6 py-4 bg-white">
+      <nav className={`flex items-center justify-between px-6 py-4 ${bgColor}`}>
         {/* Logo - Text */}
         <Link to="/" className="flex items-center">
           <span 
-            className="text-black tracking-tight"
+            className={`${textColor} tracking-tight`}
             style={{ 
               fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
               fontWeight: 600,
@@ -61,7 +66,7 @@ const Header = () => {
             <Link
               key={item.name}
               to={item.path}
-              className={`text-sm tracking-wide transition-opacity hover:opacity-60 ${
+              className={`text-sm tracking-wide transition-opacity hover:opacity-60 ${textColor} ${
                 location.pathname === item.path ? 'font-medium' : 'font-normal'
               }`}
             >
@@ -72,7 +77,7 @@ const Header = () => {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden p-2"
+          className={`md:hidden p-2 ${textColor}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -82,12 +87,12 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
+        <div className={`md:hidden ${bgColor} border-t ${borderColor} shadow-lg`}>
           {navigation.map((item) => (
             <Link
               key={item.name}
               to={item.path}
-              className={`block px-6 py-4 text-sm hover:bg-gray-50 transition-colors border-b border-gray-50 ${
+              className={`block px-6 py-4 text-sm ${hoverBg} transition-colors border-b ${borderColor} ${textColor} ${
                 location.pathname === item.path ? 'font-medium' : ''
               }`}
             >
