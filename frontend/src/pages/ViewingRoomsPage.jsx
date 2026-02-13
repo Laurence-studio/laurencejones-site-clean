@@ -127,39 +127,43 @@ The Maybourne collection demonstrates how contemporary art can enhance the hospi
         </h1>
 
         {/* Rooms - Vertical stacked with info on left, image on right */}
-        <div className="space-y-24">
-          {rooms.map((room) => (
-            <div 
-              key={room.id}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 cursor-pointer group"
-              onClick={() => handleRoomClick(room)}
-            >
-              {/* Left - Project Info */}
-              <div className="flex flex-col justify-center order-2 lg:order-1">
-                <p className="text-gray-400 text-sm mb-4">{room.year}</p>
-                <h2 
-                  className="font-black text-black leading-none tracking-tight mb-2 group-hover:underline"
-                  style={{ 
-                    fontSize: 'clamp(32px, 5vw, 56px)',
-                    fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-                    letterSpacing: '-0.02em'
-                  }}
-                >
-                  {room.title}
-                </h2>
-                <p className="text-gray-400 text-lg mb-6">{room.location}</p>
-                <p className="text-gray-600 leading-relaxed max-w-md">
-                  {room.shortDescription}
-                </p>
-              </div>
+        <div className="space-y-0">
+          {rooms.map((room, index) => (
+            <div key={room.id}>
+              {/* Divider line */}
+              <div className="border-t border-gray-200 mb-12"></div>
+              
+              <div 
+                className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 cursor-pointer group mb-16"
+                onClick={() => handleRoomClick(room)}
+              >
+                {/* Left - Project Info */}
+                <div className="flex flex-col justify-center order-2 lg:order-1">
+                  <p className="text-gray-400 text-sm mb-4">{room.year}</p>
+                  <h2 
+                    className="font-black text-black leading-none tracking-tight mb-2 group-hover:underline"
+                    style={{ 
+                      fontSize: 'clamp(32px, 5vw, 56px)',
+                      fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+                      letterSpacing: '-0.02em'
+                    }}
+                  >
+                    {room.title}
+                  </h2>
+                  <p className="text-gray-400 text-lg mb-6">{room.location}</p>
+                  <p className="text-gray-600 leading-relaxed max-w-md">
+                    {room.shortDescription}
+                  </p>
+                </div>
 
-              {/* Right - Main Image */}
-              <div className="overflow-hidden order-1 lg:order-2">
-                <img
-                  src={room.mainImage}
-                  alt={room.title}
-                  className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                {/* Right - Main Image */}
+                <div className="overflow-hidden order-1 lg:order-2">
+                  <img
+                    src={room.mainImage}
+                    alt={room.title}
+                    className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
               </div>
             </div>
           ))}
