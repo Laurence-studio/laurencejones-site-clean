@@ -50,14 +50,14 @@ const VaultPage = () => {
   // Single Artwork Detail View - Sales Presentation Layout
   if (selectedArtwork) {
     return (
-      <div className="min-h-screen bg-white">
-        <Header />
+      <div className="min-h-screen bg-black">
+        <Header inverted />
         <main className="pt-32 pb-20 px-6 md:px-12">
           {/* Back button and view toggles */}
           <div className="flex items-center justify-between mb-12">
             <button 
               onClick={handleBack}
-              className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors"
+              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
             >
               <ArrowLeft size={20} />
               <span className="text-sm">Back to Vault</span>
@@ -67,14 +67,14 @@ const VaultPage = () => {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => { setViewMode('full'); handleBack(); }}
-                className={`p-2 transition-colors ${viewMode === 'full' ? 'text-black' : 'text-gray-400 hover:text-gray-600'}`}
+                className={`p-2 transition-colors ${viewMode === 'full' ? 'text-white' : 'text-gray-500 hover:text-gray-300'}`}
                 title="Full view"
               >
                 <Square size={20} />
               </button>
               <button
                 onClick={() => { setViewMode('grid'); handleBack(); }}
-                className={`p-2 transition-colors ${viewMode === 'grid' ? 'text-black' : 'text-gray-400 hover:text-gray-600'}`}
+                className={`p-2 transition-colors ${viewMode === 'grid' ? 'text-white' : 'text-gray-500 hover:text-gray-300'}`}
                 title="Grid view"
               >
                 <Grid3X3 size={20} />
@@ -97,19 +97,19 @@ const VaultPage = () => {
             <div className="flex flex-col justify-center">
               <div className="space-y-6">
                 <div>
-                  <h1 className="text-3xl font-medium text-black mb-2">{selectedArtwork.title}</h1>
-                  <p className="text-xl text-gray-600">{selectedArtwork.year}</p>
+                  <h1 className="text-3xl font-medium text-white mb-2">{selectedArtwork.title}</h1>
+                  <p className="text-xl text-gray-400">{selectedArtwork.year}</p>
                 </div>
 
-                <div className="border-t border-gray-200 pt-6">
-                  <p className="text-gray-600 mb-2">{selectedArtwork.medium}</p>
+                <div className="border-t border-gray-700 pt-6">
+                  <p className="text-gray-400 mb-2">{selectedArtwork.medium}</p>
                   <p className="text-gray-500 text-sm">Series: {selectedArtwork.series}</p>
                 </div>
 
                 {/* Exhibited Box */}
-                <div className="border border-gray-200 p-6">
-                  <h3 className="text-sm font-medium tracking-wide mb-4">EXHIBITED</h3>
-                  <ul className="space-y-2 text-gray-600 text-sm">
+                <div className="border border-gray-700 p-6">
+                  <h3 className="text-sm font-medium tracking-wide mb-4 text-white">EXHIBITED</h3>
+                  <ul className="space-y-2 text-gray-400 text-sm">
                     <li>Whitney Museum of American Art, New York, 2014</li>
                     <li>Centre Pompidou, Paris, 2015</li>
                     <li>Guggenheim Bilbao, Spain, 2015</li>
@@ -119,7 +119,7 @@ const VaultPage = () => {
                 {/* Enquire Button */}
                 <button
                   onClick={handleEnquire}
-                  className="w-full border border-black bg-black text-white px-8 py-4 text-sm font-medium tracking-wide hover:bg-white hover:text-black transition-colors rounded-none"
+                  className="w-full border border-white bg-white text-black px-8 py-4 text-sm font-medium tracking-wide hover:bg-black hover:text-white transition-colors rounded-none"
                 >
                   ENQUIRE
                 </button>
