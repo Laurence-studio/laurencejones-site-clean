@@ -108,6 +108,11 @@ const FeaturedWorksPage = () => {
                   <li>Guggenheim Bilbao, Spain, 2015</li>
                 </ul>
               </div>
+
+              {/* Share Module */}
+              <div className="pt-2">
+                <ShareModule artwork={selectedArtwork} inverted={false} />
+              </div>
             </div>
           </div>
         </main>
