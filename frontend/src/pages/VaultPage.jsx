@@ -58,6 +58,7 @@ const VaultPage = () => {
 
   const handleBack = () => {
     setSelectedArtwork(null);
+    setSelectedWorkFilter('all');
   };
 
   const handleEnquire = () => {

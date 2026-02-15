@@ -39,6 +39,7 @@ const FeaturedWorksPage = () => {
 
   const handleBack = () => {
     setSelectedArtwork(null);
+    setSelectedWorkFilter('all');
   };
 
   // Single Artwork Detail View
