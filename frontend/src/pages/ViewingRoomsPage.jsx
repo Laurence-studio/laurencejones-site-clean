@@ -108,13 +108,10 @@ The Maybourne collection demonstrates how contemporary art can enhance the hospi
               <PlaceholderImage className="aspect-[4/3]" />
             </div>
           ) : (
-            /* Maybourne Hotel - 1 main image above, 2 below */
-            <div className="space-y-6">
-              <PlaceholderImage className="aspect-[16/9] w-full" />
-              <div className="grid grid-cols-2 gap-6">
-                <PlaceholderImage className="aspect-[4/3]" />
-                <PlaceholderImage className="aspect-[4/3]" />
-              </div>
+            /* Maybourne Hotel - 2 placeholder boxes */
+            <div className="grid grid-cols-2 gap-6">
+              <PlaceholderImage className="aspect-[4/3]" />
+              <PlaceholderImage className="aspect-[4/3]" />
             </div>
           )}
         </main>
