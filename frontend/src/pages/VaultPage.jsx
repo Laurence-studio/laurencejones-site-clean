@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Header from '../components/Header';
 import { useArtworks } from '../hooks/useApi';
 import { Grid3X3, Square, ChevronDown, ArrowLeft } from 'lucide-react';
@@ -12,6 +12,25 @@ const VaultPage = () => {
   const [selectedArtwork, setSelectedArtwork] = useState(null);
   const [selectedWorkFilter, setSelectedWorkFilter] = useState('all');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [showLanding, setShowLanding] = useState(true);
+  const [landingAnimated, setLandingAnimated] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Trigger landing animation on mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLandingAnimated(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Handle enter vault click
+  const handleEnterVault = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setShowLanding(false);
+    }, 500);
+  };
 
   // Build dropdown options from artworks
   const dropdownOptions = useMemo(() => {
@@ -47,6 +66,49 @@ const VaultPage = () => {
     const body = encodeURIComponent(`I am interested in "${selectedArtwork.title}" (${selectedArtwork.year}).\n\nPlease provide more information about availability and pricing.`);
     window.location.href = `mailto:studio@laurencejones.com?subject=${subject}&body=${body}`;
   };
+
+  // Landing Page View
+  if (showLanding) {
+    return (
+      <div 
+        className={`min-h-screen bg-black flex flex-col items-center justify-center transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+        style={{ backgroundColor: '#0a0a0a' }}
+      >
+        {/* Title */}
+        <h1 
+          className={`text-white text-center leading-none tracking-tighter transition-all duration-500 ease-out ${
+            landingAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+          }`}
+          style={{ 
+            fontSize: 'clamp(40px, 12vw, 140px)',
+            fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+            fontWeight: 900,
+            letterSpacing: '-0.03em',
+            marginTop: '5vh'
+          }}
+        >
+          SILVER PALMS
+          <br />
+          <span style={{ fontSize: '0.85em' }}>VAULT</span>
+        </h1>
+
+        {/* Enter Link */}
+        <button
+          onClick={handleEnterVault}
+          className={`mt-10 text-white/75 hover:text-white text-sm tracking-widest transition-all duration-300 ease-out hover:underline underline-offset-4 ${
+            landingAnimated ? 'opacity-100 translate-y-0 delay-200' : 'opacity-0 translate-y-2'
+          }`}
+          style={{ 
+            fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+            fontWeight: 400,
+            transitionDelay: landingAnimated ? '200ms' : '0ms'
+          }}
+        >
+          Enter Vault →
+        </button>
+      </div>
+    );
+  }
 
   // Single Artwork Detail View - Sales Presentation Layout
   if (selectedArtwork) {
