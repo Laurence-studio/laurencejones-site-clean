@@ -107,6 +107,10 @@ const StudioPage = () => {
               <p>
                 Jones' paintings have been exhibited at galleries including David Kordansky, Gagosian, and Almine Rech. His work is held in private collections across North America and Europe.
               </p>
+
+              <p>
+                The studio maintains an ongoing archive documenting works, exhibitions, and placements.
+              </p>
             </div>
 
             {/* Contact Info */}
