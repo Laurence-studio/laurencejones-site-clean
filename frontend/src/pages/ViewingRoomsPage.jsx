@@ -98,12 +98,25 @@ The Maybourne collection demonstrates how contemporary art can enhance the hospi
             </div>
           </div>
 
-          {/* Gallery Images */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <PlaceholderImage className="aspect-[4/3]" />
-            <PlaceholderImage className="aspect-[4/3]" />
-            <PlaceholderImage className="aspect-[4/3]" />
-          </div>
+          {/* Gallery Images - Different layouts per room */}
+          {selectedRoom.id === 1 ? (
+            /* Californication House - 4 placeholder boxes */
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <PlaceholderImage className="aspect-[4/3]" />
+              <PlaceholderImage className="aspect-[4/3]" />
+              <PlaceholderImage className="aspect-[4/3]" />
+              <PlaceholderImage className="aspect-[4/3]" />
+            </div>
+          ) : (
+            /* Maybourne Hotel - 1 main image above, 2 below */
+            <div className="space-y-6">
+              <PlaceholderImage className="aspect-[16/9] w-full" />
+              <div className="grid grid-cols-2 gap-6">
+                <PlaceholderImage className="aspect-[4/3]" />
+                <PlaceholderImage className="aspect-[4/3]" />
+              </div>
+            </div>
+          )}
         </main>
         <BlackFooter />
       </div>
