@@ -198,7 +198,8 @@ const VaultPage = () => {
             >
               VAULT
             </h1>
-            <p className="text-gray-400 text-lg mt-2 mb-6 md:mb-0">Silver Palms</p>
+            <p className="text-white text-xl font-semibold mt-2">Silver Palms</p>
+            <p className="text-gray-400 text-sm mt-1 mb-6 md:mb-0">Presented through the studio in coordination with gallery partners</p>
           </div>
 
           <div className="flex items-center gap-6">
