@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import { useArtworks } from '../hooks/useApi';
 import { Grid3X3, Square, ChevronDown, ArrowLeft } from 'lucide-react';
@@ -7,11 +8,18 @@ import BlackFooter from '../components/BlackFooter';
 import ShareModule from '../components/ShareModule';
 
 const FeaturedWorksPage = () => {
+  const location = useLocation();
   const { artworks, loading } = useArtworks();
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'full'
   const [selectedArtwork, setSelectedArtwork] = useState(null);
   const [selectedWorkFilter, setSelectedWorkFilter] = useState('all');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Reset state when navigating to this page
+  useEffect(() => {
+    setSelectedArtwork(null);
+    setSelectedWorkFilter('all');
+  }, [location.key]);
 
   // Build dropdown options from artworks
   const dropdownOptions = useMemo(() => {
