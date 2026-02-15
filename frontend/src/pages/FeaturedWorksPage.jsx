@@ -99,14 +99,19 @@ const FeaturedWorksPage = () => {
                 <p className="text-gray-500 text-sm">Series: {selectedArtwork.series}</p>
               </div>
 
-              {/* Exhibited Box */}
+              {/* Exhibition History Box */}
               <div className="border border-gray-200 p-6">
-                <h3 className="text-sm font-medium tracking-wide mb-4">EXHIBITED</h3>
+                <h3 className="text-sm font-medium tracking-wide mb-4">EXHIBITION HISTORY</h3>
                 <ul className="space-y-2 text-gray-600 text-sm">
                   <li>Whitney Museum of American Art, New York, 2014</li>
                   <li>Centre Pompidou, Paris, 2015</li>
                   <li>Guggenheim Bilbao, Spain, 2015</li>
                 </ul>
+              </div>
+
+              {/* Collection */}
+              <div>
+                <p className="text-gray-500 text-sm">Collection: Private</p>
               </div>
 
               {/* Share Module */}
