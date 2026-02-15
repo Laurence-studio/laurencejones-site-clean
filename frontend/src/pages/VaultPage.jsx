@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import { useArtworks } from '../hooks/useApi';
 import { Grid3X3, Square, ChevronDown, ArrowLeft } from 'lucide-react';
@@ -7,6 +8,7 @@ import BlackFooter from '../components/BlackFooter';
 import ShareModule from '../components/ShareModule';
 
 const VaultPage = () => {
+  const location = useLocation();
   const { artworks, loading } = useArtworks();
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'full'
   const [selectedArtwork, setSelectedArtwork] = useState(null);
@@ -16,13 +18,22 @@ const VaultPage = () => {
   const [landingAnimated, setLandingAnimated] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  // Reset state when navigating to this page via main menu
+  useEffect(() => {
+    setSelectedArtwork(null);
+    setSelectedWorkFilter('all');
+    setShowLanding(true);
+    setLandingAnimated(false);
+    setIsTransitioning(false);
+  }, [location.key]);
+
   // Trigger landing animation on mount
   useEffect(() => {
     const timer = setTimeout(() => {
       setLandingAnimated(true);
     }, 100);
     return () => clearTimeout(timer);
-  }, []);
+  }, [showLanding]);
 
   // Handle enter vault click
   const handleEnterVault = () => {
