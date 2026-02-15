@@ -124,6 +124,11 @@ const VaultPage = () => {
                 >
                   ENQUIRE
                 </button>
+
+                {/* Share Module */}
+                <div className="pt-4">
+                  <ShareModule artwork={selectedArtwork} inverted={true} />
+                </div>
               </div>
             </div>
           </div>
