@@ -127,7 +127,7 @@ const VaultPage = () => {
                   onClick={handleEnquire}
                   className="w-full border border-white bg-white text-black px-8 py-4 text-sm font-medium tracking-wide hover:bg-black hover:text-white transition-colors rounded-none"
                 >
-                  ENQUIRE
+                  ENQUIRE ABOUT THIS WORK
                 </button>
 
                 {/* Share Module */}
