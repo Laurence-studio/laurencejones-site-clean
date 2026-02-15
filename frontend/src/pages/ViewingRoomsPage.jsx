@@ -115,16 +115,20 @@ The Maybourne collection demonstrates how contemporary art can enhance the hospi
     <div className="min-h-screen bg-white">
       <Header />
       <main className="pt-40 pb-20 px-6 md:px-12">
-        <h1 
-          className="font-black text-black leading-none tracking-tighter mb-20"
-          style={{ 
-            fontSize: 'clamp(48px, 10vw, 120px)',
-            fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-            letterSpacing: '-0.03em'
-          }}
-        >
-          VIEWING ROOMS
-        </h1>
+        <div className="mb-20">
+          <h1 
+            className="font-black text-black leading-none tracking-tighter"
+            style={{ 
+              fontSize: 'clamp(48px, 10vw, 120px)',
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              letterSpacing: '-0.03em'
+            }}
+          >
+            VIEWING ROOMS
+          </h1>
+          <p className="text-black text-xl font-semibold mt-2">Architectural Dialogues</p>
+          <p className="text-gray-500 text-sm mt-1">Paintings conceived in conversation with built space</p>
+        </div>
 
         {/* Rooms - Vertical stacked with info on left, image on right */}
         <div className="space-y-0">
