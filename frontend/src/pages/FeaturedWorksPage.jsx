@@ -4,6 +4,7 @@ import { useArtworks } from '../hooks/useApi';
 import { Grid3X3, Square, ChevronDown, ArrowLeft } from 'lucide-react';
 import { Skeleton } from '../components/ui/skeleton';
 import BlackFooter from '../components/BlackFooter';
+import ShareModule from '../components/ShareModule';
 
 const FeaturedWorksPage = () => {
   const { artworks, loading } = useArtworks();
