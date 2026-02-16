@@ -60,7 +60,12 @@ const ExhibitionsPage = () => {
       title: 'Night Works',
       venue: 'Rebecca Hossack Gallery, London',
       hasMonograph: true,
-      images: []
+      images: [
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/nwzar37h_%27A%20Break%20in%20Filming%20at%20Casa%20Malaparte%27%2C%2080cm%20diameter%2C%20Acrylic%2C%20ink%2C%20transfer%20and%20graphite%20on%20canvas%2C%202015%20copy.jpg',
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/a1fukryl_%27Details%20Oriented%20in%20Space%27%2C%20180x140cm%2C%20Acrylic%2C%20ink%20and%20graphite%20on%20Linen%2C%202017%20copy.jpg',
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/hofpa4n8_%27Infinity%20Pool%20%28Night%20Scene%29%27%2C%20150cm%20diameter%2C%20Acrylic%2C%20ink%20and%20graphite%20on%20Linen%2C%202017%20copy.jpg'
+      ],
+      monographImage: 'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/bc5pev3u_Screenshot%202026-02-15%20at%2018.15.36.png'
     }
   ];
 
