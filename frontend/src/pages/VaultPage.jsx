@@ -243,7 +243,6 @@ const VaultPage = () => {
                 src={selectedWork.wall_image}
                 alt={`${selectedWork.title} - Gallery View`}
                 className="w-full h-auto block"
-                style={{ clipPath: 'inset(0 0 3px 0)' }}
                 data-testid="vault-wall-image"
               />
             </div>
@@ -257,7 +256,6 @@ const VaultPage = () => {
                 src={selectedWork.interior_image}
                 alt={`${selectedWork.title} - Interior View`}
                 className="w-full h-auto block"
-                style={{ clipPath: 'inset(0 0 3px 0)' }}
                 data-testid="vault-interior-image"
               />
             </div>
