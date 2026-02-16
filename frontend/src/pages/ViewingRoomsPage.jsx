@@ -34,8 +34,11 @@ This project represents an ongoing exploration of how art can transform domestic
       location: 'Los Angeles',
       year: '2024',
       mainImage: 'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/leusg9v9_%27Night%20Pool%27%2C%20210x180cm%2C%20Acrylic%20on%20Linen%2C%202022%20copy.jpg',
-      detailImage: null,
-      galleryImages: [],
+      detailImage: 'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/9x1jt6zi_night%20pool%20copy.jpg',
+      galleryImages: [
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/62afqw0r_MBH-EXTERIOR-08-jpg.webp',
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/nhdkfpsh_A4C1EA41-8014-4370-92D4-FB5DEEB4786B.JPG'
+      ],
       shortDescription: 'A prestigious hospitality commission showcasing paintings throughout public spaces and private suites.',
       fullDescription: `The Maybourne Hotel, Beverly Hills commissioned a series of works to be displayed throughout their public spaces and private suites. This prestigious hospitality project showcases paintings that capture the essence of California modernism—the interplay of light, architecture, and landscape that defines the Los Angeles aesthetic.
 
