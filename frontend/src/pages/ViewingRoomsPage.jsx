@@ -13,7 +13,7 @@ const ViewingRoomsPage = () => {
       title: 'The Californication House',
       location: 'Los Angeles',
       year: '2025',
-      mainImage: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop',
+      mainImage: 'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/nnlp2vh7_%27The%20Californication%20House%27%2C%20180x140cm%2C%20Acrylic%20%26%20Specularite%20On%20Belgian%20Linen%2C%202025.jpg',
       shortDescription: 'A landmark residential project in the Hollywood Hills, designed in collaboration with architect Jason Somers.',
       fullDescription: `The Californication House is a landmark residential project in the Hollywood Hills, designed in collaboration with architect Jason Somers. This modernist home features floor-to-ceiling windows that frame panoramic views of Los Angeles, creating an ideal setting for large-scale contemporary art.
 
@@ -26,7 +26,7 @@ This project represents an ongoing exploration of how art can transform domestic
       title: 'The Maybourne Hotel',
       location: 'Los Angeles',
       year: '2024',
-      mainImage: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop',
+      mainImage: 'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/leusg9v9_%27Night%20Pool%27%2C%20210x180cm%2C%20Acrylic%20on%20Linen%2C%202022%20copy.jpg',
       shortDescription: 'A prestigious hospitality commission showcasing paintings throughout public spaces and private suites.',
       fullDescription: `The Maybourne Hotel, Beverly Hills commissioned a series of works to be displayed throughout their public spaces and private suites. This prestigious hospitality project showcases paintings that capture the essence of California modernism—the interplay of light, architecture, and landscape that defines the Los Angeles aesthetic.
 
