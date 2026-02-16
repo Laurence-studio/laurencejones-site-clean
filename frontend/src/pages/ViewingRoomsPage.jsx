@@ -126,6 +126,14 @@ The Maybourne collection demonstrates how contemporary art can enhance the hospi
                     src={img} 
                     alt={`${selectedRoom.title} ${idx + 1}`}
                     className={`w-full h-full ${selectedRoom.galleryImages.length === 2 && idx === 1 ? 'object-contain' : 'object-cover'}`}
+                    onError={(e) => {
+                      // Retry loading the image once on error
+                      if (!e.target.dataset.retried) {
+                        e.target.dataset.retried = 'true';
+                        e.target.src = img + '?' + Date.now();
+                      }
+                    }}
+                    loading="lazy"
                   />
                 </div>
               ))}
