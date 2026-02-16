@@ -130,7 +130,7 @@ const ExhibitionsPage = () => {
                             <img 
                               src={exhibition.monographImage} 
                               alt={`${exhibition.title} Monograph`}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-contain"
                             />
                           </div>
                         ) : (
