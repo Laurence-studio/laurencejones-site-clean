@@ -35,7 +35,11 @@ const ExhibitionsPage = () => {
       title: 'Spotlight On: Laurence Jones',
       venue: 'Rebecca Hossack Gallery, London',
       hasMonograph: false,
-      images: []
+      images: [
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/2oy5iq7y_429A338C-66D2-4280-B71C-DBBDFF5FFBE8.jpg',
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/ws8a2l1m_%E2%80%98Luminous%20Hills%20House%E2%80%99%2C%20160%20x%20110cm%2C%20Acrylic%20on%20Linen%2C%202021%20%20.jpg',
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/zy328iqb_F2262133-0569-42F3-9451-FD02F1395B83.jpg'
+      ]
     },
     {
       id: 4,
