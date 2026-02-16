@@ -3,64 +3,19 @@ import Header from '../components/Header';
 import BlackFooter from '../components/BlackFooter';
 
 const StudioPage = () => {
-  // Timeline data for exhibitions and milestones
-  const timeline = [
-    {
-      year: '2025',
-      events: [
-        '"Night Pool", Solo exhibition, David Kordansky Gallery, Los Angeles',
-        '"Californication House", Solo exhibition, Almine Rech, Paris',
-        'Californication House collaboration with architect Jason Somers',
-        'Echoes Of The Hills series commenced'
-      ]
-    },
-    {
-      year: '2024',
-      events: [
-        '"Three Latitudes", Group exhibition, White Cube, London',
-        'Completed major works: A Light Exists In Spring, The Mind Is Wider Than The Sky',
-        'Studio residency, Joshua Tree, California'
-      ]
-    },
-    {
-      year: '2023',
-      events: [
-        '"Liminal Spaces", Solo exhibition, Gagosian, New York',
-        '"Contemporary Visions", Group exhibition, MOCA, Los Angeles',
-        'Work acquired by private collections in Europe and North America'
-      ]
-    },
-    {
-      year: '2022',
-      events: [
-        '"Atmospheric Studies", Solo exhibition, Hauser & Wirth, Los Angeles',
-        'Liminal Framework series development',
-        'Featured in Artforum "Artists to Watch"'
-      ]
-    },
-    {
-      year: '2021',
-      events: [
-        'Established Los Angeles studio',
-        'First major commission completed',
-        'Representation by David Kordansky Gallery'
-      ]
-    },
-    {
-      year: '2020',
-      events: [
-        'MFA, Yale School of Art',
-        'Thesis exhibition: "Threshold Geometries"'
-      ]
-    },
-    {
-      year: '2018',
-      events: [
-        'BFA, Rhode Island School of Design',
-        'Merit scholarship recipient'
-      ]
-    }
-  ];
+  // Selected Exhibitions & Milestones data
+  const exhibitionsAndMilestones = {
+    selectedExhibitions: [
+      'Rebecca Hossack Gallery, London',
+      'Rebecca Hossack Gallery, Miami',
+      'Selected presentations in Los Angeles and Palm Desert'
+    ],
+    milestones: [
+      'Maybourne Hotel, Beverly Hills - Night Pool installation',
+      'Architectural dialogues within the Hollywood Hills residential context',
+      'Works placed in private collections across the UK, US, Continental Europe and Asia'
+    ]
+  };
 
   // Studio portrait
   const studioPortrait = 'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/k9aspqak__DSC5558.jpg';
