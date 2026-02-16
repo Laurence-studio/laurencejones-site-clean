@@ -389,6 +389,18 @@ const VaultPage = () => {
             ))}
           </div>
         )}
+
+        {/* Gallery View Image */}
+        {!loading && !selectedWork && (
+          <div className="mt-16 mb-8">
+            <img
+              src="https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/mamvj9ch_Gallery%20View.jpg"
+              alt="Gallery View"
+              className="w-full h-auto"
+              data-testid="vault-gallery-view-image"
+            />
+          </div>
+        )}
       </main>
       <BlackFooter />
     </div>
