@@ -225,7 +225,7 @@ const VaultPage = () => {
                     className="flex items-center justify-between w-full text-left"
                     data-testid="vault-exhibition-dropdown"
                   >
-                    <span className="text-sm font-medium text-white">Exhibited</span>
+                    <span className="text-sm font-medium text-white">Exhibition History</span>
                     <ChevronDown 
                       size={16} 
                       className={`transition-transform text-gray-500 ${isExhibitionOpen ? 'rotate-180' : ''}`} 
@@ -234,7 +234,7 @@ const VaultPage = () => {
                   
                   {isExhibitionOpen && (
                     <div className="mt-4 space-y-3">
-                      {(selectedWork.exhibitions?.length > 0 ? selectedWork.exhibitions : placeholderExhibitions).map((exhibition, index) => (
+                      {getExhibitionHistory(selectedWork.title).map((exhibition, index) => (
                         <p key={index} className="text-gray-400 text-sm">{exhibition}</p>
                       ))}
                       
@@ -247,14 +247,20 @@ const VaultPage = () => {
                   )}
                 </div>
 
-                {/* Enquire Button */}
-                <button
-                  onClick={handleEnquire}
-                  className="w-full border border-white bg-white text-black px-8 py-4 text-sm font-medium tracking-wide hover:bg-black hover:text-white transition-colors"
-                  data-testid="enquire-button"
-                >
-                  ENQUIRE ABOUT THIS WORK
-                </button>
+                {/* Enquire Button - Only show for non-private collection works */}
+                {!isPrivateCollection(selectedWork.title) ? (
+                  <button
+                    onClick={handleEnquire}
+                    className="w-full border border-white bg-white text-black px-8 py-4 text-sm font-medium tracking-wide hover:bg-black hover:text-white transition-colors"
+                    data-testid="enquire-button"
+                  >
+                    ENQUIRE ABOUT THIS WORK
+                  </button>
+                ) : (
+                  <div className="pt-2">
+                    <p className="text-gray-400 text-sm">Private Collection</p>
+                  </div>
+                )}
 
                 {/* Share Module */}
                 <div className="pt-4">
