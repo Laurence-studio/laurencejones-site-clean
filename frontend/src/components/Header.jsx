@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { navigation } from '../data/mockData';
 import { Menu, X } from 'lucide-react';
 
@@ -7,11 +7,21 @@ const Header = ({ inverted = false }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showCookieBanner, setShowCookieBanner] = useState(true);
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location]);
+
+  // Handle navigation - force state reset when clicking same route
+  const handleNavClick = (e, path) => {
+    if (location.pathname === path) {
+      e.preventDefault();
+      // Navigate with state to trigger reset in the target page
+      navigate(path, { replace: true, state: { reset: Date.now() } });
+    }
+  };
 
   const bgColor = inverted ? 'bg-black' : 'bg-white';
   const textColor = inverted ? 'text-white' : 'text-black';
