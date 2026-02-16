@@ -82,7 +82,7 @@ The Maybourne collection demonstrates how contemporary art can enhance the hospi
             {/* Left - Main Image */}
             <div>
               <img
-                src={selectedRoom.mainImage}
+                src={selectedRoom.detailImage || selectedRoom.mainImage}
                 alt={selectedRoom.title}
                 className="w-full h-auto"
               />
@@ -107,20 +107,32 @@ The Maybourne collection demonstrates how contemporary art can enhance the hospi
             </div>
           </div>
 
-          {/* Gallery Images - Different layouts per room */}
-          {selectedRoom.id === 1 ? (
+          {/* Gallery Images */}
+          {selectedRoom.galleryImages && selectedRoom.galleryImages.length > 0 ? (
+            <div className={`grid gap-6 ${selectedRoom.galleryImages.length === 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2'}`}>
+              {selectedRoom.galleryImages.map((img, idx) => (
+                <div key={idx} className="aspect-square overflow-hidden">
+                  <img 
+                    src={img} 
+                    alt={`${selectedRoom.title} ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : selectedRoom.id === 1 ? (
             /* Californication House - 4 placeholder boxes */
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <PlaceholderImage className="aspect-[4/3]" />
-              <PlaceholderImage className="aspect-[4/3]" />
-              <PlaceholderImage className="aspect-[4/3]" />
-              <PlaceholderImage className="aspect-[4/3]" />
+              <PlaceholderImage className="aspect-square" />
+              <PlaceholderImage className="aspect-square" />
+              <PlaceholderImage className="aspect-square" />
+              <PlaceholderImage className="aspect-square" />
             </div>
           ) : (
             /* Maybourne Hotel - 2 placeholder boxes */
             <div className="grid grid-cols-2 gap-6">
-              <PlaceholderImage className="aspect-[4/3]" />
-              <PlaceholderImage className="aspect-[4/3]" />
+              <PlaceholderImage className="aspect-square" />
+              <PlaceholderImage className="aspect-square" />
             </div>
           )}
         </main>
