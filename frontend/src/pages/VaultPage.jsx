@@ -74,13 +74,17 @@ const VaultPage = () => {
   const handleWorkClick = (work) => {
     setSelectedWork(work);
     setIsExhibitionOpen(false);
-    window.scrollTo(0, 0);
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 0);
   };
 
   const handleBack = () => {
     setSelectedWork(null);
     setSelectedWorkFilter('all');
-    window.scrollTo(0, 0);
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 0);
   };
 
   const handleEnquire = () => {
