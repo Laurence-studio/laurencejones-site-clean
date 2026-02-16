@@ -237,30 +237,24 @@ const VaultPage = () => {
                       {getExhibitionHistory(selectedWork.title).map((exhibition, index) => (
                         <p key={index} className="text-gray-400 text-sm">{exhibition}</p>
                       ))}
-                      
-                      <div className="pt-3 border-t border-gray-800">
-                        <p className="text-gray-400 text-sm">
-                          {selectedWork.collection || "Private Collection, London"}
-                        </p>
-                      </div>
                     </div>
                   )}
                 </div>
 
-                {/* Enquire Button - Only show for non-private collection works */}
-                {!isPrivateCollection(selectedWork.title) ? (
-                  <button
-                    onClick={handleEnquire}
-                    className="w-full border border-white bg-white text-black px-8 py-4 text-sm font-medium tracking-wide hover:bg-black hover:text-white transition-colors"
-                    data-testid="enquire-button"
-                  >
-                    ENQUIRE ABOUT THIS WORK
-                  </button>
-                ) : (
-                  <div className="pt-2">
+                {/* Enquire Button or Private Collection - with extra spacing */}
+                <div className="mt-8">
+                  {!isPrivateCollection(selectedWork.title) ? (
+                    <button
+                      onClick={handleEnquire}
+                      className="w-full border border-white bg-white text-black px-8 py-4 text-sm font-medium tracking-wide hover:bg-black hover:text-white transition-colors"
+                      data-testid="enquire-button"
+                    >
+                      ENQUIRE ABOUT THIS WORK
+                    </button>
+                  ) : (
                     <p className="text-gray-400 text-sm">Private Collection</p>
-                  </div>
-                )}
+                  )}
+                </div>
 
                 {/* Share Module */}
                 <div className="pt-4">
