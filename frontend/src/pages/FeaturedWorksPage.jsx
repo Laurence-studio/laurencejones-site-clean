@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
-import { useArtworks } from '../hooks/useApi';
+import { useFeaturedWorks } from '../hooks/useApi';
 import { Grid3X3, Square, ChevronDown, ArrowLeft } from 'lucide-react';
 import { Skeleton } from '../components/ui/skeleton';
 import BlackFooter from '../components/BlackFooter';
@@ -9,49 +9,49 @@ import ShareModule from '../components/ShareModule';
 
 const FeaturedWorksPage = () => {
   const location = useLocation();
-  const { artworks, loading } = useArtworks();
+  const { featuredWorks, loading } = useFeaturedWorks();
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'full'
-  const [selectedArtwork, setSelectedArtwork] = useState(null);
+  const [selectedWork, setSelectedWork] = useState(null);
   const [selectedWorkFilter, setSelectedWorkFilter] = useState('all');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Reset state when navigating to this page
   useEffect(() => {
-    setSelectedArtwork(null);
+    setSelectedWork(null);
     setSelectedWorkFilter('all');
   }, [location.key]);
 
-  // Build dropdown options from artworks
+  // Build dropdown options from featuredWorks
   const dropdownOptions = useMemo(() => {
     const options = [{ value: 'all', label: 'All Works' }];
-    artworks.forEach(artwork => {
+    featuredWorks.forEach(work => {
       options.push({
-        value: artwork.id,
-        label: `${artwork.title}, ${artwork.year}`
+        value: work.id,
+        label: `${work.title}, ${work.year}`
       });
     });
     return options;
-  }, [artworks]);
+  }, [featuredWorks]);
 
-  // Filter artworks based on selection
-  const filteredArtworks = useMemo(() => {
+  // Filter works based on selection
+  const filteredWorks = useMemo(() => {
     if (selectedWorkFilter === 'all') {
-      return artworks;
+      return featuredWorks;
     }
-    return artworks.filter(a => a.id === selectedWorkFilter);
-  }, [artworks, selectedWorkFilter]);
+    return featuredWorks.filter(w => w.id === selectedWorkFilter);
+  }, [featuredWorks, selectedWorkFilter]);
 
-  const handleArtworkClick = (artwork) => {
-    setSelectedArtwork(artwork);
+  const handleWorkClick = (work) => {
+    setSelectedWork(work);
   };
 
   const handleBack = () => {
-    setSelectedArtwork(null);
+    setSelectedWork(null);
     setSelectedWorkFilter('all');
   };
 
-  // Single Artwork Detail View
-  if (selectedArtwork) {
+  // Single Work Detail View - uses detail_image
+  if (selectedWork) {
     return (
       <div className="min-h-screen bg-white">
         <Header />
@@ -61,6 +61,7 @@ const FeaturedWorksPage = () => {
             <button 
               onClick={handleBack}
               className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors"
+              data-testid="back-to-featured-works"
             >
               <ArrowLeft size={20} />
               <span className="text-sm">Back to Featured Works</span>
@@ -87,45 +88,31 @@ const FeaturedWorksPage = () => {
 
           {/* Artwork Detail Layout */}
           <div className="max-w-4xl mx-auto">
-            {/* Large Image */}
+            {/* Large Detail Image */}
             <div className="mb-8">
               <img
-                src={selectedArtwork.image}
-                alt={selectedArtwork.title}
+                src={selectedWork.detail_image}
+                alt={selectedWork.title}
                 className="w-full h-auto"
+                data-testid="detail-image"
               />
             </div>
 
             {/* Artwork Info */}
             <div className="space-y-6">
               <div>
-                <h1 className="text-2xl font-medium text-black mb-2">{selectedArtwork.title}</h1>
-                <p className="text-gray-600">{selectedArtwork.year}</p>
+                <h1 className="text-2xl font-medium text-black mb-2">{selectedWork.title}</h1>
+                <p className="text-gray-600">{selectedWork.year}</p>
               </div>
 
               <div className="border-t border-gray-200 pt-6">
-                <p className="text-gray-600 mb-2">{selectedArtwork.medium}</p>
-                <p className="text-gray-500 text-sm">Series: {selectedArtwork.series}</p>
-              </div>
-
-              {/* Exhibition History Box */}
-              <div className="border border-gray-200 p-6">
-                <h3 className="text-sm font-medium tracking-wide mb-4">EXHIBITION HISTORY</h3>
-                <ul className="space-y-2 text-gray-600 text-sm">
-                  <li>Whitney Museum of American Art, New York, 2014</li>
-                  <li>Centre Pompidou, Paris, 2015</li>
-                  <li>Guggenheim Bilbao, Spain, 2015</li>
-                </ul>
-              </div>
-
-              {/* Collection */}
-              <div>
-                <p className="text-gray-500 text-sm">Collection: Private</p>
+                <p className="text-gray-600 mb-2">{selectedWork.dimensions}</p>
+                <p className="text-gray-500 text-sm">{selectedWork.medium}</p>
               </div>
 
               {/* Share Module */}
               <div className="pt-2">
-                <ShareModule artwork={selectedArtwork} inverted={false} />
+                <ShareModule artwork={selectedWork} inverted={false} />
               </div>
             </div>
           </div>
@@ -135,7 +122,7 @@ const FeaturedWorksPage = () => {
     );
   }
 
-  // Gallery View
+  // Gallery View - uses gallery_image
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -154,11 +141,12 @@ const FeaturedWorksPage = () => {
           </h1>
 
           <div className="flex items-center gap-6">
-            {/* Exhibited Dropdown */}
+            {/* Works Dropdown */}
             <div className="relative">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center gap-2 text-sm border border-gray-300 px-4 py-2 hover:border-black transition-colors min-w-[280px] justify-between"
+                data-testid="works-dropdown"
               >
                 <span className="truncate">{dropdownOptions.find(e => e.value === selectedWorkFilter)?.label || 'All Works'}</span>
                 <ChevronDown size={16} className={`transition-transform flex-shrink-0 ${isDropdownOpen ? 'rotate-180' : ''}`} />
@@ -218,25 +206,26 @@ const FeaturedWorksPage = () => {
           </div>
         ) : (
           <div className={`grid gap-8 ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 max-w-2xl mx-auto'}`}>
-            {filteredArtworks.map((artwork) => (
+            {filteredWorks.map((work) => (
               <div 
-                key={artwork.id}
+                key={work.id}
                 className="group cursor-pointer"
-                onClick={() => handleArtworkClick(artwork)}
+                onClick={() => handleWorkClick(work)}
+                data-testid={`featured-work-${work.id}`}
               >
                 <div className={`overflow-hidden mb-4 bg-gray-50 ${viewMode === 'full' ? 'aspect-auto' : 'aspect-square'}`}>
                   <img
-                    src={artwork.image}
-                    alt={artwork.title}
+                    src={work.gallery_image || work.detail_image}
+                    alt={work.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="text-center">
-                  <h3 className="font-medium text-black mb-1">{artwork.title}</h3>
-                  <p className="text-gray-500 text-sm mb-1">{artwork.year}</p>
-                  <p className="text-gray-400 text-xs">{artwork.medium}</p>
+                  <h3 className="font-medium text-black mb-1">{work.title}</h3>
+                  <p className="text-gray-500 text-sm mb-1">{work.year}</p>
+                  <p className="text-gray-400 text-xs">{work.dimensions}</p>
                   {viewMode === 'full' && (
-                    <p className="text-gray-400 text-xs mt-1">Series: {artwork.series}</p>
+                    <p className="text-gray-400 text-xs mt-1">{work.medium}</p>
                   )}
                 </div>
               </div>
