@@ -4,6 +4,70 @@ import Header from '../components/Header';
 import { ArrowLeft } from 'lucide-react';
 import BlackFooter from '../components/BlackFooter';
 
+// Gallery image component with loading state and retry logic
+const GalleryImage = ({ src, alt, aspectClass, objectFit }) => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
+  const [currentSrc, setCurrentSrc] = useState(src);
+
+  useEffect(() => {
+    setLoading(true);
+    setError(false);
+    setRetryCount(0);
+    setCurrentSrc(src);
+  }, [src]);
+
+  const handleError = () => {
+    if (retryCount < 2) {
+      // Retry with cache-busting query param
+      setRetryCount(prev => prev + 1);
+      setCurrentSrc(`${src}?retry=${Date.now()}`);
+    } else {
+      setError(true);
+      setLoading(false);
+    }
+  };
+
+  const handleLoad = () => {
+    setLoading(false);
+    setError(false);
+  };
+
+  return (
+    <div className={`overflow-hidden ${aspectClass} bg-gray-100 relative`}>
+      {loading && !error && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+          <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
+        </div>
+      )}
+      {error ? (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+          <button 
+            onClick={() => {
+              setError(false);
+              setLoading(true);
+              setRetryCount(0);
+              setCurrentSrc(`${src}?reload=${Date.now()}`);
+            }}
+            className="text-gray-500 hover:text-gray-700 text-sm underline"
+          >
+            Click to reload
+          </button>
+        </div>
+      ) : (
+        <img 
+          src={currentSrc} 
+          alt={alt}
+          className={`w-full h-full ${objectFit} ${loading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
+          onError={handleError}
+          onLoad={handleLoad}
+        />
+      )}
+    </div>
+  );
+};
+
 const ViewingRoomsPage = () => {
   const [selectedRoom, setSelectedRoom] = useState(null);
   const location = useLocation();
