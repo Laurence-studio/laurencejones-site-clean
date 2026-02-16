@@ -11,7 +11,7 @@ from datetime import datetime
 from typing import Dict, Any, List
 
 # Use the same backend URL that frontend uses
-BACKEND_URL = "https://art-showcase-68.preview.emergentagent.com"
+BACKEND_URL = "https://jones-gallery-site.preview.emergentagent.com"
 BASE_API_URL = f"{BACKEND_URL}/api"
 
 class BackendTester:
