@@ -11,7 +11,8 @@ const ViewingRoomsPage = () => {
   // Reset to main view when navigating to this page via nav link
   useEffect(() => {
     setSelectedRoom(null);
-  }, [location.key]);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [location.key, location.state?.reset]);
 
   // Viewing rooms data
   const rooms = [
