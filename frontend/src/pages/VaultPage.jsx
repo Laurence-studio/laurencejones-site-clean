@@ -25,6 +25,7 @@ const VaultPage = () => {
   const [landingAnimated, setLandingAnimated] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isExhibitionOpen, setIsExhibitionOpen] = useState(false);
+  const [showGalleryView, setShowGalleryView] = useState(false);
 
   // Reset state when navigating to this page
   useEffect(() => {
