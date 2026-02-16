@@ -47,7 +47,12 @@ const ExhibitionsPage = () => {
       title: 'How To Live In Los Angeles',
       venue: 'Rebecca Hossack Gallery, London',
       hasMonograph: true,
-      images: []
+      images: [
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/e91ys365_%27Black%20Palms%27%2C%20180x115cm%2C%20Acrylic%20on%20Linen%2C%202019_2000px%20copy.jpg',
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/ygj9z7aa_Pool%20with%20Yellow%20Float%2C%20110%20x%20160cm%2C%20Acrylic%20and%20Acrylic%20Ink%20on%20Linen%2C%202019-2000px%20copy.jpg',
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/m8skfdjr_IMG_4383%202.jpg'
+      ],
+      monographImage: 'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/4obpr5ax_Screenshot%202026-02-15%20at%2018.01.29.png'
     },
     {
       id: 5,
