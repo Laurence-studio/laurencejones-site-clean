@@ -15,11 +15,11 @@ const getExhibitionHistory = (workTitle) => {
     "Art Palm Beach, Rebecca Hossack Art Gallery, January 28 - February 1, 2026"
   ];
   
-  // Works that have additional exhibitions
+  // Works that have additional exhibitions (exact titles from database)
   const worksWithAdditional = [
-    "The Distant Thrum of Dusk",
-    "A Certain Slant of Light",
-    "Whispers of Nature's Melody"
+    "The Distant Thrum Of Dusk",
+    "A Certain Slant Of Light",
+    "Whispers Of Nature's Melody"
   ];
   
   // Check if this work has additional exhibitions (case-insensitive)
@@ -35,7 +35,7 @@ const getExhibitionHistory = (workTitle) => {
 
 // Check if work is in private collection (no enquire button)
 const isPrivateCollection = (workTitle) => {
-  const privateWorks = ["Memories in Sapphire", "Night Pool"];
+  const privateWorks = ["Memories In Sapphire", "Night Pool"];
   return privateWorks.some(w => w.toLowerCase() === workTitle?.toLowerCase());
 };
 
