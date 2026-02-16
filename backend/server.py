@@ -64,6 +64,30 @@ class FeaturedWorkCreate(BaseModel):
     medium: str
     series: Optional[str] = "Featured"
 
+class VaultWork(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    main_image: str      # Full artwork - for grid AND top of detail
+    wall_image: str      # Gallery wall view - white wall shot
+    interior_image: str  # Interior shot - in-situ view
+    year: str
+    dimensions: str
+    medium: str
+    price: Optional[str] = "Price on request"
+    exhibitions: Optional[List[str]] = []
+    collection: Optional[str] = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+class VaultWorkCreate(BaseModel):
+    title: str
+    main_image: str
+    wall_image: str
+    interior_image: str
+    year: str
+    dimensions: str
+    medium: str
+    price: Optional[str] = "Price on request"
+
 class Exhibition(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     title: str
