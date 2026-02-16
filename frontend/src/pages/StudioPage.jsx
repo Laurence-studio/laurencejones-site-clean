@@ -82,7 +82,7 @@ const StudioPage = () => {
             <div className="h-32 lg:h-48"></div>
           </div>
 
-          {/* Right Column - Timeline (sticky on desktop) */}
+          {/* Right Column - Exhibitions & Milestones (sticky on desktop) */}
           <div className="w-full lg:w-1/2 border-t lg:border-t-0 lg:border-l border-gray-200 pt-10 lg:pt-0 lg:pl-16">
             <div className="lg:sticky lg:top-40">
               <h2 
@@ -92,24 +92,30 @@ const StudioPage = () => {
                 SELECTED EXHIBITIONS & MILESTONES
               </h2>
 
-              <div className="space-y-8 max-h-[calc(100vh-220px)] overflow-y-auto pr-4">
-                {timeline.map((item, index) => (
-                  <div key={index} className="flex gap-8">
-                    {/* Year */}
-                    <div className="w-14 flex-shrink-0">
-                      <span className="text-sm text-gray-400">{item.year}</span>
-                    </div>
-                    
-                    {/* Events */}
-                    <div className="flex-1 space-y-2">
-                      {item.events.map((event, eventIndex) => (
-                        <p key={eventIndex} className="text-gray-600 text-sm leading-relaxed">
-                          {event}
-                        </p>
-                      ))}
-                    </div>
+              <div className="space-y-10">
+                {/* Selected Exhibitions */}
+                <div>
+                  <h3 className="text-sm font-medium text-black mb-4 tracking-wide">Selected Exhibitions</h3>
+                  <div className="space-y-2">
+                    {exhibitionsAndMilestones.selectedExhibitions.map((exhibition, index) => (
+                      <p key={index} className="text-gray-600 text-sm leading-relaxed">
+                        {exhibition}
+                      </p>
+                    ))}
                   </div>
-                ))}
+                </div>
+
+                {/* Milestones */}
+                <div>
+                  <h3 className="text-sm font-medium text-black mb-4 tracking-wide">Milestones</h3>
+                  <div className="space-y-2">
+                    {exhibitionsAndMilestones.milestones.map((milestone, index) => (
+                      <p key={index} className="text-gray-600 text-sm leading-relaxed">
+                        {milestone}
+                      </p>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               {/* CV Link - opens in new window */}
