@@ -7,6 +7,13 @@ import { Skeleton } from '../components/ui/skeleton';
 import BlackFooter from '../components/BlackFooter';
 import ShareModule from '../components/ShareModule';
 
+// Placeholder exhibition data
+const placeholderExhibitions = [
+  "Solo Exhibition, Rebecca Hossack Art Gallery, London, 2024",
+  "Group Show, Art Angels, Los Angeles, 2023",
+  "Summer Exhibition, Royal Academy of Arts, London, 2023"
+];
+
 const FeaturedWorksPage = () => {
   const location = useLocation();
   const { featuredWorks, loading } = useFeaturedWorks();
@@ -14,6 +21,7 @@ const FeaturedWorksPage = () => {
   const [selectedWork, setSelectedWork] = useState(null);
   const [selectedWorkFilter, setSelectedWorkFilter] = useState('all');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isExhibitionOpen, setIsExhibitionOpen] = useState(false);
 
   // Reset state when navigating to this page
   useEffect(() => {
