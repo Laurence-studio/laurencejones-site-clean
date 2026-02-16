@@ -7,12 +7,37 @@ import { Skeleton } from '../components/ui/skeleton';
 import BlackFooter from '../components/BlackFooter';
 import ShareModule from '../components/ShareModule';
 
-// Placeholder exhibition data
-const placeholderExhibitions = [
-  "Solo Exhibition, Rebecca Hossack Art Gallery, London, 2024",
-  "Group Show, Art Angels, Los Angeles, 2023",
-  "Summer Exhibition, Royal Academy of Arts, London, 2023"
-];
+// Exhibition history data for vault works
+const getExhibitionHistory = (workTitle) => {
+  const baseExhibition = "Silver Palms, Rebecca Hossack Miami Project, Miami, 2024";
+  const additionalExhibitions = [
+    "LA Art Show, Rebecca Hossack Art Gallery, January 7-11, 2026",
+    "Art Palm Beach, Rebecca Hossack Art Gallery, January 28 - February 1, 2026"
+  ];
+  
+  // Works that have additional exhibitions
+  const worksWithAdditional = [
+    "The Distant Thrum of Dusk",
+    "A Certain Slant of Light",
+    "Whispers of Nature's Melody"
+  ];
+  
+  // Check if this work has additional exhibitions (case-insensitive)
+  const hasAdditional = worksWithAdditional.some(w => 
+    w.toLowerCase() === workTitle?.toLowerCase()
+  );
+  
+  if (hasAdditional) {
+    return [baseExhibition, ...additionalExhibitions];
+  }
+  return [baseExhibition];
+};
+
+// Check if work is in private collection (no enquire button)
+const isPrivateCollection = (workTitle) => {
+  const privateWorks = ["Memories in Sapphire", "Night Pool"];
+  return privateWorks.some(w => w.toLowerCase() === workTitle?.toLowerCase());
+};
 
 const VaultPage = () => {
   const location = useLocation();
