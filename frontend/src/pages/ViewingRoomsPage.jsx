@@ -114,11 +114,11 @@ The Maybourne collection demonstrates how contemporary art can enhance the hospi
           {selectedRoom.galleryImages && selectedRoom.galleryImages.length > 0 ? (
             <div className={`grid gap-6 ${selectedRoom.galleryImages.length === 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2'}`}>
               {selectedRoom.galleryImages.map((img, idx) => (
-                <div key={idx} className="aspect-square overflow-hidden">
+                <div key={idx} className={`overflow-hidden ${selectedRoom.galleryImages.length === 2 ? 'aspect-[4/3]' : 'aspect-square'} bg-gray-100`}>
                   <img 
                     src={img} 
                     alt={`${selectedRoom.title} ${idx + 1}`}
-                    className="w-full h-full object-cover"
+                    className={`w-full h-full ${selectedRoom.galleryImages.length === 2 && idx === 1 ? 'object-contain' : 'object-cover'}`}
                   />
                 </div>
               ))}
