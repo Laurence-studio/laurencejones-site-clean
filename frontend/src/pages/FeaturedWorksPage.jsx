@@ -51,11 +51,13 @@ const FeaturedWorksPage = () => {
 
   const handleWorkClick = (work) => {
     setSelectedWork(work);
+    window.scrollTo(0, 0);
   };
 
   const handleBack = () => {
     setSelectedWork(null);
     setSelectedWorkFilter('all');
+    window.scrollTo(0, 0);
   };
 
   // Single Work Detail View - uses detail_image

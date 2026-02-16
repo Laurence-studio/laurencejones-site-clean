@@ -80,6 +80,7 @@ const VaultPage = () => {
   const handleBack = () => {
     setSelectedWork(null);
     setSelectedWorkFilter('all');
+    window.scrollTo(0, 0);
   };
 
   const handleEnquire = () => {
