@@ -125,3 +125,27 @@ export const useShop = () => {
 
   return { shopItems, loading, error };
 };
+
+// Featured Works Hook
+export const useFeaturedWorks = () => {
+  const [featuredWorks, setFeaturedWorks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchFeaturedWorks = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/featured-works`);
+        setFeaturedWorks(response.data);
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching featured works:', err);
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+    fetchFeaturedWorks();
+  }, []);
+
+  return { featuredWorks, loading, error };
+};
