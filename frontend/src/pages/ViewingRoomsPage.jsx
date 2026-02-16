@@ -130,21 +130,13 @@ The Maybourne collection demonstrates how contemporary art can enhance the hospi
           {selectedRoom.galleryImages && selectedRoom.galleryImages.length > 0 ? (
             <div className={`grid gap-6 ${selectedRoom.galleryImages.length === 4 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2'}`}>
               {selectedRoom.galleryImages.map((img, idx) => (
-                <div key={idx} className={`overflow-hidden ${selectedRoom.galleryImages.length === 2 ? 'aspect-[4/3]' : 'aspect-square'} bg-gray-100`}>
-                  <img 
-                    src={img} 
-                    alt={`${selectedRoom.title} ${idx + 1}`}
-                    className={`w-full h-full ${selectedRoom.galleryImages.length === 2 && idx === 1 ? 'object-contain' : 'object-cover'}`}
-                    onError={(e) => {
-                      // Retry loading the image once on error
-                      if (!e.target.dataset.retried) {
-                        e.target.dataset.retried = 'true';
-                        e.target.src = img + '?' + Date.now();
-                      }
-                    }}
-                    loading="lazy"
-                  />
-                </div>
+                <GalleryImage 
+                  key={idx}
+                  src={img}
+                  alt={`${selectedRoom.title} ${idx + 1}`}
+                  aspectClass={selectedRoom.galleryImages.length === 2 ? 'aspect-[4/3]' : 'aspect-square'}
+                  objectFit={selectedRoom.galleryImages.length === 2 && idx === 1 ? 'object-contain' : 'object-cover'}
+                />
               ))}
             </div>
           ) : selectedRoom.id === 1 ? (
