@@ -96,24 +96,30 @@ Create a pixel-perfect clone of `https://www.jeffkoons.com`, later pivoted to bu
 - [x] Fixed site-wide scroll-to-top navigation bug
 - [x] Numerous UI/content refinements based on user feedback
 
+### February 2026
+- [x] Populated all Viewing Rooms images (main, detail, gallery for both projects)
+- [x] Populated all Exhibitions images (5 exhibitions with monographs)
+- [x] Completed Vault gallery (7 artworks + Gallery View lightbox)
+- [x] Updated Homepage artwork order and biography portrait
+- [x] Updated Studio page portrait
+- [x] Fixed page-load scrolling issue (pages loading halfway down)
+- [x] Fixed thumbnail hover white-line visual bug on Vault/Featured Works
+- [x] Fixed Maybourne Hotel image aspect ratio (full install view visible)
+- [x] Fixed intermittent black square image loading bug on gallery images
+- [x] Fixed "Viewing Rooms" navigation to return to main landing from detail pages
+
 ## Pending/Backlog
 
-### P1 - Ready for Assets
-- [ ] Replace Vault detail page placeholders ("gallery install", "interior view")
-- [ ] Replace Studio page portrait placeholder
+### P0 - Immediate
+- [ ] Update homepage biography text (still contains "Jeff Koons" placeholder)
 
 ### P2 - Future Enhancements
-- [ ] Replace Exhibitions page image placeholders
-- [ ] Replace Viewing Rooms image placeholders
-- [ ] Additional content updates as requested
+- [ ] Additional content updates as requested by user
 
 ## Project Health
 - **Broken**: None
 - **Mocked**: 
-  - Vault detail page gallery install/interior images (placeholder)
-  - Studio page portrait (placeholder)
-  - Exhibitions page images (placeholder)
-  - Viewing Rooms additional images (placeholder)
+  - Homepage biography text (still references "Jeff Koons")
 
 ## 3rd Party Integrations
 None currently.
