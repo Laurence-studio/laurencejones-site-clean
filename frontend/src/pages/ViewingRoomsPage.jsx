@@ -65,10 +65,18 @@ The Maybourne collection demonstrates how contemporary art can enhance the hospi
 
   const handleRoomClick = (room) => {
     setSelectedRoom(room);
+    // Scroll to top when opening detail view
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 0);
   };
 
   const handleBack = () => {
     setSelectedRoom(null);
+    // Scroll to top when going back to main view
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 0);
   };
 
   // Detail View
