@@ -118,6 +118,36 @@ const FeaturedWorksPage = () => {
                 <p className="text-gray-500 text-sm">{selectedWork.medium}</p>
               </div>
 
+              {/* Exhibition History Dropdown */}
+              <div className="border-t border-gray-200 pt-6">
+                <button
+                  onClick={() => setIsExhibitionOpen(!isExhibitionOpen)}
+                  className="flex items-center justify-between w-full text-left"
+                  data-testid="exhibition-dropdown"
+                >
+                  <span className="text-sm font-medium text-black">Exhibited</span>
+                  <ChevronDown 
+                    size={16} 
+                    className={`transition-transform text-gray-500 ${isExhibitionOpen ? 'rotate-180' : ''}`} 
+                  />
+                </button>
+                
+                {isExhibitionOpen && (
+                  <div className="mt-4 space-y-3">
+                    {(selectedWork.exhibitions?.length > 0 ? selectedWork.exhibitions : placeholderExhibitions).map((exhibition, index) => (
+                      <p key={index} className="text-gray-500 text-sm">{exhibition}</p>
+                    ))}
+                    
+                    {/* Collection Status */}
+                    <div className="pt-3 border-t border-gray-100">
+                      <p className="text-gray-500 text-sm">
+                        {selectedWork.collection || "Private Collection, London"}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               {/* Share Module */}
               <div className="pt-2">
                 <ShareModule artwork={selectedWork} inverted={false} />
