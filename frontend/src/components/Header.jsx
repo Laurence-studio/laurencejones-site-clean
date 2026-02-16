@@ -103,6 +103,7 @@ const Header = ({ inverted = false }) => {
             <Link
               key={item.name}
               to={item.path}
+              onClick={(e) => handleNavClick(e, item.path)}
               className={`block px-6 py-4 text-sm ${hoverBg} transition-colors border-b ${borderColor} ${textColor} ${
                 location.pathname === item.path ? 'font-medium' : ''
               }`}
