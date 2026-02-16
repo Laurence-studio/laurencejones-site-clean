@@ -99,6 +99,31 @@ async def create_artwork(artwork: ArtworkCreate):
     await db.artworks.insert_one(artwork_obj.dict())
     return artwork_obj
 
+class ArtworkImageUpdate(BaseModel):
+    image: str
+
+@api_router.patch("/artworks/{artwork_id}/image")
+async def update_artwork_image(artwork_id: str, update: ArtworkImageUpdate):
+    result = await db.artworks.update_one(
+        {"id": artwork_id},
+        {"$set": {"image": update.image}}
+    )
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Artwork not found")
+    return {"message": "Image updated successfully"}
+
+@api_router.patch("/artworks/by-index/{index}/image")
+async def update_artwork_image_by_index(index: int, update: ArtworkImageUpdate):
+    artworks = await db.artworks.find().to_list(100)
+    if index < 0 or index >= len(artworks):
+        raise HTTPException(status_code=404, detail="Artwork index out of range")
+    artwork_id = artworks[index]["id"]
+    result = await db.artworks.update_one(
+        {"id": artwork_id},
+        {"$set": {"image": update.image}}
+    )
+    return {"message": f"Image at index {index} updated successfully", "artwork_id": artwork_id}
+
 # Exhibitions Routes
 @api_router.get("/exhibitions", response_model=List[Exhibition])
 async def get_exhibitions(status: Optional[str] = None):
