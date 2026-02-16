@@ -220,6 +220,30 @@ async def update_featured_work_title(work_id: str, update: FeaturedWorkTitleUpda
         raise HTTPException(status_code=404, detail="Featured work not found")
     return {"message": "Title updated successfully"}
 
+# Vault Works Routes
+@api_router.get("/vault-works", response_model=List[VaultWork])
+async def get_vault_works():
+    works = await db.vault_works.find().to_list(100)
+    return [VaultWork(**work) for work in works]
+
+@api_router.get("/vault-works/{work_id}", response_model=VaultWork)
+async def get_vault_work(work_id: str):
+    work = await db.vault_works.find_one({"id": work_id})
+    if not work:
+        raise HTTPException(status_code=404, detail="Vault work not found")
+    return VaultWork(**work)
+
+@api_router.post("/vault-works", response_model=VaultWork)
+async def create_vault_work(work: VaultWorkCreate):
+    work_obj = VaultWork(**work.dict())
+    await db.vault_works.insert_one(work_obj.dict())
+    return work_obj
+
+@api_router.delete("/vault-works")
+async def delete_all_vault_works():
+    result = await db.vault_works.delete_many({})
+    return {"message": f"Deleted {result.deleted_count} vault works"}
+
 # Exhibitions Routes
 @api_router.get("/exhibitions", response_model=List[Exhibition])
 async def get_exhibitions(status: Optional[str] = None):
