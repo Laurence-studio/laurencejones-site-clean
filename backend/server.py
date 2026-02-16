@@ -42,6 +42,26 @@ class ArtworkCreate(BaseModel):
     series: str
     medium: str
 
+class FeaturedWork(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    gallery_image: str  # On-wall view for grid
+    detail_image: str   # Full artwork for click-through
+    year: str
+    dimensions: str
+    medium: str
+    series: Optional[str] = "Featured"
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+class FeaturedWorkCreate(BaseModel):
+    title: str
+    gallery_image: str
+    detail_image: str
+    year: str
+    dimensions: str
+    medium: str
+    series: Optional[str] = "Featured"
+
 class Exhibition(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     title: str
