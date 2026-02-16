@@ -365,6 +365,7 @@ const VaultPage = () => {
                     src={work.main_image}
                     alt={work.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    style={{ objectPosition: 'center top' }}
                   />
                 </div>
                 <div className="text-center">
