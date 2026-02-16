@@ -52,25 +52,25 @@ const StudioPage = () => {
             {/* Biography Text */}
             <div className="space-y-6 text-gray-600 leading-relaxed max-w-xl">
               <p>
-                Laurence Jones is a contemporary painter based in Los Angeles, creating hyper-realist works that explore the intersection of architecture and atmosphere. His paintings capture the quiet drama of California modernism—pools illuminated after dark, glass and concrete structures suspended in twilight, the precise geometry of built space dissolving into ambiguous light.
+                Laurence Jones is a British contemporary painter whose work explores the psychological and architectural language of modern space. Working primarily in acrylic on linen at large scale, his paintings focus on light, horizon, glass, water and built form; capturing moments where architecture becomes atmosphere.
               </p>
               
               <p>
-                Working with traditional oil and acrylic techniques, Jones builds each painting through careful observation and layered rendering. His practice examines how architecture mediates our experience of time, light, and solitude. The work is informed by literary influences including Joan Didion's examinations of California mythology and Emily Dickinson's meditations on interior space and consciousness.
+                Rooted in a dialogue with mid-century modernism and contemporary residential design, the work operates between hyper-real precision and cinematic stillness. From Los Angeles hillside houses to coastal horizons and liminal interiors, each painting holds tension between structure and openness, clarity and distance.
               </p>
               
               <p>
-                Jones' paintings have been exhibited at galleries including David Kordansky, Gagosian, and Almine Rech. His work is held in private collections across North America and Europe.
+                Jones' practice considers architecture not as backdrop, but as emotional framework; a way of understanding how we inhabit space, memory and place. His recent works extend this dialogue further, positioning painting in conversation with the built environment and the evolving cultural narratives of modern living.
               </p>
 
               <p>
-                The studio maintains an ongoing archive documenting works, exhibitions, and placements.
+                He lives and works in the United Kingdom.
               </p>
             </div>
 
             {/* Contact Info */}
             <div className="mt-10 space-y-2 text-gray-500">
-              <p>Based in Los Angeles, California</p>
+              <p>Based in the United Kingdom</p>
               <p>
                 <a href="mailto:studio@laurencejones.com" className="hover:text-black transition-colors">
                   studio@laurencejones.com
