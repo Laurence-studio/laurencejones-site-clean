@@ -74,6 +74,7 @@ const VaultPage = () => {
   const handleWorkClick = (work) => {
     setSelectedWork(work);
     setIsExhibitionOpen(false);
+    window.scrollTo(0, 0);
   };
 
   const handleBack = () => {
@@ -358,11 +359,14 @@ const VaultPage = () => {
                 onClick={() => handleWorkClick(work)}
                 data-testid={`vault-work-${work.id}`}
               >
-                <div className={`overflow-hidden mb-4 bg-black ${viewMode === 'full' ? 'aspect-auto' : 'aspect-square'}`}>
+                <div 
+                  className={`overflow-hidden mb-4 bg-black ${viewMode === 'full' ? 'aspect-auto' : 'aspect-square'}`}
+                  style={{ lineHeight: 0, fontSize: 0 }}
+                >
                   <img
                     src={work.main_image}
                     alt={work.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 block"
                     style={{ objectPosition: 'center top' }}
                   />
                 </div>
