@@ -388,17 +388,56 @@ const VaultPage = () => {
                 </div>
               </div>
             ))}
+
+            {/* Gallery View - Last Grid Item */}
+            {selectedWorkFilter === 'all' && (
+              <div 
+                className="group cursor-pointer"
+                onClick={() => setShowGalleryView(true)}
+                data-testid="vault-gallery-view-thumbnail"
+              >
+                <div 
+                  className={`overflow-hidden mb-4 bg-black ${viewMode === 'full' ? 'aspect-auto' : 'aspect-square'}`}
+                  style={{ lineHeight: 0, fontSize: 0 }}
+                >
+                  <img
+                    src="https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/mamvj9ch_Gallery%20View.jpg"
+                    alt="Gallery View"
+                    className="w-full h-full object-cover transition-transform duration-500 block"
+                    style={{ 
+                      objectPosition: 'center center',
+                      transform: 'scale(1.02)',
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.08)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+                  />
+                </div>
+                <div className="text-center">
+                  <h3 className="font-medium text-white mb-1">Gallery View</h3>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
-        {/* Gallery View Image */}
-        {!loading && !selectedWork && (
-          <div className="mt-16 mb-8">
+        {/* Gallery View Lightbox */}
+        {showGalleryView && (
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-4"
+            onClick={() => setShowGalleryView(false)}
+            data-testid="gallery-view-lightbox"
+          >
+            <button
+              className="absolute top-6 right-6 text-white text-3xl hover:text-gray-300 transition-colors"
+              onClick={() => setShowGalleryView(false)}
+            >
+              ×
+            </button>
             <img
               src="https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/mamvj9ch_Gallery%20View.jpg"
               alt="Gallery View"
-              className="w-full h-auto"
-              data-testid="vault-gallery-view-image"
+              className="max-w-full max-h-full object-contain"
+              onClick={(e) => e.stopPropagation()}
             />
           </div>
         )}
