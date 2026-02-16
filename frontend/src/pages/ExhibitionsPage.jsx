@@ -93,9 +93,23 @@ const ExhibitionsPage = () => {
                 {/* Image Placeholders - right column */}
                 <div className="md:col-span-6">
                   <div className="flex gap-2">
-                    <PlaceholderImage />
-                    <PlaceholderImage />
-                    <PlaceholderImage />
+                    {exhibition.images && exhibition.images.length > 0 ? (
+                      exhibition.images.map((img, idx) => (
+                        <div key={idx} className="w-24 h-24 overflow-hidden bg-gray-100">
+                          <img 
+                            src={img} 
+                            alt={`${exhibition.title} ${idx + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      ))
+                    ) : (
+                      <>
+                        <PlaceholderImage />
+                        <PlaceholderImage />
+                        <PlaceholderImage />
+                      </>
+                    )}
                     {exhibition.hasMonograph && (
                       <div className="ml-6">
                         <PlaceholderImage />
