@@ -62,8 +62,8 @@ const StudioPage = () => {
     }
   ];
 
-  // Placeholder portrait - will be replaced with actual image
-  const studioPortrait = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop&crop=face';
+  // Studio portrait
+  const studioPortrait = 'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/k9aspqak__DSC5558.jpg';
 
   return (
     <div className="min-h-screen bg-white">
