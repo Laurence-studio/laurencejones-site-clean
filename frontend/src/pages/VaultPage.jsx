@@ -358,7 +358,7 @@ const VaultPage = () => {
                 onClick={() => handleWorkClick(work)}
                 data-testid={`vault-work-${work.id}`}
               >
-                <div className={`overflow-hidden mb-4 bg-gray-900 ${viewMode === 'full' ? 'aspect-auto' : 'aspect-square'}`}>
+                <div className={`overflow-hidden mb-4 bg-black ${viewMode === 'full' ? 'aspect-auto' : 'aspect-square'}`}>
                   <img
                     src={work.main_image}
                     alt={work.title}
