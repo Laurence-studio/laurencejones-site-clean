@@ -144,6 +144,43 @@ async def update_artwork_image_by_index(index: int, update: ArtworkImageUpdate):
     )
     return {"message": f"Image at index {index} updated successfully", "artwork_id": artwork_id}
 
+# Featured Works Routes
+@api_router.get("/featured-works", response_model=List[FeaturedWork])
+async def get_featured_works():
+    works = await db.featured_works.find().to_list(100)
+    return [FeaturedWork(**work) for work in works]
+
+@api_router.get("/featured-works/{work_id}", response_model=FeaturedWork)
+async def get_featured_work(work_id: str):
+    work = await db.featured_works.find_one({"id": work_id})
+    if not work:
+        raise HTTPException(status_code=404, detail="Featured work not found")
+    return FeaturedWork(**work)
+
+@api_router.post("/featured-works", response_model=FeaturedWork)
+async def create_featured_work(work: FeaturedWorkCreate):
+    work_obj = FeaturedWork(**work.dict())
+    await db.featured_works.insert_one(work_obj.dict())
+    return work_obj
+
+@api_router.delete("/featured-works")
+async def delete_all_featured_works():
+    result = await db.featured_works.delete_many({})
+    return {"message": f"Deleted {result.deleted_count} featured works"}
+
+class FeaturedWorkGalleryImageUpdate(BaseModel):
+    gallery_image: str
+
+@api_router.patch("/featured-works/{work_id}/gallery-image")
+async def update_featured_work_gallery_image(work_id: str, update: FeaturedWorkGalleryImageUpdate):
+    result = await db.featured_works.update_one(
+        {"id": work_id},
+        {"$set": {"gallery_image": update.gallery_image}}
+    )
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Featured work not found")
+    return {"message": "Gallery image updated successfully"}
+
 # Exhibitions Routes
 @api_router.get("/exhibitions", response_model=List[Exhibition])
 async def get_exhibitions(status: Optional[str] = None):
