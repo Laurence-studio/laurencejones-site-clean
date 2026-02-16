@@ -51,6 +51,8 @@ class FeaturedWork(BaseModel):
     dimensions: str
     medium: str
     series: Optional[str] = "Featured"
+    exhibitions: Optional[List[str]] = []
+    collection: Optional[str] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
 class FeaturedWorkCreate(BaseModel):
