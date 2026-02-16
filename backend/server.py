@@ -181,6 +181,19 @@ async def update_featured_work_gallery_image(work_id: str, update: FeaturedWorkG
         raise HTTPException(status_code=404, detail="Featured work not found")
     return {"message": "Gallery image updated successfully"}
 
+class FeaturedWorkTitleUpdate(BaseModel):
+    title: str
+
+@api_router.patch("/featured-works/{work_id}/title")
+async def update_featured_work_title(work_id: str, update: FeaturedWorkTitleUpdate):
+    result = await db.featured_works.update_one(
+        {"id": work_id},
+        {"$set": {"title": update.title}}
+    )
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Featured work not found")
+    return {"message": "Title updated successfully"}
+
 # Exhibitions Routes
 @api_router.get("/exhibitions", response_model=List[Exhibition])
 async def get_exhibitions(status: Optional[str] = None):
