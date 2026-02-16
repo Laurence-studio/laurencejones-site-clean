@@ -23,7 +23,11 @@ const ExhibitionsPage = () => {
       title: 'Imago',
       venue: 'Rebecca Hossack Gallery X Citi Virtual Salon',
       hasMonograph: false,
-      images: []
+      images: [
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/pmczf5uw_%E2%80%98A%20Midnight%20Moment%20%28Night%20Pool%29%E2%80%99%2C%20180%20x%20155cm%2C%20Acrylic%20on%20Linen%2C%202021%20%20copy.jpg',
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/154kw0fu_E98D1561-8314-4D93-B20E-9AB5A5428CA8.jpg',
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/98lgojlp_IMG_2732.jpg'
+      ]
     },
     {
       id: 3,
