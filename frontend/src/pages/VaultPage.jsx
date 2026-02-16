@@ -235,21 +235,23 @@ const VaultPage = () => {
           {/* Gallery Wall View & Interior View - Side by Side */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             {/* Gallery Wall View (white wall) */}
-            <div>
+            <div className="overflow-hidden">
               <img
                 src={selectedWork.wall_image}
                 alt={`${selectedWork.title} - Gallery View`}
-                className="w-full h-auto"
+                className="w-full h-auto object-cover"
+                style={{ marginBottom: '-2px' }}
                 data-testid="vault-wall-image"
               />
             </div>
 
             {/* Interior View */}
-            <div>
+            <div className="overflow-hidden">
               <img
                 src={selectedWork.interior_image}
                 alt={`${selectedWork.title} - Interior View`}
-                className="w-full h-auto"
+                className="w-full h-auto object-cover"
+                style={{ marginBottom: '-2px' }}
                 data-testid="vault-interior-image"
               />
             </div>
