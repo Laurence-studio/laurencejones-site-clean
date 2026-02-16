@@ -367,8 +367,13 @@ const VaultPage = () => {
                   <img
                     src={work.main_image}
                     alt={work.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 block"
-                    style={{ objectPosition: 'center top' }}
+                    className="w-full h-full object-cover transition-transform duration-500 block"
+                    style={{ 
+                      objectPosition: 'center top',
+                      transform: 'scale(1.02)',
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.08)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
                   />
                 </div>
                 <div className="text-center">
