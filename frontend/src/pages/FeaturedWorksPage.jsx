@@ -253,11 +253,14 @@ const FeaturedWorksPage = () => {
                 onClick={() => handleWorkClick(work)}
                 data-testid={`featured-work-${work.id}`}
               >
-                <div className={`overflow-hidden mb-4 bg-gray-50 ${viewMode === 'full' ? 'aspect-auto' : 'aspect-square'}`}>
+                <div 
+                  className={`overflow-hidden mb-4 bg-gray-50 ${viewMode === 'full' ? 'aspect-auto' : 'aspect-square'}`}
+                  style={{ lineHeight: 0, fontSize: 0 }}
+                >
                   <img
                     src={work.gallery_image || work.detail_image}
                     alt={work.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 block"
                   />
                 </div>
                 <div className="text-center">
