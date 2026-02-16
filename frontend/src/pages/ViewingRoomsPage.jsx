@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import { ArrowLeft } from 'lucide-react';
 import BlackFooter from '../components/BlackFooter';
 
 const ViewingRoomsPage = () => {
   const [selectedRoom, setSelectedRoom] = useState(null);
+  const location = useLocation();
+
+  // Reset to main view when navigating to this page via nav link
+  useEffect(() => {
+    setSelectedRoom(null);
+  }, [location.key]);
 
   // Viewing rooms data
   const rooms = [
