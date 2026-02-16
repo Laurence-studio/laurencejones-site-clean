@@ -125,7 +125,17 @@ const ExhibitionsPage = () => {
                     )}
                     {exhibition.hasMonograph && (
                       <div className="ml-6">
-                        <PlaceholderImage />
+                        {exhibition.monographImage ? (
+                          <div className="w-24 h-24 overflow-hidden bg-gray-100">
+                            <img 
+                              src={exhibition.monographImage} 
+                              alt={`${exhibition.title} Monograph`}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        ) : (
+                          <PlaceholderImage />
+                        )}
                       </div>
                     )}
                   </div>
