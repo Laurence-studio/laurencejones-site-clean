@@ -76,6 +76,7 @@ const Header = ({ inverted = false }) => {
             <Link
               key={item.name}
               to={item.path}
+              onClick={(e) => handleNavClick(e, item.path)}
               className={`text-sm tracking-wide transition-opacity hover:opacity-60 ${textColor} ${
                 location.pathname === item.path ? 'font-medium' : 'font-normal'
               }`}
