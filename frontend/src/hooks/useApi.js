@@ -149,3 +149,27 @@ export const useFeaturedWorks = () => {
 
   return { featuredWorks, loading, error };
 };
+
+// Vault Works Hook
+export const useVaultWorks = () => {
+  const [vaultWorks, setVaultWorks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchVaultWorks = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/vault-works`);
+        setVaultWorks(response.data);
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching vault works:', err);
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+    fetchVaultWorks();
+  }, []);
+
+  return { vaultWorks, loading, error };
+};
