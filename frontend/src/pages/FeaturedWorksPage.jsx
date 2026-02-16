@@ -23,10 +23,11 @@ const FeaturedWorksPage = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isExhibitionOpen, setIsExhibitionOpen] = useState(false);
 
-  // Reset state when navigating to this page
+  // Reset state when navigating to this page and scroll to top
   useEffect(() => {
     setSelectedWork(null);
     setSelectedWorkFilter('all');
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [location.key]);
 
   // Build dropdown options from featuredWorks
