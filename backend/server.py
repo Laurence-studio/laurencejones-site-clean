@@ -141,6 +141,19 @@ async def get_biography():
         raise HTTPException(status_code=404, detail="Biography not found")
     return Biography(**biography)
 
+class BiographyPortraitUpdate(BaseModel):
+    portrait: str
+
+@api_router.patch("/biography/portrait")
+async def update_biography_portrait(update: BiographyPortraitUpdate):
+    result = await db.biography.update_one(
+        {},
+        {"$set": {"portrait": update.portrait}}
+    )
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Biography not found")
+    return {"message": "Portrait updated successfully"}
+
 # Bibliography Routes
 @api_router.get("/bibliography", response_model=List[BibliographyItem])
 async def get_bibliography():
