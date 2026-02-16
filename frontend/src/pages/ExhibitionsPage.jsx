@@ -10,35 +10,44 @@ const ExhibitionsPage = () => {
       year: '2024',
       title: 'Silver Palms',
       venue: 'Rebecca Hossack Miami Project, Miami',
-      hasMonograph: false
+      hasMonograph: false,
+      images: [
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/p57rqxgr_IMG_2822%20copy.jpg',
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/x8gfj5hg_%27Whispers%20Of%20Nature%27s%20Melody%27%2C%20150x110cm%2C%20Acrylic%20On%20Belgian%20Linen%20copy%203.jpg',
+        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/6c8lfv2d_%27A%20Certain%20Slant%20Of%20Light%27%2C%20130x110cm%2C%20Acrylic%20On%20Belgian%20Linen%20copy%203.jpg'
+      ]
     },
     {
       id: 2,
       year: '2021',
       title: 'Imago',
       venue: 'Rebecca Hossack Gallery X Citi Virtual Salon',
-      hasMonograph: false
+      hasMonograph: false,
+      images: []
     },
     {
       id: 3,
       year: '2021',
       title: 'Spotlight On: Laurence Jones',
       venue: 'Rebecca Hossack Gallery, London',
-      hasMonograph: false
+      hasMonograph: false,
+      images: []
     },
     {
       id: 4,
       year: '2019',
       title: 'How To Live In Los Angeles',
       venue: 'Rebecca Hossack Gallery, London',
-      hasMonograph: true
+      hasMonograph: true,
+      images: []
     },
     {
       id: 5,
       year: '2017',
       title: 'Night Works',
       venue: 'Rebecca Hossack Gallery, London',
-      hasMonograph: true
+      hasMonograph: true,
+      images: []
     }
   ];
 
