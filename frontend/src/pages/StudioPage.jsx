@@ -70,7 +70,6 @@ const StudioPage = () => {
 
             {/* Contact Info */}
             <div className="mt-10 space-y-2 text-gray-500">
-              <p>Based in the United Kingdom</p>
               <p>
                 <a href="mailto:studio@laurencejones.com" className="hover:text-black transition-colors">
                   studio@laurencejones.com
