@@ -212,11 +212,14 @@ Within this context, the painting becomes a spatial anchor; a quiet intervention
           {/* Main Content - Image Left, Info Right */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
             {/* Left - Main Image */}
-            <div>
+            <div style={{ backgroundColor: '#f4f4f2' }}>
               <img
                 src={selectedRoom.detailImage || selectedRoom.mainImage}
                 alt={selectedRoom.title}
                 className="w-full h-auto"
+                loading="eager"
+                fetchPriority="high"
+                decoding="sync"
               />
             </div>
 
