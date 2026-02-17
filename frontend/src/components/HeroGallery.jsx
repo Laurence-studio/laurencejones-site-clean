@@ -1,50 +1,47 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useArtworks } from '../hooks/useApi';
 import { Skeleton } from './ui/skeleton';
 
 const HeroGallery = () => {
   const { artworks, loading } = useArtworks();
   const [textOpacity, setTextOpacity] = useState(1);
-  const galleryEndRef = useRef(null);
-  const observerRef = useRef(null);
+  const sentinelRef = useRef(null);
 
   useEffect(() => {
-    // Use Intersection Observer for smooth fade - more performant than scroll events
-    if (!galleryEndRef.current) return;
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
 
-    observerRef.current = new IntersectionObserver(
+    // Use Intersection Observer for smooth fade - more performant than scroll events
+    const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          // Calculate opacity based on how much of the sentinel is visible
-          // When sentinel enters viewport from bottom, start fading
-          if (entry.isIntersecting) {
-            const ratio = 1 - entry.intersectionRatio;
-            setTextOpacity(Math.max(0, ratio));
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          // Sentinel is visible - fade out the text based on how visible it is
+          // intersectionRatio: 0 = just entering, 1 = fully visible
+          const newOpacity = 1 - entry.intersectionRatio;
+          setTextOpacity(Math.max(0, Math.min(1, newOpacity)));
+        } else {
+          // Sentinel not visible
+          const rect = entry.boundingClientRect;
+          if (rect.top < window.innerHeight) {
+            // We've scrolled past - hide text completely
+            setTextOpacity(0);
           } else {
-            // Check if we've scrolled past it or not reached it yet
-            const rect = entry.boundingClientRect;
-            if (rect.top < 0) {
-              // Scrolled past - hide text
-              setTextOpacity(0);
-            } else {
-              // Not reached yet - show text
-              setTextOpacity(1);
-            }
+            // Haven't reached sentinel yet - show text fully
+            setTextOpacity(1);
           }
-        });
+        }
       },
       {
-        threshold: Array.from({ length: 20 }, (_, i) => i / 20), // 0, 0.05, 0.1, ... 0.95
-        rootMargin: '0px 0px -10% 0px'
+        threshold: Array.from({ length: 21 }, (_, i) => i / 20), // 0, 0.05, 0.1, ... 1.0
+        rootMargin: '0px'
       }
     );
 
-    observerRef.current.observe(galleryEndRef.current);
+    observer.observe(sentinel);
 
     return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
+      observer.disconnect();
     };
   }, [loading]);
 
