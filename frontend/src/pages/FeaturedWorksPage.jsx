@@ -42,12 +42,25 @@ const FeaturedWorksPage = () => {
     return options;
   }, [featuredWorks]);
 
-  // Filter works based on selection
+  // Filter works based on selection and swap Night Pool I/II for grid display
   const filteredWorks = useMemo(() => {
-    if (selectedWorkFilter === 'all') {
-      return featuredWorks;
+    let works = featuredWorks;
+    
+    if (selectedWorkFilter !== 'all') {
+      works = featuredWorks.filter(w => w.id === selectedWorkFilter);
     }
-    return featuredWorks.filter(w => w.id === selectedWorkFilter);
+    
+    // Swap Night Pool I and Night Pool II positions for grid display only
+    const result = [...works];
+    const nightPool1Index = result.findIndex(w => w.title === 'Night Pool I');
+    const nightPool2Index = result.findIndex(w => w.title === 'Night Pool II');
+    
+    if (nightPool1Index !== -1 && nightPool2Index !== -1) {
+      // Swap the two works
+      [result[nightPool1Index], result[nightPool2Index]] = [result[nightPool2Index], result[nightPool1Index]];
+    }
+    
+    return result;
   }, [featuredWorks, selectedWorkFilter]);
 
   const handleWorkClick = (work) => {
