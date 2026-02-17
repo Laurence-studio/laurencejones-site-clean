@@ -72,11 +72,22 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
+        {/* Copyright and Legal Links */}
+        <div className="mt-12 pt-8 border-t border-gray-200 flex flex-col md:flex-row md:justify-between md:items-center gap-4">
           <p className="text-gray-500 text-sm">
             © 2026 Laurence Jones. All rights reserved.
           </p>
+          <div className="flex gap-6">
+            <Link to="/privacy" className="text-gray-400 text-sm hover:text-gray-600 transition-colors">
+              Privacy Policy
+            </Link>
+            <Link to="/cookies" className="text-gray-400 text-sm hover:text-gray-600 transition-colors">
+              Cookie Policy
+            </Link>
+            <Link to="/terms" className="text-gray-400 text-sm hover:text-gray-600 transition-colors">
+              Terms & Conditions
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
