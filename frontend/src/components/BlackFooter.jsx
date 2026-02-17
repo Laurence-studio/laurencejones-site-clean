@@ -1,15 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const BlackFooter = () => {
-  const [email, setEmail] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Email submitted:', email);
-    setEmail('');
-  };
-
   return (
     <footer className="bg-black text-white py-16 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
@@ -24,14 +16,22 @@ const BlackFooter = () => {
           {/* Column 2 - Mailing List */}
           <div>
             <h3 className="text-sm font-medium tracking-wide mb-6">MAILING LIST</h3>
-            <form onSubmit={handleSubmit}>
+            <form 
+              action="https://laurencejones.us5.list-manage.com/subscribe/post?u=64f5984306703bd9fe86be9cc&amp;id=9e98b13d4c&amp;f_id=005c99e0f0" 
+              method="POST" 
+              target="_blank"
+            >
               <input
                 type="email"
+                name="EMAIL"
                 placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                required
                 className="w-full bg-transparent border border-gray-600 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors mb-4"
               />
+              {/* Honeypot field for bot protection */}
+              <div aria-hidden="true" style={{ position: 'absolute', left: '-5000px' }}>
+                <input type="text" name="b_64f5984306703bd9fe86be9cc_9e98b13d4c" tabIndex="-1" defaultValue="" />
+              </div>
               <button 
                 type="submit"
                 className="w-full border border-gray-600 px-4 py-3 text-sm font-medium tracking-wide hover:bg-white hover:text-black transition-colors"
