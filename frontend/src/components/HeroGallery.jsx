@@ -47,9 +47,9 @@ const HeroGallery = () => {
 
   return (
     <section className="relative bg-white pt-28">
-      {/* Fixed "LAURENCE JONES" Text - At Bottom, stays visible during gallery scroll */}
+      {/* Fixed "LAURENCE JONES" Text - At Bottom, in front of images but behind bio section */}
       <div 
-        className="fixed bottom-0 left-0 right-0 pointer-events-none z-10 overflow-hidden"
+        className="fixed bottom-0 left-0 right-0 pointer-events-none z-20 overflow-hidden"
       >
         <h1 
           className="font-black text-black leading-none tracking-tighter"

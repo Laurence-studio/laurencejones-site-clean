@@ -14,7 +14,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative z-20 bg-white border-t border-gray-200 py-16 px-6 md:px-12">
+    <footer className="relative z-30 bg-white border-t border-gray-200 py-16 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Copyright spacer */}
