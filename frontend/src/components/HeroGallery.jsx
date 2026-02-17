@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useArtworks } from '../hooks/useApi';
 import { Skeleton } from './ui/skeleton';
 
