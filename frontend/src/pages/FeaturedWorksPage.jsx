@@ -222,7 +222,7 @@ const FeaturedWorksPage = () => {
                   className="flex items-center justify-between w-full text-left"
                   data-testid="exhibition-dropdown"
                 >
-                  <span className="text-sm font-medium text-black">Exhibited</span>
+                  <span className="text-sm font-medium text-black">Exhibition History</span>
                   <ChevronDown 
                     size={16} 
                     className={`transition-transform text-gray-500 ${isExhibitionOpen ? 'rotate-180' : ''}`} 
@@ -231,18 +231,23 @@ const FeaturedWorksPage = () => {
                 
                 {isExhibitionOpen && (
                   <div className="mt-4 space-y-3">
-                    {(selectedWork.exhibitions?.length > 0 ? selectedWork.exhibitions : placeholderExhibitions).map((exhibition, index) => (
-                      <p key={index} className="text-gray-500 text-sm">{exhibition}</p>
-                    ))}
-                    
-                    {/* Collection Status */}
-                    <div className="pt-3 border-t border-gray-100">
-                      <p className="text-gray-500 text-sm">
-                        {selectedWork.collection || "Private Collection, London"}
-                      </p>
-                    </div>
+                    {/* Exhibition List */}
+                    {getWorkMetadata(selectedWork.title).exhibitions.length > 0 ? (
+                      getWorkMetadata(selectedWork.title).exhibitions.map((exhibition, index) => (
+                        <p key={index} className="text-gray-500 text-sm">{exhibition}</p>
+                      ))
+                    ) : (
+                      <p className="text-gray-400 text-sm italic">No exhibition history</p>
+                    )}
                   </div>
                 )}
+              </div>
+
+              {/* Collection Status - displayed below dropdown */}
+              <div className="pt-4">
+                <p className="text-gray-500 text-sm">
+                  {getWorkMetadata(selectedWork.title).status}
+                </p>
               </div>
 
               {/* Share Module */}
