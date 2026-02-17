@@ -4,51 +4,64 @@ import Header from '../components/Header';
 import { ArrowLeft } from 'lucide-react';
 import BlackFooter from '../components/BlackFooter';
 
-// Gallery image component with loading state and retry logic
-const GalleryImage = ({ src, alt, aspectClass, objectFit }) => {
-  const [loading, setLoading] = useState(true);
+// Optimized gallery image component - no black/dark loading states
+const GalleryImage = ({ src, alt, aspectClass, objectFit, priority = false }) => {
+  const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
-  const [retryCount, setRetryCount] = useState(0);
-  const [currentSrc, setCurrentSrc] = useState(src);
 
   useEffect(() => {
-    setLoading(true);
+    setLoaded(false);
     setError(false);
-    setRetryCount(0);
-    setCurrentSrc(src);
-  }, [src]);
-
-  const handleError = () => {
-    if (retryCount < 2) {
-      // Retry with cache-busting query param
-      setRetryCount(prev => prev + 1);
-      setCurrentSrc(`${src}?retry=${Date.now()}`);
-    } else {
-      setError(true);
-      setLoading(false);
+    
+    // Preload the image
+    if (priority) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = src;
+      document.head.appendChild(link);
+      return () => {
+        document.head.removeChild(link);
+      };
     }
-  };
+  }, [src, priority]);
 
   const handleLoad = () => {
-    setLoading(false);
+    setLoaded(true);
     setError(false);
+  };
+
+  const handleError = () => {
+    setError(true);
   };
 
   return (
-    <div className={`overflow-hidden ${aspectClass} bg-gray-100 relative`}>
-      {loading && !error && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-          <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
-        </div>
+    <div 
+      className={`overflow-hidden ${aspectClass} relative`}
+      style={{ backgroundColor: '#f4f4f2' }}
+    >
+      {/* Subtle shimmer placeholder - only show briefly */}
+      {!loaded && !error && (
+        <div 
+          className="absolute inset-0"
+          style={{ 
+            backgroundColor: '#f4f4f2',
+            background: 'linear-gradient(90deg, #f4f4f2 0%, #eaeae8 50%, #f4f4f2 100%)',
+            backgroundSize: '200% 100%',
+            animation: 'shimmer 1.5s infinite'
+          }}
+        />
       )}
+      
       {error ? (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+        <div 
+          className="absolute inset-0 flex items-center justify-center"
+          style={{ backgroundColor: '#f4f4f2' }}
+        >
           <button 
             onClick={() => {
               setError(false);
-              setLoading(true);
-              setRetryCount(0);
-              setCurrentSrc(`${src}?reload=${Date.now()}`);
+              setLoaded(false);
             }}
             className="text-gray-500 hover:text-gray-700 text-sm underline"
           >
@@ -57,16 +70,36 @@ const GalleryImage = ({ src, alt, aspectClass, objectFit }) => {
         </div>
       ) : (
         <img 
-          src={currentSrc} 
+          src={src} 
           alt={alt}
-          className={`w-full h-full ${objectFit} ${loading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
+          className={`w-full h-full ${objectFit}`}
+          style={{
+            opacity: loaded ? 1 : 0,
+            transition: 'opacity 0.2s ease-in-out'
+          }}
           onError={handleError}
           onLoad={handleLoad}
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
+          decoding={priority ? 'sync' : 'async'}
         />
       )}
     </div>
   );
 };
+
+// Add shimmer animation to document
+const shimmerStyle = document.createElement('style');
+shimmerStyle.textContent = `
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+`;
+if (!document.querySelector('#shimmer-style')) {
+  shimmerStyle.id = 'shimmer-style';
+  document.head.appendChild(shimmerStyle);
+}
 
 const ViewingRoomsPage = () => {
   const [selectedRoom, setSelectedRoom] = useState(null);
