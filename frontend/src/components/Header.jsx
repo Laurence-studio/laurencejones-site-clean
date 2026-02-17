@@ -57,13 +57,13 @@ const Header = ({ inverted = false }) => {
           <div className="flex items-center gap-4 flex-shrink-0">
             <button 
               className="text-gray-400 hover:text-white transition-colors text-sm whitespace-nowrap"
-              onClick={() => setShowCookieBanner(false)}
+              onClick={handleDeclineCookies}
             >
               Manage cookies
             </button>
             <button 
               className="bg-white text-black px-4 py-1.5 text-sm font-medium hover:bg-gray-100 transition-colors whitespace-nowrap"
-              onClick={() => setShowCookieBanner(false)}
+              onClick={handleAcceptCookies}
             >
               ACCEPT
             </button>
