@@ -45,15 +45,15 @@ const BlackFooter = () => {
           <div>
             <h3 className="text-sm font-medium tracking-wide mb-6">INFORMATION</h3>
             <div className="space-y-3">
-              <a href="/privacy" className="block text-gray-400 text-sm hover:text-white transition-colors">
+              <Link to="/privacy" className="block text-gray-400 text-sm hover:text-white transition-colors">
                 Privacy Policy
-              </a>
-              <a href="/cookies" className="block text-gray-400 text-sm hover:text-white transition-colors">
+              </Link>
+              <Link to="/cookies" className="block text-gray-400 text-sm hover:text-white transition-colors">
                 Cookie Policy
-              </a>
-              <a href="/terms" className="block text-gray-400 text-sm hover:text-white transition-colors">
+              </Link>
+              <Link to="/terms" className="block text-gray-400 text-sm hover:text-white transition-colors">
                 Terms & Conditions
-              </a>
+              </Link>
             </div>
           </div>
 
