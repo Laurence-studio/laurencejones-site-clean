@@ -109,9 +109,9 @@ const ViewingRoomsPage = () => {
       mainImage: 'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/nnlp2vh7_%27The%20Californication%20House%27%2C%20180x140cm%2C%20Acrylic%20%26%20Specularite%20On%20Belgian%20Linen%2C%202025.jpg',
       detailImage: 'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/id9pq380_laurencejones-californicationhouse%20copy.jpg',
       galleryImages: [
-        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/aewpx9gn_IMG_3238.jpg',
+        'https://customer-assets.emergentagent.com/job_d11f0d50-6be2-462b-af48-6150d28f528c/artifacts/pm4gybej_IMG_3202.webp',
+        'https://customer-assets.emergentagent.com/job_d11f0d50-6be2-462b-af48-6150d28f528c/artifacts/1v3eliin_IMG_3238.webp',
         'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/s951cn27_IMG_3249.jpg',
-        'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/kmqk019u_IMG_3202.jpg',
         'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/9ycebg4r_IMG_3222%20copy.jpg'
       ],
       shortDescription: 'The Californication House is a residential project situated in the Hollywood Hills, conceived in dialogue with architect Jason Somers. The paintings were developed in response to the home\'s elevated position and panoramic views; works that extend the architecture outward into the nocturnal city.',
