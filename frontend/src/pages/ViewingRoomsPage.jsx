@@ -93,30 +93,30 @@ const ViewingRoomsPage = () => {
         'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/kmqk019u_IMG_3202.jpg',
         'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/9ycebg4r_IMG_3222%20copy.jpg'
       ],
-      shortDescription: 'A landmark residential project in the Hollywood Hills, designed in collaboration with architect Jason Somers.',
-      fullDescription: `The Californication House is a landmark residential project in the Hollywood Hills, designed in collaboration with architect Jason Somers. This modernist home features floor-to-ceiling windows that frame panoramic views of Los Angeles, creating an ideal setting for large-scale contemporary art.
+      shortDescription: 'The Californication House is a residential project situated in the Hollywood Hills, conceived in dialogue with architect Jason Somers. The paintings were developed in response to the home\'s elevated position and panoramic views; works that extend the architecture outward into the nocturnal city.',
+      fullDescription: `The collection draws primarily from the Liminal Framework and Night Pool bodies of work, where glass, water and reflected light become compositional devices. Installed within floor-to-ceiling glazing and open-plan living spaces, the works operate as continuations of the structure itself, framing the city while subtly destabilising it.
 
-The collection at Californication House includes works from the "Liminal Framework" series, carefully positioned to interact with the architecture's clean lines and the dramatic California light. Each painting was selected to complement the home's minimalist aesthetic while adding depth and visual interest to the living spaces.
+The paintings were developed to heighten the tension between inside and outside, intimacy and spectacle. In this setting, the domestic becomes cinematic; the skyline becomes both backdrop and subject.
 
-This project represents an ongoing exploration of how art can transform domestic environments, blurring the boundaries between gallery and home, public and private space.`,
+This project marks an ongoing exploration into how painting can inhabit architectural space - not as ornament, but as an extension of atmosphere.`,
     },
     {
       id: 2,
       title: 'The Maybourne Hotel',
       location: 'Los Angeles',
-      year: '2024',
+      year: '2023',
       mainImage: 'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/leusg9v9_%27Night%20Pool%27%2C%20210x180cm%2C%20Acrylic%20on%20Linen%2C%202022%20copy.jpg',
       detailImage: 'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/9x1jt6zi_night%20pool%20copy.jpg',
       galleryImages: [
         'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/62afqw0r_MBH-EXTERIOR-08-jpg.webp',
         'https://customer-assets.emergentagent.com/job_2fb237eb-85b8-4e1a-abed-ad3be1f9478f/artifacts/nhdkfpsh_A4C1EA41-8014-4370-92D4-FB5DEEB4786B.JPG'
       ],
-      shortDescription: 'A prestigious hospitality commission showcasing paintings throughout public spaces and private suites.',
-      fullDescription: `The Maybourne Hotel, Beverly Hills commissioned a series of works to be displayed throughout their public spaces and private suites. This prestigious hospitality project showcases paintings that capture the essence of California modernism—the interplay of light, architecture, and landscape that defines the Los Angeles aesthetic.
+      shortDescription: 'A placement at The Maybourne Hotel, Beverly Hills, this project introduced a major work into public hospitality space, situating contemporary painting within an environment defined by movement, transience and light.',
+      fullDescription: `Work from the Night Pool series was selected for its contemplative tonal range and architectural clarity. Installed within a communal area, the work provides a moment of pause; built from reflected light, glass planes and distant topographies.
 
-Works on permanent display include pieces from the "Night Pool" series, which evoke the contemplative atmosphere of twilight hours. The paintings create moments of pause and reflection for guests, offering a counterpoint to the hotel's bustling energy.
+The dialogue between painting and hospitality is deliberate. In contrast to the velocity of the hotel environment, the work operates slowly. It rewards distance, shifting between abstraction and image depending on the viewer's position.
 
-The Maybourne collection demonstrates how contemporary art can enhance the hospitality experience, creating memorable encounters that resonate long after a guest's stay.`,
+Within this context, the painting becomes a spatial anchor; a quiet intervention that alters perception without overwhelming it.`,
     }
   ];
 
