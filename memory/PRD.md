@@ -115,9 +115,16 @@ Create a pixel-perfect clone of `https://www.jeffkoons.com`, later pivoted to bu
 - [x] Vault: Added more spacing between Exhibition History and Enquire button
 - [x] Studio page: Updated biography and exhibitions/milestones content
 - [x] Homepage: Updated biography text with new Laurence Jones copy
-- [x] **Fixed homepage scroll flickering bug** - Replaced faulty scroll event listener with IntersectionObserver API for smooth text fade animation
+- [x] **Fixed homepage scroll flickering bug** - Replaced faulty IntersectionObserver with pure CSS z-index layering for smooth, stable scrolling. Text now appears in front of gallery images but behind biography section.
 
 ## Pending/Backlog
+
+### P1 - Upcoming
+- [ ] PostHog analytics integration (awaiting user's API key)
+- [ ] Privacy Policy page (awaiting copy)
+- [ ] Cookie Policy page (awaiting copy)
+- [ ] Terms & Conditions page (awaiting copy)
+- [ ] Cookie consent banner wiring to control tracking
 
 ### P2 - Future Enhancements
 - [ ] Refactor `server.py` into separate route files using FastAPI's APIRouter
