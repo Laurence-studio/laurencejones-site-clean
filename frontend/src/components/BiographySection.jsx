@@ -15,7 +15,7 @@ const BiographySection = () => {
 
   if (loading) {
     return (
-      <section className="bg-white py-20 px-6 md:px-12 min-h-[600px]">
+      <section className="relative z-20 bg-white py-20 px-6 md:px-12 min-h-[600px]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <Skeleton className="w-full max-w-md aspect-[3/4]" />
