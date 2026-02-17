@@ -10,6 +10,9 @@ import StudioPage from "./pages/StudioPage";
 import ExhibitionsPage from "./pages/ExhibitionsPage";
 import ContactPage from "./pages/ContactPage";
 import CVPage from "./pages/CVPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import CookiesPage from "./pages/CookiesPage";
+import TermsPage from "./pages/TermsPage";
 import { initPostHog, trackPageView, hasAcceptedCookies } from "./utils/analytics";
 
 // Initialize PostHog on app load
