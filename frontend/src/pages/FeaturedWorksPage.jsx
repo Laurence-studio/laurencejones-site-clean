@@ -7,12 +7,86 @@ import { Skeleton } from '../components/ui/skeleton';
 import BlackFooter from '../components/BlackFooter';
 import ShareModule from '../components/ShareModule';
 
-// Placeholder exhibition data
-const placeholderExhibitions = [
-  "Solo Exhibition, Rebecca Hossack Art Gallery, London, 2024",
-  "Group Show, Art Angels, Los Angeles, 2023",
-  "Summer Exhibition, Royal Academy of Arts, London, 2023"
-];
+// Artwork metadata - collection status and exhibition history
+const artworkMetadata = {
+  'A Quiet Heat': {
+    status: 'Private Collection',
+    exhibitions: ['Rebecca Hossack Gallery – London (2024)']
+  },
+  'A Quartz-Clear Dusk': {
+    status: 'Private Collection',
+    exhibitions: ['Art Miami 2023 (December 5 – December 10, 2023)']
+  },
+  'Liminal Framework - An Evening Reverie': {
+    status: 'Available via Studio',
+    exhibitions: ['Art Toronto 2022 (October 27 – October 30, 2022)']
+  },
+  'Memories In Sapphire': {
+    status: 'Private Collection',
+    exhibitions: ['Silver Palms – Rebecca Hossack Miami Project, Miami (2024)']
+  },
+  'Night Pool I': {
+    status: 'Private Collection',
+    exhibitions: [
+      'Silver Palms – Rebecca Hossack Miami Project, Miami (2024)',
+      'LA Art Show (February 19 – February 23, 2025)'
+    ]
+  },
+  'Night Pool II': {
+    status: 'Available via Studio',
+    exhibitions: []
+  },
+  'Twilight Reflections': {
+    status: 'Private Collection',
+    exhibitions: ['Seattle Art Fair 2023 (July 27 – July 30, 2023)']
+  },
+  'Pool with Orange Float': {
+    status: 'Private Collection',
+    exhibitions: [
+      'Spotlight On: Laurence Jones – Rebecca Hossack Gallery (2021)',
+      'Art Toronto 2019 (October 27 – October 30, 2019)'
+    ]
+  },
+  'Black Palms': {
+    status: 'Private Collection',
+    exhibitions: ['Seattle Art Fair 2018 (August 3 – August 5, 2018)']
+  },
+  'The Californication House': {
+    status: 'Available via Studio',
+    exhibitions: []
+  },
+  'A Light Exists In Spring': {
+    status: 'Available via Studio',
+    exhibitions: []
+  },
+  'The Mind Is Wider Than The Sky': {
+    status: 'Available via Studio',
+    exhibitions: []
+  },
+  'A World Beyond View (study)': {
+    status: 'Available via Studio',
+    exhibitions: []
+  },
+  'Echoes Of The Hills': {
+    status: 'Available via Studio',
+    exhibitions: []
+  }
+};
+
+// Helper to get metadata for a work (handles title variations)
+const getWorkMetadata = (title) => {
+  // Direct match
+  if (artworkMetadata[title]) {
+    return artworkMetadata[title];
+  }
+  // Try matching with different dash types
+  const normalizedTitle = title.replace(/–/g, '-').replace(/—/g, '-');
+  if (artworkMetadata[normalizedTitle]) {
+    return artworkMetadata[normalizedTitle];
+  }
+  // Default fallback
+  return { status: 'Available via Studio', exhibitions: [] };
+};
 
 const FeaturedWorksPage = () => {
   const location = useLocation();
