@@ -115,10 +115,13 @@ Create a pixel-perfect clone of `https://www.jeffkoons.com`, later pivoted to bu
 - [x] Vault: Added more spacing between Exhibition History and Enquire button
 - [x] Studio page: Updated biography and exhibitions/milestones content
 - [x] Homepage: Updated biography text with new Laurence Jones copy
+- [x] **Fixed homepage scroll flickering bug** - Replaced faulty scroll event listener with IntersectionObserver API for smooth text fade animation
 
 ## Pending/Backlog
 
 ### P2 - Future Enhancements
+- [ ] Refactor `server.py` into separate route files using FastAPI's APIRouter
+- [ ] Move hardcoded `artworkMetadata` from `FeaturedWorksPage.jsx` to separate data file
 - [ ] Additional content updates as requested by user
 
 ## Project Health
