@@ -128,6 +128,21 @@ const HeroGallery = () => {
         </div>
 
       </div>
+      
+      {/* Static "LAURENCE JONES" Text - At bottom of gallery, scrolls with content */}
+      <div className="relative z-20 overflow-hidden -mt-4">
+        <h1 
+          className="font-black text-black leading-none tracking-tighter"
+          style={{ 
+            fontSize: 'clamp(60px, 13vw, 250px)',
+            fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+            letterSpacing: '-0.02em',
+            width: '100%'
+          }}
+        >
+          LAURENCE JONES
+        </h1>
+      </div>
     </section>
   );
 };
