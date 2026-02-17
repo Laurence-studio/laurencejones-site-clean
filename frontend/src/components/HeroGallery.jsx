@@ -1,49 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { useArtworks } from '../hooks/useApi';
 import { Skeleton } from './ui/skeleton';
 
 const HeroGallery = () => {
   const { artworks, loading } = useArtworks();
-  const [textOpacity, setTextOpacity] = useState(1);
-  const sentinelRef = useRef(null);
-
-  useEffect(() => {
-    const sentinel = sentinelRef.current;
-    if (!sentinel) return;
-
-    // Use Intersection Observer for smooth fade - more performant than scroll events
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          // Sentinel is visible - fade out the text based on how visible it is
-          // intersectionRatio: 0 = just entering, 1 = fully visible
-          const newOpacity = 1 - entry.intersectionRatio;
-          setTextOpacity(Math.max(0, Math.min(1, newOpacity)));
-        } else {
-          // Sentinel not visible
-          const rect = entry.boundingClientRect;
-          if (rect.top < window.innerHeight) {
-            // We've scrolled past - hide text completely
-            setTextOpacity(0);
-          } else {
-            // Haven't reached sentinel yet - show text fully
-            setTextOpacity(1);
-          }
-        }
-      },
-      {
-        threshold: Array.from({ length: 21 }, (_, i) => i / 20), // 0, 0.05, 0.1, ... 1.0
-        rootMargin: '0px'
-      }
-    );
-
-    observer.observe(sentinel);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [loading]);
 
   const ImageCard = ({ artwork, className = "" }) => (
     <div className={`${className}`}>
@@ -87,14 +47,9 @@ const HeroGallery = () => {
 
   return (
     <section className="relative bg-white pt-28">
-      {/* Fixed "LAURENCE JONES" Text - At Bottom, fades out near end of gallery */}
+      {/* Fixed "LAURENCE JONES" Text - At Bottom, stays visible during gallery scroll */}
       <div 
-        className="fixed bottom-0 left-0 right-0 pointer-events-none z-20 overflow-hidden"
-        style={{ 
-          opacity: textOpacity,
-          transition: 'opacity 0.15s ease-out',
-          willChange: 'opacity'
-        }}
+        className="fixed bottom-0 left-0 right-0 pointer-events-none z-10 overflow-hidden"
       >
         <h1 
           className="font-black text-black leading-none tracking-tighter"
@@ -190,13 +145,6 @@ const HeroGallery = () => {
             )}
           </div>
         </div>
-
-        {/* Sentinel element - IntersectionObserver watches this to fade out the fixed text */}
-        <div 
-          ref={sentinelRef} 
-          className="h-32 w-full pointer-events-none" 
-          aria-hidden="true"
-        />
 
       </div>
     </section>
