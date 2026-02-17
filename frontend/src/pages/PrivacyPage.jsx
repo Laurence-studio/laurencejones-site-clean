@@ -27,27 +27,15 @@ const PrivacyPage = () => {
           {/* Content */}
           <div className="space-y-12 text-gray-600 leading-relaxed">
             <p>
-              Laurence Jones Studio ("we", "us", "our") respects your privacy and is committed to protecting your personal data.
+              Laurence Jones Studio is committed to respecting and safeguarding your privacy.
             </p>
             <p>
-              This Privacy Policy explains how we collect, use, and safeguard your information when you visit this website.
+              This policy outlines how personal information is collected, used, and protected when visiting this website.
             </p>
 
             {/* Section 1 */}
             <section className="space-y-4">
-              <h2 className="text-black font-semibold text-lg">1. Who We Are</h2>
-              <p>This website is operated by Laurence Jones, a UK-based artist studio.</p>
-              <p>
-                For all privacy-related enquiries, contact:<br />
-                <a href="mailto:studio@laurencejones.com" className="text-black hover:underline">
-                  studio@laurencejones.com
-                </a>
-              </p>
-            </section>
-
-            {/* Section 2 */}
-            <section className="space-y-4">
-              <h2 className="text-black font-semibold text-lg">2. What Information We Collect</h2>
+              <h2 className="text-black font-semibold text-lg">1. Data We Collect</h2>
               <p>We may collect:</p>
               
               <div className="space-y-4">
@@ -56,94 +44,79 @@ const PrivacyPage = () => {
                   <ul className="list-disc list-inside mt-2 space-y-1">
                     <li>Name</li>
                     <li>Email address</li>
-                    <li>Details included in contact or artwork enquiries</li>
+                    <li>Correspondence relating to artwork enquiries</li>
                   </ul>
                 </div>
                 
                 <div>
-                  <p className="text-black font-medium">Automatically collected information</p>
+                  <p className="text-black font-medium">Technical and usage data</p>
                   <ul className="list-disc list-inside mt-2 space-y-1">
                     <li>Pages visited</li>
                     <li>Time spent on pages</li>
-                    <li>Device and browser type</li>
-                    <li>General geographic location (country level)</li>
+                    <li>Device and browser information</li>
+                    <li>Country-level location data</li>
                   </ul>
                 </div>
               </div>
               
-              <p>We do not collect payment information via this website.</p>
+              <p>We do not collect payment information through this website.</p>
+            </section>
+
+            {/* Section 2 */}
+            <section className="space-y-4">
+              <h2 className="text-black font-semibold text-lg">2. Use of Information</h2>
+              <p>Information is used solely to:</p>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Respond to enquiries</li>
+                <li>Manage collector and gallery correspondence</li>
+                <li>Improve website experience</li>
+                <li>Understand general audience engagement</li>
+              </ul>
+              <p>Personal data is never sold or shared for marketing purposes.</p>
             </section>
 
             {/* Section 3 */}
             <section className="space-y-4">
-              <h2 className="text-black font-semibold text-lg">3. How We Use Your Information</h2>
-              <p>We use personal data to:</p>
-              <ul className="list-disc list-inside space-y-1">
-                <li>Respond to artwork enquiries</li>
-                <li>Communicate with collectors and galleries</li>
-                <li>Improve website usability</li>
-                <li>Understand general audience engagement</li>
-              </ul>
-              <p>We do not sell or share personal data for marketing purposes.</p>
-            </section>
-
-            {/* Section 4 */}
-            <section className="space-y-4">
-              <h2 className="text-black font-semibold text-lg">4. Analytics</h2>
-              <p>This website uses PostHog (EU data region) to collect anonymised website usage data.</p>
-              <p>Analytics tracking only occurs after cookie consent is provided.</p>
-              <p>PostHog may collect:</p>
+              <h2 className="text-black font-semibold text-lg">3. Analytics</h2>
+              <p>This website uses PostHog (EU data region) for privacy-conscious analytics.</p>
+              <p>Tracking occurs only after consent is provided.</p>
+              <p>Analytics data may include:</p>
               <ul className="list-disc list-inside space-y-1">
                 <li>Page views</li>
                 <li>Interaction events</li>
                 <li>Session duration</li>
-                <li>Device and browser information</li>
+                <li>Device information</li>
               </ul>
-              <p>You may withdraw consent at any time by clearing cookies in your browser.</p>
+              <p>No advertising cookies are used.</p>
+            </section>
+
+            {/* Section 4 */}
+            <section className="space-y-4">
+              <h2 className="text-black font-semibold text-lg">4. Legal Basis</h2>
+              <p>Data processing is based on:</p>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Legitimate interest (studio operations and website functionality)</li>
+                <li>Consent (analytics tracking)</li>
+                <li>Contractual necessity (where applicable)</li>
+              </ul>
             </section>
 
             {/* Section 5 */}
             <section className="space-y-4">
-              <h2 className="text-black font-semibold text-lg">5. Legal Basis</h2>
-              <p>We process personal data under:</p>
+              <h2 className="text-black font-semibold text-lg">5. Data Rights</h2>
+              <p>Under UK GDPR, you may request:</p>
               <ul className="list-disc list-inside space-y-1">
-                <li>Legitimate interest (website performance and studio operations)</li>
-                <li>Consent (analytics cookies)</li>
-                <li>Contractual necessity (artwork enquiries and sales correspondence)</li>
+                <li>Access to your data</li>
+                <li>Correction</li>
+                <li>Deletion</li>
+                <li>Withdrawal of consent</li>
               </ul>
-            </section>
-
-            {/* Section 6 */}
-            <section className="space-y-4">
-              <h2 className="text-black font-semibold text-lg">6. Data Retention</h2>
-              <p>Enquiry correspondence is retained for professional record keeping.</p>
-              <p>Analytics data is stored according to PostHog's EU data policies.</p>
-            </section>
-
-            {/* Section 7 */}
-            <section className="space-y-4">
-              <h2 className="text-black font-semibold text-lg">7. Your Rights</h2>
-              <p>Under UK GDPR, you have the right to:</p>
-              <ul className="list-disc list-inside space-y-1">
-                <li>Access your personal data</li>
-                <li>Request correction</li>
-                <li>Request deletion</li>
-                <li>Object to processing</li>
-                <li>Withdraw consent</li>
-              </ul>
-              <p>
-                To exercise these rights, contact:<br />
+              <p className="mt-4">
+                Contact:<br />
                 <a href="mailto:studio@laurencejones.com" className="text-black hover:underline">
                   studio@laurencejones.com
                 </a>
               </p>
-            </section>
-
-            {/* Section 8 */}
-            <section className="space-y-4">
-              <h2 className="text-black font-semibold text-lg">8. Changes to This Policy</h2>
-              <p>This Privacy Policy may be updated periodically.</p>
-              <p>The latest version will always be published on this page.</p>
             </section>
           </div>
         </div>

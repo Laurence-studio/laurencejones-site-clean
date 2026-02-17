@@ -27,49 +27,32 @@ const CookiesPage = () => {
           {/* Content */}
           <div className="space-y-12 text-gray-600 leading-relaxed">
             <p>
-              This website uses cookies to enhance user experience and understand site performance.
+              This website uses limited cookies to ensure functionality and understand general engagement.
             </p>
 
-            {/* Section 1 */}
+            {/* Essential Cookies */}
             <section className="space-y-4">
-              <h2 className="text-black font-semibold text-lg">1. What Are Cookies?</h2>
-              <p>Cookies are small text files stored on your device when visiting a website.</p>
+              <h2 className="text-black font-semibold text-lg">Essential Cookies</h2>
+              <p>Required for core website functionality.</p>
             </section>
 
-            {/* Section 2 */}
+            {/* Analytics Cookies */}
             <section className="space-y-4">
-              <h2 className="text-black font-semibold text-lg">2. Types of Cookies Used</h2>
-              
-              <div className="space-y-6">
-                <div>
-                  <p className="text-black font-medium">Essential Cookies</p>
-                  <p className="mt-2">Required for basic functionality.</p>
-                </div>
-                
-                <div>
-                  <p className="text-black font-medium">Analytics Cookies (PostHog)</p>
-                  <p className="mt-2">Used to understand:</p>
-                  <ul className="list-disc list-inside mt-2 space-y-1">
-                    <li>Page views</li>
-                    <li>Time on page</li>
-                    <li>Interaction behaviour</li>
-                  </ul>
-                </div>
-              </div>
-              
-              <p>Analytics cookies activate only after you click "ACCEPT" on the cookie banner.</p>
-              <p>No advertising or marketing cookies are used.</p>
+              <h2 className="text-black font-semibold text-lg">Analytics Cookies</h2>
+              <p>With consent, analytics cookies collect anonymised usage information to help improve user experience.</p>
+              <p>We use PostHog (EU data region).</p>
+              <p>Analytics tracking activates only after clicking "ACCEPT" in the cookie banner.</p>
             </section>
 
-            {/* Section 3 */}
+            {/* Managing Cookies */}
             <section className="space-y-4">
-              <h2 className="text-black font-semibold text-lg">3. Managing Cookies</h2>
+              <h2 className="text-black font-semibold text-lg">Managing Cookies</h2>
               <p>You may:</p>
               <ul className="list-disc list-inside space-y-1">
                 <li>Accept or decline analytics cookies via the banner</li>
-                <li>Delete cookies at any time through your browser settings</li>
+                <li>Remove cookies at any time through your browser settings</li>
               </ul>
-              <p>Disabling analytics cookies does not affect core site functionality.</p>
+              <p>Disabling analytics cookies does not affect site access.</p>
             </section>
           </div>
         </div>
