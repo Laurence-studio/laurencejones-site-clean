@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useArtworks } from '../hooks/useApi';
 import { Skeleton } from './ui/skeleton';
 
@@ -6,9 +6,16 @@ const HeroGallery = () => {
   const { artworks, loading } = useArtworks();
   const [textOpacity, setTextOpacity] = useState(1);
   const galleryRef = useRef(null);
+  const rafRef = useRef(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
+  const handleScroll = useCallback(() => {
+    // Cancel any pending animation frame
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+    }
+    
+    // Use requestAnimationFrame to throttle scroll updates
+    rafRef.current = requestAnimationFrame(() => {
       if (!galleryRef.current) return;
       
       const galleryRect = galleryRef.current.getBoundingClientRect();
@@ -20,15 +27,29 @@ const HeroGallery = () => {
         const fadeStart = windowHeight + 200;
         const fadeEnd = windowHeight - 100;
         const progress = (galleryBottom - fadeEnd) / (fadeStart - fadeEnd);
-        setTextOpacity(Math.max(0, Math.min(1, progress)));
+        const newOpacity = Math.max(0, Math.min(1, progress));
+        setTextOpacity(prev => {
+          // Only update if change is significant
+          if (Math.abs(prev - newOpacity) > 0.01) {
+            return newOpacity;
+          }
+          return prev;
+        });
       } else {
-        setTextOpacity(1);
+        setTextOpacity(prev => prev !== 1 ? 1 : prev);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
       }
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   const ImageCard = ({ artwork, className = "" }) => (
     <div className={`${className}`}>
@@ -37,6 +58,7 @@ const HeroGallery = () => {
           src={artwork.image}
           alt={artwork.title}
           className="w-full h-auto object-cover"
+          loading="lazy"
         />
       </div>
     </div>
