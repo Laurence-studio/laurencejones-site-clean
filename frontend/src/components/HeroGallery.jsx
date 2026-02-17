@@ -64,24 +64,25 @@ const HeroGallery = () => {
   if (loading) {
     return (
       <section className="relative min-h-screen bg-white pt-28">
-        <div className="relative z-10 px-8 md:px-16 pt-20 pb-40">
-          <div className="max-w-4xl mx-auto">
-            <Skeleton className="w-full aspect-[4/3]" />
-          </div>
-        </div>
-        {/* Static text at bottom */}
-        <div className="relative z-20 overflow-hidden">
+        {/* Fixed text at bottom */}
+        <div className="fixed bottom-0 left-0 right-0 pointer-events-none z-20 overflow-hidden">
           <h1 
             className="font-black text-black leading-none tracking-tighter"
             style={{ 
               fontSize: 'clamp(60px, 13vw, 250px)',
               fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
               letterSpacing: '-0.02em',
+              marginBottom: '-0.1em',
               width: '100%'
             }}
           >
             LAURENCE JONES
           </h1>
+        </div>
+        <div className="relative z-10 px-8 md:px-16 pt-20 pb-40">
+          <div className="max-w-4xl mx-auto">
+            <Skeleton className="w-full aspect-[4/3]" />
+          </div>
         </div>
       </section>
     );
@@ -89,8 +90,31 @@ const HeroGallery = () => {
 
   return (
     <section className="relative bg-white pt-28">
+      {/* Fixed "LAURENCE JONES" Text - At Bottom, fades out near end of gallery */}
+      <div 
+        className="fixed bottom-0 left-0 right-0 pointer-events-none z-20 overflow-hidden"
+        style={{ 
+          opacity: textOpacity,
+          transition: 'opacity 0.15s ease-out',
+          willChange: 'opacity'
+        }}
+      >
+        <h1 
+          className="font-black text-black leading-none tracking-tighter"
+          style={{ 
+            fontSize: 'clamp(60px, 13vw, 250px)',
+            fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+            letterSpacing: '-0.02em',
+            marginBottom: '-0.1em',
+            width: '100%'
+          }}
+        >
+          LAURENCE JONES
+        </h1>
+      </div>
+      
       {/* Scrolling Image Gallery */}
-      <div className="relative z-10 pb-8">
+      <div className="relative z-10 pb-16">
         
         {/* Section 1: Hero Balloon Dog - Centered */}
         {artworks[0] && (
