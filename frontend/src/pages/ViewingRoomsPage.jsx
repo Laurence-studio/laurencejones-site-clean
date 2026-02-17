@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import { ArrowLeft } from 'lucide-react';
@@ -13,42 +13,32 @@ const GalleryImage = ({ src, alt, aspectClass, objectFit, priority = false }) =>
     setLoaded(false);
     setError(false);
     
-    // Preload the image
-    if (priority) {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'image';
-      link.href = src;
-      document.head.appendChild(link);
-      return () => {
-        document.head.removeChild(link);
-      };
-    }
-  }, [src, priority]);
-
-  const handleLoad = () => {
-    setLoaded(true);
-    setError(false);
-  };
-
-  const handleError = () => {
-    setError(true);
-  };
+    // Immediately start loading the image
+    const img = new Image();
+    img.onload = () => setLoaded(true);
+    img.onerror = () => setError(true);
+    img.src = src;
+    
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
+  }, [src]);
 
   return (
     <div 
       className={`overflow-hidden ${aspectClass} relative`}
       style={{ backgroundColor: '#f4f4f2' }}
     >
-      {/* Subtle shimmer placeholder - only show briefly */}
+      {/* Subtle shimmer placeholder - matches site tone */}
       {!loaded && !error && (
         <div 
           className="absolute inset-0"
           style={{ 
             backgroundColor: '#f4f4f2',
-            background: 'linear-gradient(90deg, #f4f4f2 0%, #eaeae8 50%, #f4f4f2 100%)',
+            backgroundImage: 'linear-gradient(90deg, #f4f4f2 0%, #eaeae8 50%, #f4f4f2 100%)',
             backgroundSize: '200% 100%',
-            animation: 'shimmer 1.5s infinite'
+            animation: 'shimmer 1.5s ease-in-out infinite'
           }}
         />
       )}
@@ -75,29 +65,27 @@ const GalleryImage = ({ src, alt, aspectClass, objectFit, priority = false }) =>
           className={`w-full h-full ${objectFit}`}
           style={{
             opacity: loaded ? 1 : 0,
-            transition: 'opacity 0.2s ease-in-out'
+            transition: 'opacity 0.15s ease-out'
           }}
-          onError={handleError}
-          onLoad={handleLoad}
           loading={priority ? 'eager' : 'lazy'}
           fetchPriority={priority ? 'high' : 'auto'}
-          decoding={priority ? 'sync' : 'async'}
+          decoding="async"
         />
       )}
     </div>
   );
 };
 
-// Add shimmer animation to document
-const shimmerStyle = document.createElement('style');
-shimmerStyle.textContent = `
-  @keyframes shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-  }
-`;
-if (!document.querySelector('#shimmer-style')) {
+// Add shimmer animation to document once
+if (typeof document !== 'undefined' && !document.querySelector('#shimmer-style')) {
+  const shimmerStyle = document.createElement('style');
   shimmerStyle.id = 'shimmer-style';
+  shimmerStyle.textContent = `
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+  `;
   document.head.appendChild(shimmerStyle);
 }
 
