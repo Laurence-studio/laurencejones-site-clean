@@ -164,6 +164,19 @@ Within this context, the painting becomes a spatial anchor; a quiet intervention
   );
 
   const handleRoomClick = (room) => {
+    // Preload gallery images immediately
+    if (room.galleryImages) {
+      room.galleryImages.forEach(imgSrc => {
+        const img = new Image();
+        img.src = imgSrc;
+      });
+    }
+    // Preload detail image
+    if (room.detailImage) {
+      const img = new Image();
+      img.src = room.detailImage;
+    }
+    
     setSelectedRoom(room);
     // Scroll to top when opening detail view
     setTimeout(() => {
