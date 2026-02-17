@@ -120,11 +120,12 @@ Create a pixel-perfect clone of `https://www.jeffkoons.com`, later pivoted to bu
 ## Pending/Backlog
 
 ### P1 - Upcoming
-- [ ] PostHog analytics integration (awaiting user's API key)
-- [ ] Privacy Policy page (awaiting copy)
-- [ ] Cookie Policy page (awaiting copy)
-- [ ] Terms & Conditions page (awaiting copy)
-- [ ] Cookie consent banner wiring to control tracking
+- [x] PostHog analytics integration (completed with cookie consent)
+- [x] Privacy Policy page (created at /privacy)
+- [x] Cookie Policy page (created at /cookies)
+- [x] Terms & Conditions page (created at /terms)
+- [x] Cookie consent banner wiring to control tracking
+- [x] Legal links added to all footer variants (Footer, BlackFooter, WhiteFooter)
 
 ### P2 - Future Enhancements
 - [ ] Refactor `server.py` into separate route files using FastAPI's APIRouter
