@@ -11,25 +11,25 @@ import ShareModule from '../components/ShareModule';
 const artworkMetadata = {
   'A Quiet Heat': {
     status: 'Private Collection',
-    exhibitions: ['Rebecca Hossack Gallery – London (2024)']
+    exhibitions: ['Rebecca Hossack Art Gallery, London, 2024']
   },
   'A Quartz-Clear Dusk': {
     status: 'Private Collection',
-    exhibitions: ['Art Miami 2023 (December 5 – December 10, 2023)']
+    exhibitions: ['Art Miami, Rebecca Hossack Art Gallery, December 5–10, 2023']
   },
   'Liminal Framework - An Evening Reverie': {
     status: 'Available via Studio',
-    exhibitions: ['Art Toronto 2022 (October 27 – October 30, 2022)']
+    exhibitions: ['Art Toronto, Rebecca Hossack Art Gallery, October 27–30, 2022']
   },
   'Memories In Sapphire': {
     status: 'Private Collection',
-    exhibitions: ['Silver Palms – Rebecca Hossack Miami Project, Miami (2024)']
+    exhibitions: ['Silver Palms, Rebecca Hossack Miami Project, Miami, 2024']
   },
   'Night Pool I': {
     status: 'Private Collection',
     exhibitions: [
-      'Silver Palms – Rebecca Hossack Miami Project, Miami (2024)',
-      'LA Art Show (February 19 – February 23, 2025)'
+      'Silver Palms, Rebecca Hossack Miami Project, Miami, 2024',
+      'LA Art Show, Rebecca Hossack Art Gallery, February 19–23, 2025'
     ]
   },
   'Night Pool II': {
@@ -38,18 +38,18 @@ const artworkMetadata = {
   },
   'Twilight Reflections': {
     status: 'Private Collection',
-    exhibitions: ['Seattle Art Fair 2023 (July 27 – July 30, 2023)']
+    exhibitions: ['Seattle Art Fair, Rebecca Hossack Art Gallery, July 27–30, 2023']
   },
   'Pool with Orange Float': {
     status: 'Private Collection',
     exhibitions: [
-      'Spotlight On: Laurence Jones – Rebecca Hossack Gallery (2021)',
-      'Art Toronto 2019 (October 27 – October 30, 2019)'
+      'Spotlight On: Laurence Jones, Rebecca Hossack Art Gallery, 2021',
+      'Art Toronto, Rebecca Hossack Art Gallery, October 27–30, 2019'
     ]
   },
   'Black Palms': {
     status: 'Private Collection',
-    exhibitions: ['Seattle Art Fair 2018 (August 3 – August 5, 2018)']
+    exhibitions: ['Seattle Art Fair, Rebecca Hossack Art Gallery, August 3–5, 2018']
   },
   'The Californication House': {
     status: 'Available via Studio',
