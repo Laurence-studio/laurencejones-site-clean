@@ -2,17 +2,35 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { navigation } from '../data/mockData';
 import { Menu, X } from 'lucide-react';
+import { acceptCookies, declineCookies, hasConsentDecision } from '../utils/analytics';
 
 const Header = ({ inverted = false }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showCookieBanner, setShowCookieBanner] = useState(true);
+  const [showCookieBanner, setShowCookieBanner] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Check if user has already made a consent decision
+  useEffect(() => {
+    setShowCookieBanner(!hasConsentDecision());
+  }, []);
 
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location]);
+
+  // Handle accepting cookies
+  const handleAcceptCookies = () => {
+    acceptCookies();
+    setShowCookieBanner(false);
+  };
+
+  // Handle declining/managing cookies
+  const handleDeclineCookies = () => {
+    declineCookies();
+    setShowCookieBanner(false);
+  };
 
   // Handle navigation - force state reset when clicking same route
   const handleNavClick = (e, path) => {
