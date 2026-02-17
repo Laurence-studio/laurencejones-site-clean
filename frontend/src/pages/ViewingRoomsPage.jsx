@@ -153,9 +153,12 @@ Within this context, the painting becomes a spatial anchor; a quiet intervention
     }
   ];
 
-  // Placeholder image component
+  // Placeholder image component - neutral background matching site tone
   const PlaceholderImage = ({ className = '' }) => (
-    <div className={`bg-gray-100 flex items-center justify-center ${className}`}>
+    <div 
+      className={`flex items-center justify-center ${className}`}
+      style={{ backgroundColor: '#f4f4f2' }}
+    >
       <span className="text-gray-300 text-xs"></span>
     </div>
   );
