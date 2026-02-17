@@ -1,55 +1,9 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React from 'react';
 import { useArtworks } from '../hooks/useApi';
 import { Skeleton } from './ui/skeleton';
 
 const HeroGallery = () => {
   const { artworks, loading } = useArtworks();
-  const [textOpacity, setTextOpacity] = useState(1);
-  const galleryRef = useRef(null);
-  const rafRef = useRef(null);
-
-  const handleScroll = useCallback(() => {
-    // Cancel any pending animation frame
-    if (rafRef.current) {
-      cancelAnimationFrame(rafRef.current);
-    }
-    
-    // Use requestAnimationFrame to throttle scroll updates
-    rafRef.current = requestAnimationFrame(() => {
-      if (!galleryRef.current) return;
-      
-      const galleryRect = galleryRef.current.getBoundingClientRect();
-      const galleryBottom = galleryRect.bottom;
-      const windowHeight = window.innerHeight;
-      
-      // Start fading when gallery bottom approaches the bottom of viewport
-      if (galleryBottom < windowHeight + 200) {
-        const fadeStart = windowHeight + 200;
-        const fadeEnd = windowHeight - 100;
-        const progress = (galleryBottom - fadeEnd) / (fadeStart - fadeEnd);
-        const newOpacity = Math.max(0, Math.min(1, progress));
-        setTextOpacity(prev => {
-          // Only update if change is significant
-          if (Math.abs(prev - newOpacity) > 0.01) {
-            return newOpacity;
-          }
-          return prev;
-        });
-      } else {
-        setTextOpacity(prev => prev !== 1 ? 1 : prev);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
-    };
-  }, [handleScroll]);
 
   const ImageCard = ({ artwork, className = "" }) => (
     <div className={`${className}`}>
