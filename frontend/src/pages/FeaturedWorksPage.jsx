@@ -42,7 +42,7 @@ const FeaturedWorksPage = () => {
     return options;
   }, [featuredWorks]);
 
-  // Filter works based on selection and swap Night Pool I/II for grid display
+  // Filter works based on selection and swap Night Pool I/II thumbnail images only
   const filteredWorks = useMemo(() => {
     let works = featuredWorks;
     
@@ -50,14 +50,16 @@ const FeaturedWorksPage = () => {
       works = featuredWorks.filter(w => w.id === selectedWorkFilter);
     }
     
-    // Swap Night Pool I and Night Pool II positions for grid display only
-    const result = [...works];
+    // Swap only the gallery_image between Night Pool I and Night Pool II for grid display
+    const result = works.map(w => ({ ...w })); // Create shallow copies
     const nightPool1Index = result.findIndex(w => w.title === 'Night Pool I');
     const nightPool2Index = result.findIndex(w => w.title === 'Night Pool II');
     
     if (nightPool1Index !== -1 && nightPool2Index !== -1) {
-      // Swap the two works
-      [result[nightPool1Index], result[nightPool2Index]] = [result[nightPool2Index], result[nightPool1Index]];
+      // Swap only the gallery images
+      const tempImage = result[nightPool1Index].gallery_image;
+      result[nightPool1Index].gallery_image = result[nightPool2Index].gallery_image;
+      result[nightPool2Index].gallery_image = tempImage;
     }
     
     return result;
