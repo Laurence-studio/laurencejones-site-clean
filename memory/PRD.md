@@ -107,19 +107,23 @@ Create a pixel-perfect clone of `https://www.jeffkoons.com`, later pivoted to bu
 - [x] Fixed Maybourne Hotel image aspect ratio (full install view visible)
 - [x] Fixed intermittent black square image loading bug on gallery images
 - [x] Fixed "Viewing Rooms" navigation to return to main landing from detail pages
+- [x] Fixed "Featured Works" navigation scroll-to-top from detail pages
+- [x] Fixed Footer Home link to scroll to top on homepage
+- [x] Updated Instagram link to correct profile (laurencejonesartist)
+- [x] Vault copy edits: Exhibition History label, removed Private Collection from dropdown
+- [x] Vault: Private Collection only shows for sold works (Night Pool, Memories In Sapphire)
+- [x] Vault: Added more spacing between Exhibition History and Enquire button
+- [x] Studio page: Updated biography and exhibitions/milestones content
+- [x] Homepage: Updated biography text with new Laurence Jones copy
 
 ## Pending/Backlog
-
-### P0 - Immediate
-- [ ] Update homepage biography text (still contains "Jeff Koons" placeholder)
 
 ### P2 - Future Enhancements
 - [ ] Additional content updates as requested by user
 
 ## Project Health
 - **Broken**: None
-- **Mocked**: 
-  - Homepage biography text (still references "Jeff Koons")
+- **Mocked**: None - All placeholder content has been replaced
 
 ## 3rd Party Integrations
 None currently.
