@@ -46,6 +46,9 @@ function App() {
           <Route path="/exhibitions" element={<ExhibitionsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/cv" element={<CVPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/cookies" element={<CookiesPage />} />
+          <Route path="/terms" element={<TermsPage />} />
         </Routes>
       </BrowserRouter>
     </div>
