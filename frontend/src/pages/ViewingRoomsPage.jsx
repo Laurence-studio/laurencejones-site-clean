@@ -233,6 +233,7 @@ Within this context, the painting becomes a spatial anchor; a quiet intervention
                   alt={`${selectedRoom.title} ${idx + 1}`}
                   aspectClass={selectedRoom.galleryImages.length === 2 ? 'aspect-[4/3]' : 'aspect-square'}
                   objectFit={selectedRoom.galleryImages.length === 2 && idx === 1 ? 'object-contain' : 'object-cover'}
+                  priority={true}
                 />
               ))}
             </div>
