@@ -241,7 +241,7 @@ Within this context, the painting becomes a spatial anchor; a quiet intervention
             VIEWING ROOMS
           </h1>
           <p className="text-black text-xl font-semibold mt-2">Architectural Dialogues</p>
-          <p className="text-gray-500 text-sm mt-1">Paintings conceived in conversation with built space</p>
+          <p className="text-gray-500 text-sm mt-1">Paintings developed in dialogue with architectural space</p>
         </div>
 
         {/* Rooms - Vertical stacked with info on left, image on right */}
