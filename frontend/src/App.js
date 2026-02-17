@@ -13,6 +13,7 @@ import CVPage from "./pages/CVPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import CookiesPage from "./pages/CookiesPage";
 import TermsPage from "./pages/TermsPage";
+import SubscribedPage from "./pages/SubscribedPage";
 import { initPostHog, trackPageView, hasAcceptedCookies } from "./utils/analytics";
 
 // Initialize PostHog on app load
@@ -49,6 +50,7 @@ function App() {
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/cookies" element={<CookiesPage />} />
           <Route path="/terms" element={<TermsPage />} />
+          <Route path="/subscribed" element={<SubscribedPage />} />
         </Routes>
       </BrowserRouter>
     </div>

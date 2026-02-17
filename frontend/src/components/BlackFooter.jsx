@@ -21,6 +21,7 @@ const BlackFooter = () => {
               method="POST" 
               target="_blank"
             >
+              <input type="hidden" name="redirect" value="https://jones-gallery-dev.preview.emergentagent.com/subscribed" />
               <input
                 type="email"
                 name="EMAIL"
