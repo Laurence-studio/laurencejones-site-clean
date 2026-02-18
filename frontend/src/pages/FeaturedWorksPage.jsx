@@ -90,7 +90,7 @@ const getWorkMetadata = (title) => {
 
 const FeaturedWorksPage = () => {
   const location = useLocation();
-  const { featuredWorks, loading } = useFeaturedWorks();
+  const { featuredWorks = [], loading, error } = useFeaturedWorks();
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'full'
   const [selectedWork, setSelectedWork] = useState(null);
   const [selectedWorkFilter, setSelectedWorkFilter] = useState('all');
@@ -104,30 +104,36 @@ const FeaturedWorksPage = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [location.key]);
 
-  // Build dropdown options from featuredWorks
+  // Build dropdown options from featuredWorks - safely handle empty array
   const dropdownOptions = useMemo(() => {
     const options = [{ value: 'all', label: 'All Works' }];
-    featuredWorks.forEach(work => {
-      options.push({
-        value: work.id,
-        label: `${work.title}, ${work.year}`
+    if (Array.isArray(featuredWorks)) {
+      featuredWorks.forEach(work => {
+        if (work?.id && work?.title) {
+          options.push({
+            value: work.id,
+            label: `${work.title}, ${work.year || ''}`
+          });
+        }
       });
-    });
+    }
     return options;
   }, [featuredWorks]);
 
   // Filter works based on selection and swap Night Pool I/II thumbnail images only
   const filteredWorks = useMemo(() => {
+    if (!Array.isArray(featuredWorks)) return [];
+    
     let works = featuredWorks;
     
     if (selectedWorkFilter !== 'all') {
-      works = featuredWorks.filter(w => w.id === selectedWorkFilter);
+      works = featuredWorks.filter(w => w?.id === selectedWorkFilter);
     }
     
     // Swap only the gallery_image between Night Pool I and Night Pool II for grid display
     const result = works.map(w => ({ ...w })); // Create shallow copies
-    const nightPool1Index = result.findIndex(w => w.title === 'Night Pool I');
-    const nightPool2Index = result.findIndex(w => w.title === 'Night Pool II');
+    const nightPool1Index = result.findIndex(w => w?.title === 'Night Pool I');
+    const nightPool2Index = result.findIndex(w => w?.title === 'Night Pool II');
     
     if (nightPool1Index !== -1 && nightPool2Index !== -1) {
       // Swap only the gallery images
