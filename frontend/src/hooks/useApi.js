@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE } from '../config';
 
-const API_URL = process.env.REACT_APP_BACKEND_URL + '/api';
+// Safe array access helper - prevents crashes on undefined data
+const safeArray = (data) => Array.isArray(data) ? data : [];
 
 // Artworks Hook
 export const useArtworks = () => {
@@ -12,12 +14,13 @@ export const useArtworks = () => {
   useEffect(() => {
     const fetchArtworks = async () => {
       try {
-        const response = await axios.get(`${API_URL}/artworks`);
-        setArtworks(response.data);
-        setLoading(false);
+        const response = await axios.get(`${API_BASE}/artworks`);
+        setArtworks(safeArray(response.data));
       } catch (err) {
         console.error('Error fetching artworks:', err);
-        setError(err.message);
+        setError(err.message || 'Failed to load artworks');
+        setArtworks([]); // Ensure empty array on error
+      } finally {
         setLoading(false);
       }
     };
@@ -37,14 +40,15 @@ export const useExhibitions = (status = null) => {
     const fetchExhibitions = async () => {
       try {
         const url = status 
-          ? `${API_URL}/exhibitions?status=${status}` 
-          : `${API_URL}/exhibitions`;
+          ? `${API_BASE}/exhibitions?status=${status}` 
+          : `${API_BASE}/exhibitions`;
         const response = await axios.get(url);
-        setExhibitions(response.data);
-        setLoading(false);
+        setExhibitions(safeArray(response.data));
       } catch (err) {
         console.error('Error fetching exhibitions:', err);
-        setError(err.message);
+        setError(err.message || 'Failed to load exhibitions');
+        setExhibitions([]);
+      } finally {
         setLoading(false);
       }
     };
@@ -63,12 +67,13 @@ export const useBiography = () => {
   useEffect(() => {
     const fetchBiography = async () => {
       try {
-        const response = await axios.get(`${API_URL}/biography`);
-        setBiography(response.data);
-        setLoading(false);
+        const response = await axios.get(`${API_BASE}/biography`);
+        setBiography(response.data || null);
       } catch (err) {
         console.error('Error fetching biography:', err);
-        setError(err.message);
+        setError(err.message || 'Failed to load biography');
+        setBiography(null);
+      } finally {
         setLoading(false);
       }
     };
@@ -87,12 +92,13 @@ export const useBibliography = () => {
   useEffect(() => {
     const fetchBibliography = async () => {
       try {
-        const response = await axios.get(`${API_URL}/bibliography`);
-        setBibliography(response.data);
-        setLoading(false);
+        const response = await axios.get(`${API_BASE}/bibliography`);
+        setBibliography(safeArray(response.data));
       } catch (err) {
         console.error('Error fetching bibliography:', err);
-        setError(err.message);
+        setError(err.message || 'Failed to load bibliography');
+        setBibliography([]);
+      } finally {
         setLoading(false);
       }
     };
@@ -111,12 +117,13 @@ export const useShop = () => {
   useEffect(() => {
     const fetchShopItems = async () => {
       try {
-        const response = await axios.get(`${API_URL}/shop`);
-        setShopItems(response.data);
-        setLoading(false);
+        const response = await axios.get(`${API_BASE}/shop`);
+        setShopItems(safeArray(response.data));
       } catch (err) {
         console.error('Error fetching shop items:', err);
-        setError(err.message);
+        setError(err.message || 'Failed to load shop items');
+        setShopItems([]);
+      } finally {
         setLoading(false);
       }
     };
@@ -135,12 +142,13 @@ export const useFeaturedWorks = () => {
   useEffect(() => {
     const fetchFeaturedWorks = async () => {
       try {
-        const response = await axios.get(`${API_URL}/featured-works`);
-        setFeaturedWorks(response.data);
-        setLoading(false);
+        const response = await axios.get(`${API_BASE}/featured-works`);
+        setFeaturedWorks(safeArray(response.data));
       } catch (err) {
         console.error('Error fetching featured works:', err);
-        setError(err.message);
+        setError(err.message || 'Failed to load featured works');
+        setFeaturedWorks([]);
+      } finally {
         setLoading(false);
       }
     };
@@ -159,12 +167,13 @@ export const useVaultWorks = () => {
   useEffect(() => {
     const fetchVaultWorks = async () => {
       try {
-        const response = await axios.get(`${API_URL}/vault-works`);
-        setVaultWorks(response.data);
-        setLoading(false);
+        const response = await axios.get(`${API_BASE}/vault-works`);
+        setVaultWorks(safeArray(response.data));
       } catch (err) {
         console.error('Error fetching vault works:', err);
-        setError(err.message);
+        setError(err.message || 'Failed to load vault works');
+        setVaultWorks([]);
+      } finally {
         setLoading(false);
       }
     };
