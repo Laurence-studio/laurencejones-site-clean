@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "@/index.css";
@@ -9,6 +10,7 @@ root.render(
   <React.StrictMode>
     <ErrorBoundary>
       <App />
+      <Analytics />
     </ErrorBoundary>
   </React.StrictMode>,
 );
