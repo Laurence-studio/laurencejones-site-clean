@@ -76,19 +76,31 @@ const PrivacyPage = () => {
             </section>
 
             {/* Section 3 */}
-            <section className="space-y-4">
-              <h2 className="text-black font-semibold text-lg">3. Analytics</h2>
-              <p>This website uses PostHog (EU data region) for privacy-conscious analytics.</p>
-              <p>Tracking occurs only after consent is provided.</p>
-              <p>Analytics data may include:</p>
-              <ul className="list-disc list-inside space-y-1">
-                <li>Page views</li>
-                <li>Interaction events</li>
-                <li>Session duration</li>
-                <li>Device information</li>
-              </ul>
-              <p>No advertising cookies are used.</p>
-            </section>
+<section className="space-y-4">
+  <h2 className="text-black font-semibold text-lg">3. Analytics</h2>
+
+  <p>
+    This website uses Vercel Analytics, a privacy-focused analytics service provided by Vercel Inc.
+  </p>
+
+  <p>
+    Vercel Analytics collects anonymised and aggregated usage data to help improve website performance and user experience.
+  </p>
+
+  <p>Analytics data may include:</p>
+
+  <ul className="list-disc list-inside space-y-1">
+    <li>Page views</li>
+    <li>Interaction metrics</li>
+    <li>Session duration</li>
+    <li>Device and browser information</li>
+    <li>Country-level geographic data</li>
+  </ul>
+
+  <p>
+    Vercel Analytics does not use advertising cookies, sell personal data, track users across other websites, or collect personally identifiable information.
+  </p>
+</section>
 
             {/* Section 4 */}
             <section className="space-y-4">

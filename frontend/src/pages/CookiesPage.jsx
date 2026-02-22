@@ -27,21 +27,24 @@ const CookiesPage = () => {
           {/* Content */}
           <div className="space-y-12 text-gray-600 leading-relaxed">
             <p>
-              This website uses limited cookies to ensure functionality and understand general engagement.
+              This website uses limited technologies to ensure functionality and understand general engagement.
             </p>
 
-            {/* Essential Cookies */}
+            {/* Essential Functionality */}
             <section className="space-y-4">
-              <h2 className="text-black font-semibold text-lg">Essential Cookies</h2>
-              <p>Required for core website functionality.</p>
+              <h2 className="text-black font-semibold text-lg">Essential Functionality</h2>
+              <p>Basic browser storage mechanisms may be used to ensure core website functionality, such as navigation and display preferences.
+              
+            These do not collect personally identifiable information..</p>
             </section>
 
-            {/* Analytics Cookies */}
+            {/* Analytics */}
             <section className="space-y-4">
-              <h2 className="text-black font-semibold text-lg">Analytics Cookies</h2>
-              <p>With consent, analytics cookies collect anonymised usage information to help improve user experience.</p>
-              <p>We use PostHog (EU data region).</p>
-              <p>Analytics tracking activates only after clicking "ACCEPT" in the cookie banner.</p>
+              <h2 className="text-black font-semibold text-lg">Analytics</h2>
+              <p>This website uses Vercel Analytics, a privacy-focused analytics service provided by Vercel Inc.</p>
+<p>Vercel Analytics collects anonymised and aggregated usage data to help improve website performance and user experience.</p>
+<p>Analytics data may include page views, device type, browser type, and country-level geographic information.</p>
+<p>Vercel Analytics does not use advertising cookies, sell personal data, or track users across other websites.</p>
             </section>
 
             {/* Managing Cookies */}
@@ -49,7 +52,7 @@ const CookiesPage = () => {
               <h2 className="text-black font-semibold text-lg">Managing Cookies</h2>
               <p>You may:</p>
               <ul className="list-disc list-inside space-y-1">
-                <li>Accept or decline analytics cookies via the banner</li>
+                <li>Manage or disable cookies through your browser settings</li>
                 <li>Remove cookies at any time through your browser settings</li>
               </ul>
               <p>Disabling analytics cookies does not affect site access.</p>

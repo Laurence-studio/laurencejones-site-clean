@@ -14,30 +14,11 @@ import PrivacyPage from "./pages/PrivacyPage";
 import CookiesPage from "./pages/CookiesPage";
 import TermsPage from "./pages/TermsPage";
 import SubscribedPage from "./pages/SubscribedPage";
-import { initPostHog, trackPageView, hasAcceptedCookies } from "./utils/analytics";
-
-// Initialize PostHog on app load
-initPostHog();
-
-// Page tracking component
-const PageTracker = () => {
-  const location = useLocation();
-  
-  useEffect(() => {
-    if (hasAcceptedCookies()) {
-      trackPageView(location.pathname);
-    }
-  }, [location.pathname]);
-  
-  return null;
-};
-
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <ScrollToTop />
-        <PageTracker />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/featured-works" element={<FeaturedWorksPage />} />
